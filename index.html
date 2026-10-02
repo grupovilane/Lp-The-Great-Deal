@@ -884,17 +884,27 @@ p,li,dd,.acc__body p{font-family:var(--font)}
 .hero h1 span{color:var(--mint)}
 
 
-/* carrossel de fotos (loop contínuo) */
+/* carrossel de fotos (rolagem automática + setas) */
 .fotos{background:var(--cream);padding:64px 0 70px;overflow:hidden}
-.carrossel{position:relative;overflow:hidden;padding:6px 0;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
-          mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.carrossel__track{display:flex;gap:16px;width:max-content;animation:carrossel 240s linear infinite;will-change:transform}
-.carrossel:hover .carrossel__track,.carrossel:active .carrossel__track{animation-play-state:paused}
+.carrossel{position:relative}
+.carrossel__view{overflow-x:auto;overflow-y:hidden;padding:6px 0;scrollbar-width:none;-ms-overflow-style:none;
+  -webkit-overflow-scrolling:touch;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.carrossel__view::-webkit-scrollbar{display:none}
+.carrossel__track{display:flex;gap:16px;width:max-content}
 .carrossel__track img{height:clamp(240px,32vw,430px);width:auto;flex:none;border-radius:22px;
   object-fit:cover;background:var(--serenity);box-shadow:0 14px 30px rgba(18,13,68,.16);user-select:none;-webkit-user-drag:none}
-@keyframes carrossel{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--meio,50%)))}}
-@media (max-width:640px){.fotos{padding:44px 0 48px}.carrossel__track{gap:12px}.carrossel__track img{border-radius:16px}}
+.carrossel__seta{position:absolute;top:50%;z-index:3;width:56px;height:56px;margin-top:-28px;border-radius:50%;
+  display:grid;place-items:center;background:var(--navy);color:var(--mint);box-shadow:0 12px 26px rgba(18,13,68,.3);
+  transition:transform .18s ease,background .18s,color .18s}
+.carrossel__seta svg{width:26px;height:26px}
+.carrossel__seta:hover{background:var(--mint);color:var(--navy);transform:scale(1.07)}
+.carrossel__seta--prev{left:max(14px,calc((100vw - var(--max))/2 + 10px))}
+.carrossel__seta--next{right:max(14px,calc((100vw - var(--max))/2 + 10px))}
+@media (max-width:640px){.fotos{padding:44px 0 48px}.carrossel__track{gap:12px}.carrossel__track img{border-radius:16px}
+  .carrossel__seta{width:44px;height:44px;margin-top:-22px}.carrossel__seta svg{width:22px;height:22px}
+  .carrossel__seta--prev{left:8px}.carrossel__seta--next{right:8px}}
 
 /* hero em arco, como na referência */
 .hero__art img.hero__img{aspect-ratio:auto;border-radius:0;box-shadow:none;object-fit:contain;width:100%;height:auto;display:block;position:relative;z-index:2;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
@@ -1201,10 +1211,13 @@ p,li,dd,.acc__body p{font-family:var(--font)}
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Pelas ruas da Europa</p>
-      <h2 class="display">Vai ser assim</h2>
+      <h2 class="display">Um pouco da Eurotrip da GS</h2>
     </div>
   </div>
   <div class="carrossel" id="carrossel" aria-label="Carrossel de fotos de viagens pela Europa">
+    <button class="carrossel__seta carrossel__seta--prev" type="button" aria-label="Fotos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+    <button class="carrossel__seta carrossel__seta--next" type="button" aria-label="Próximas fotos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+    <div class="carrossel__view" id="carrosselView">
     <div class="carrossel__track" id="carrosselTrack">
         <img src="assets/galeria/g01.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
         <img src="assets/galeria/g02.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
@@ -1273,6 +1286,7 @@ p,li,dd,.acc__body p{font-family:var(--font)}
         <img src="assets/galeria/g65.webp" width="900" height="675" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
         <img src="assets/galeria/g66.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
         <img src="assets/galeria/g67.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
+    </div>
     </div>
   </div>
 </section>
@@ -1560,26 +1574,62 @@ onScroll();
 btnTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 
 
-/* ---------- carrossel de fotos: duplica a faixa para o loop não ter emenda ---------- */
+/* ---------- carrossel de fotos: rolagem automática, loop sem emenda e setas ---------- */
 (function () {
+  const view = document.getElementById('carrosselView');
   const track = document.getElementById('carrosselTrack');
-  if (!track) return;
-  const originais = [...track.children];
-  originais.forEach(img => {
+  if (!view || !track) return;
+  [...track.children].forEach(img => {
     const c = img.cloneNode(true);
-    c.setAttribute('aria-hidden', 'true'); c.alt = ''; c.loading = 'lazy';
+    c.setAttribute('aria-hidden', 'true'); c.alt = '';
     track.appendChild(c);
   });
-  function ajustar() {
+  const VEL = 45;                       /* px por segundo */
+  let meio = 0, pausaAte = 0, hover = false, ultimo = 0, pos = 0;
+  const medir = () => {
     const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    const meio = track.scrollWidth / 2 + gap / 2;
-    track.style.setProperty('--meio', meio + 'px');
-    track.style.animationDuration = Math.max(60, meio / 55) + 's';
+    meio = track.scrollWidth / 2 + gap / 2;
+  };
+  const normalizar = () => {
+    if (!meio) return;
+    if (pos >= meio) pos -= meio;
+    if (pos < 0) pos += meio;
+  };
+  const pausar = ms => { pausaAte = performance.now() + ms; };
+  let ressincronizar = true;
+  function passo(t) {
+    const dt = Math.min(0.05, (t - (ultimo || t)) / 1000); ultimo = t;
+    if (!hover && t > pausaAte && meio) {
+      if (ressincronizar) { pos = view.scrollLeft; ressincronizar = false; }
+      pos += VEL * dt;               /* acumula em decimal: scrollLeft arredonda e travaria */
+      normalizar();
+      view.scrollLeft = pos;
+    } else { ressincronizar = true; }
+    requestAnimationFrame(passo);
   }
-  ajustar();
-  addEventListener('resize', ajustar);
-  addEventListener('load', ajustar);
-  track.querySelectorAll('img').forEach(i => i.addEventListener('load', ajustar, { once: true }));
+  function mover(dir) {
+    pausar(2500);
+    const alvo = view.scrollLeft + dir * Math.max(240, view.clientWidth * 0.7);
+    view.scrollTo({ left: alvo, behavior: 'smooth' });
+  }
+  /* o loop só "dobra" a posição quando o usuário passou do meio */
+  view.addEventListener('scroll', () => {
+    if (!meio) return;
+    if (view.scrollLeft >= meio) view.scrollLeft -= meio;
+    else if (view.scrollLeft <= 0 && pos > 0 && performance.now() < pausaAte) view.scrollLeft += meio;
+  }, { passive: true });
+  document.querySelector('.carrossel__seta--next').addEventListener('click', () => mover(1));
+  document.querySelector('.carrossel__seta--prev').addEventListener('click', () => {
+    if (view.scrollLeft < 300) view.scrollLeft += meio;   /* volta pelo fim sem trancar no início */
+    mover(-1);
+  });
+  view.addEventListener('mouseenter', () => { hover = true; });
+  view.addEventListener('mouseleave', () => { hover = false; });
+  view.addEventListener('touchstart', () => pausar(4000), { passive: true });
+  view.addEventListener('wheel', () => pausar(2500), { passive: true });
+  track.querySelectorAll('img').forEach(i => i.addEventListener('load', medir, { once: true }));
+  addEventListener('resize', medir); addEventListener('load', medir);
+  medir(); requestAnimationFrame(passo);
 })();
 
 document.getElementById('yr').textContent = new Date().getFullYear();
