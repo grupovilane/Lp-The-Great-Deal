@@ -906,6 +906,13 @@ p,li,dd,.acc__body p{font-family:var(--font)}
   .carrossel__seta{width:44px;height:44px;margin-top:-22px}.carrossel__seta svg{width:22px;height:22px}
   .carrossel__seta--prev{left:8px}.carrossel__seta--next{right:8px}}
 
+/* paradas no mobile/tablet: rótulo acima do painel, sem sobreposição */
+@media (max-width:1023px){
+  .day__n{margin:22px 0 12px 4px;font-size:clamp(24px,6vw,32px);line-height:1.1}
+  .day__panel{position:relative;z-index:1}
+  .day__body{z-index:auto}
+}
+
 /* hero em arco, como na referência */
 .hero__art img.hero__img{aspect-ratio:auto;border-radius:0;box-shadow:none;object-fit:contain;width:100%;height:auto;display:block;position:relative;z-index:2;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
 .hero__art::after{border-radius:999px 999px 34px 34px}
