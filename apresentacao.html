@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Europa 2027 | Apresentação The Great Deal × GS Infinity Travel</title>
+<meta name="theme-color" content="#08051D">
+<link rel="icon" type="image/png" href="assets/favicongs.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#120D44;--navy-2:#1B1560;--royal:#051D7D;--mint:#71E6CC;--teal:#40A3B6;--gold:#FFC100;
+  --apricot:#FDCE82;--apricot-soft:#FDF0DA;--cream:#FAF9F6;--serenity:#BFDCF2;--nav-pill:#08051D;
+  --bubble:"Titan One",system-ui,sans-serif;--display:"Fredoka",system-ui,sans-serif;--font:"Poppins",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--nav-pill);font-family:var(--font);color:var(--navy);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+
+/* palco 16:9 escalado para qualquer tela */
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden;background:var(--navy)}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .55s ease,visibility 0s .55s;overflow:hidden;padding:0 120px}
+.slide.on{opacity:1;visibility:visible;transition:opacity .55s ease}
+.s-navy{background:var(--navy);color:var(--cream)}
+.s-cream{background:var(--cream);color:var(--navy)}
+.s-mint{background:var(--mint);color:var(--navy)}
+.s-teal{background:var(--teal);color:var(--navy)}
+.s-apricot{background:var(--apricot);color:var(--navy)}
+
+/* animação de entrada em cascata */
+[data-a]{opacity:0;transform:translateY(34px)}
+.slide.on [data-a]{opacity:1;transform:none;transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1);transition-delay:calc(.12s + var(--i,0)*.12s)}
+@media (prefers-reduced-motion:reduce){[data-a]{opacity:1;transform:none}.slide.on [data-a]{transition:none}}
+
+/* cabeçalho e rodapé de cada slide */
+.top{position:absolute;left:120px;right:120px;top:56px;display:flex;align-items:center;justify-content:space-between;z-index:5}
+.top img{height:86px;width:auto}
+.top .tag{font-size:19px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;opacity:.75}
+.foot{position:absolute;left:120px;right:120px;bottom:44px;display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;opacity:.6;z-index:5}
+
+.eyebrow{font-weight:500;text-transform:uppercase;font-size:24px;letter-spacing:.34em;line-height:1.5}
+.s-navy .eyebrow{color:var(--mint)}
+.s-cream .eyebrow,.s-teal .eyebrow{color:var(--teal)}
+.s-teal .eyebrow{color:var(--navy)}
+.s-mint .eyebrow,.s-apricot .eyebrow{color:var(--navy)}
+h1,h2,h3{font-family:var(--bubble);font-weight:400;line-height:.98;text-transform:uppercase}
+.lead{font-size:34px;font-weight:300;line-height:1.55}
+.lead b{font-weight:600}
+.s-navy .lead b{color:var(--apricot)}
+
+/* sparkle (assinatura GS) */
+.sparkle{display:inline-block;width:.42em;height:.62em;vertical-align:top;position:relative;margin-left:.12em}
+.sparkle i{position:absolute;background:var(--apricot);border-radius:60% 60% 60% 0;transform:rotate(-30deg)}
+.sparkle i:nth-child(1){width:38%;height:34%;left:22%;top:0}
+.sparkle i:nth-child(2){width:32%;height:28%;left:58%;top:24%}
+.sparkle i:nth-child(3){width:30%;height:26%;left:12%;top:44%}
+
+/* centro vertical padrão do conteúdo */
+.mid{position:absolute;left:120px;right:120px;top:190px;bottom:120px;display:flex;flex-direction:column;justify-content:center}
+
+/* CAPA */
+.cover{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:80px;align-items:center;top:170px}
+.cover::before{content:"";position:absolute;width:1300px;height:1300px;right:-420px;top:-620px;border-radius:50%;background:radial-gradient(circle,rgba(113,230,204,.18),transparent 65%);pointer-events:none}
+.cover h1{font-size:190px;color:var(--cream);margin:22px 0 34px}
+.cover h1 span{color:var(--mint)}
+.cover .lead{max-width:860px;color:rgba(250,249,246,.9)}
+.cover .art{position:relative;justify-self:end;width:790px}
+.cover .art svg{width:100%;aspect-ratio:5/4;border-radius:44px;display:block;box-shadow:0 40px 80px rgba(0,0,0,.45);position:relative;z-index:2;background:#71E6CC}
+.cover .art::after{content:"";position:absolute;inset:24px -24px -24px 24px;border-radius:44px;border:3px solid var(--mint);z-index:1}
+.partners{display:flex;align-items:center;gap:26px;margin-top:6px}
+.pill-tgd{background:#fff;border-radius:26px;padding:14px 26px;display:grid;place-items:center;box-shadow:0 14px 30px rgba(0,0,0,.3)}
+.pill-tgd img{height:150px;width:auto}
+.pill-tgd b{display:block;font-family:var(--bubble);font-weight:400;font-size:34px;line-height:1;text-transform:uppercase}
+.pill-tgd span{display:block;margin-top:5px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.x{width:54px;height:54px;border-radius:50%;background:var(--mint);color:var(--navy);display:grid;place-items:center;font-family:var(--bubble);font-size:28px}
+
+/* PARCERIA */
+.s-title{font-size:116px;margin:16px 0 0}
+.plates{display:flex;align-items:center;gap:30px;margin-top:50px}
+.plate{display:grid;place-items:center;border-radius:34px;min-width:430px;height:190px;padding:20px 40px;box-shadow:0 22px 44px rgba(18,13,68,.16)}
+.plate--gs{background:var(--navy)}.plate--gs img{height:120px}
+.plate--tgd{background:#fff;border:2px solid rgba(18,13,68,.08)}
+.plate--tgd img{height:150px;width:auto}
+.plate--tgd b{display:block;font-family:var(--bubble);font-weight:400;font-size:54px;line-height:1;text-transform:uppercase}
+.plate--tgd span{display:block;margin-top:10px;font-size:15px;font-weight:600;letter-spacing:.26em;text-transform:uppercase}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center}
+.pillars{display:grid;gap:26px}
+.pillar{display:flex;gap:26px;align-items:center;background:#fff;border-radius:28px;padding:26px 32px;box-shadow:0 14px 32px rgba(18,13,68,.1)}
+.pillar .ico{width:76px;height:76px;flex:none;border-radius:50%;background:var(--navy);color:var(--mint);display:grid;place-items:center}
+.pillar .ico svg{width:38px;height:38px}
+.pillar h3{font-family:var(--display);font-weight:600;font-size:34px;text-transform:none;line-height:1.1;margin-bottom:6px}
+.pillar p{font-size:23px;font-weight:300;line-height:1.4}
+
+/* VISÃO GERAL */
+.bar{display:flex;gap:10px;margin-top:70px;height:150px}
+.bar div{border-radius:26px;display:flex;flex-direction:column;justify-content:center;align-items:center;color:var(--navy);min-width:0;overflow:hidden;white-space:nowrap}
+.bar b{font-family:var(--bubble);font-weight:400;font-size:62px;line-height:1}
+.bar span{font-size:15px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-top:4px}
+.bar-lbl{display:flex;gap:10px;margin-top:22px}
+.bar-lbl div{font-family:var(--display);font-weight:600;font-size:30px;overflow:visible;text-align:center;color:var(--cream);min-width:0}
+.bar-lbl small{display:block;font-family:var(--font);font-weight:500;font-size:18px;letter-spacing:.2em;text-transform:uppercase;color:var(--mint);margin-top:4px}
+.totals{display:flex;gap:70px}
+.ov-row{display:flex;justify-content:space-between;align-items:flex-end}
+.tot b{display:block;font-family:var(--bubble);font-weight:400;font-size:96px;line-height:1;color:var(--mint)}
+.tot span{font-size:20px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(250,249,246,.8)}
+
+/* CIDADES */
+.city{display:grid;grid-template-columns:860px 1fr;gap:100px;align-items:center}
+.city .lm{position:relative;width:860px;aspect-ratio:4/3;border-radius:44px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.5);background:var(--bg)}
+.city .lm svg{position:absolute;inset:0;width:100%;height:100%}
+.city .lm .t{position:absolute;left:30px;top:30px;z-index:2;background:var(--navy);color:var(--cream);font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:.16em;text-transform:uppercase;padding:12px 26px;border-radius:999px}
+.city h2{font-size:150px;margin:18px 0 26px;color:var(--cream)}
+.dias{display:inline-flex;align-items:baseline;gap:14px;background:var(--apricot);color:var(--navy);border-radius:999px;padding:12px 32px}
+.dias b{font-family:var(--bubble);font-weight:400;font-size:60px;line-height:1}
+.dias small{font-size:20px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+.city .lead{margin-top:34px;max-width:780px;color:rgba(250,249,246,.9);font-size:31px}
+.tags{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.tags li{font-size:22px;font-weight:500;color:var(--cream);border:2px solid rgba(113,230,204,.5);border-radius:999px;padding:10px 26px}
+.big-n{position:absolute;right:90px;bottom:-60px;font-family:var(--bubble);font-size:560px;line-height:1;color:rgba(113,230,204,.06);pointer-events:none}
+
+/* DATAS */
+.dates{display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:center;margin-top:70px}
+.dcard{background:var(--navy);color:var(--cream);border-radius:44px;padding:56px 50px;text-align:center;box-shadow:0 30px 60px rgba(18,13,68,.25)}
+.dcard small{display:block;font-size:22px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--mint)}
+.dcard b{display:block;font-family:var(--bubble);font-weight:400;font-size:170px;line-height:1;margin:14px 0 6px}
+.dcard span{font-family:var(--display);font-weight:600;font-size:40px;color:var(--apricot);text-transform:uppercase}
+.arrow{width:120px;height:120px;border-radius:50%;background:var(--gold);display:grid;place-items:center}
+.arrow svg{width:60px;height:60px}
+.dnote{margin-top:50px;display:flex;gap:26px;align-items:center;justify-content:center;font-size:28px;font-weight:500}
+.chip{background:var(--navy);color:var(--mint);border-radius:999px;padding:12px 30px;font-size:26px;font-weight:600}
+
+/* INVESTIMENTO */
+.invest{text-align:center;align-items:center}
+.invest .price{font-family:var(--bubble);font-size:380px;line-height:1;color:var(--cream);display:flex;align-items:flex-start;justify-content:center;gap:.04em;margin:16px 0 0}
+.invest .price sup{font-size:.26em;margin-top:.5em}
+.invest .per{font-size:34px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--apricot);margin-top:6px}
+.entrada{margin-top:62px;display:inline-flex;align-items:center;gap:30px;background:var(--apricot);color:var(--navy);border-radius:30px;padding:26px 56px}
+.entrada small{font-size:19px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;text-align:left;line-height:1.5}
+.entrada b{font-family:var(--bubble);font-weight:400;font-size:84px;line-height:1}
+
+/* PAGAMENTO */
+.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:40px}
+.pcard{background:var(--navy);color:var(--cream);border-radius:40px;padding:38px 40px 40px;box-shadow:0 26px 50px rgba(18,13,68,.22)}
+.pcard .ico{width:78px;height:78px;border-radius:50%;background:var(--mint);color:var(--navy);display:grid;place-items:center;margin-bottom:22px}
+.pcard .ico svg{width:40px;height:40px}
+.pcard h3{font-family:var(--display);font-weight:600;font-size:42px;text-transform:none;line-height:1.1;margin-bottom:16px}
+.pcard h3 em{font-style:normal;color:var(--gold)}
+.pcard p{font-size:25px;font-weight:300;line-height:1.5;color:rgba(250,249,246,.88)}
+.est{margin-top:32px;display:flex;align-items:center;gap:30px;background:var(--apricot);border-radius:30px;padding:26px 44px}
+.est b{font-family:var(--bubble);font-weight:400;font-size:62px;line-height:1;white-space:nowrap}
+.est span{font-size:24px;font-weight:400;line-height:1.45}
+.est[hidden]{display:none}
+
+/* CRIANÇAS */
+.kids{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.kids h2{font-size:150px;margin:20px 0 30px}
+.kids .lead{max-width:760px}
+.kids-card{background:var(--navy);color:var(--cream);border-radius:50px;padding:70px 64px;text-align:center;box-shadow:0 36px 70px rgba(18,13,68,.3)}
+.kids-card .ico{width:150px;height:150px;border-radius:50%;background:var(--mint);color:var(--navy);display:grid;place-items:center;margin:0 auto 34px}
+.kids-card .ico svg{width:80px;height:80px}
+.kids-card b{display:block;font-family:var(--bubble);font-weight:400;font-size:74px;line-height:1.02;text-transform:uppercase}
+.kids-card span{display:block;margin-top:22px;font-size:28px;font-weight:300;line-height:1.5;color:rgba(250,249,246,.9)}
+
+/* ENCERRAMENTO */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:44px}
+.step{background:rgba(250,249,246,.07);border:2px solid rgba(113,230,204,.3);border-radius:34px;padding:32px 36px}
+.step i{font-style:normal;display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--gold);color:var(--navy);font-family:var(--bubble);font-size:36px;margin-bottom:18px}
+.step h3{font-family:var(--display);font-weight:600;font-size:40px;text-transform:none;line-height:1.12;margin-bottom:12px}
+.step p{font-size:25px;font-weight:300;line-height:1.5;color:rgba(250,249,246,.86)}
+.contact{margin-top:36px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.contact a,.contact span.c{display:inline-flex;align-items:center;gap:16px;background:var(--mint);color:var(--navy);border-radius:999px;padding:18px 40px 18px 22px;font-family:var(--display);font-weight:600;font-size:34px;text-decoration:none}
+.contact .c.i{background:transparent;border:2px solid rgba(113,230,204,.5);color:var(--mint)}
+.contact svg{width:44px;height:44px}
+.end-h{font-size:118px;margin:14px 0 0;color:var(--cream);white-space:nowrap}
+
+/* rota de voo */
+.fp{position:absolute;left:0;right:0;bottom:-10px;height:130px;z-index:1;opacity:.85}
+.fp svg{width:100%;height:100%;display:block}
+.fp-dash{fill:none;stroke:var(--gold);stroke-width:5;stroke-linecap:round;stroke-dasharray:14 16}
+.fp-plane{fill:var(--cream)}
+
+/* barra de progresso + controles */
+#prog{position:fixed;left:0;right:0;top:0;height:5px;z-index:50;background:rgba(250,249,246,.1)}
+#prog i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--mint),var(--gold));transition:transform .45s cubic-bezier(.22,1,.36,1)}
+#ctl{position:fixed;right:18px;bottom:16px;z-index:60;display:flex;gap:8px;align-items:center;opacity:0;transition:opacity .3s}
+body.moved #ctl{opacity:1}
+#ctl button{width:46px;height:46px;border-radius:50%;background:var(--nav-pill);color:var(--mint);display:grid;place-items:center;border:1.5px solid rgba(113,230,204,.4)}
+#ctl button:hover{background:var(--mint);color:var(--navy)}
+#ctl svg{width:22px;height:22px}
+#cnt{font-size:13px;font-weight:600;letter-spacing:.14em;color:var(--cream);background:var(--nav-pill);padding:12px 16px;border-radius:999px}
+body{cursor:default}
+body:not(.moved){cursor:none}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Londres: Big Ben + London Eye -->
+    <symbol id="lm-london" viewBox="0 0 400 300">
+      <g fill="none" stroke="#FAF9F6" stroke-width="5">
+        <circle cx="96" cy="168" r="70"/>
+        <circle cx="96" cy="168" r="4" fill="#FAF9F6"/>
+        <path d="M96 98v140M26 168h140M46.5 118.5l99 99M145.5 118.5l-99 99" stroke-width="2.5"/>
+        <path d="M70 262 96 168 122 262" stroke="#120D44" stroke-width="6" stroke-linejoin="round"/>
+      </g>
+      <g fill="#FAF9F6"><circle cx="96" cy="98" r="6"/><circle cx="166" cy="168" r="6"/><circle cx="96" cy="238" r="6"/><circle cx="26" cy="168" r="6"/><circle cx="145.5" cy="217.5" r="6"/><circle cx="46.5" cy="217.5" r="6"/><circle cx="145.5" cy="118.5" r="6"/><circle cx="46.5" cy="118.5" r="6"/></g>
+      <g fill="#120D44">
+        <rect x="236" y="190" width="132" height="72"/>
+        <rect x="246" y="168" width="14" height="24"/><rect x="292" y="162" width="14" height="30"/><rect x="338" y="170" width="14" height="22"/>
+        <rect x="236" y="182" width="132" height="10"/>
+        <rect x="176" y="106" width="56" height="156"/>
+        <rect x="170" y="92" width="68" height="16"/>
+        <polygon points="176,92 204,30 232,92"/>
+        <rect x="201" y="12" width="6" height="22"/>
+      </g>
+      <circle cx="204" cy="134" r="19" fill="#FAF9F6"/>
+      <path d="M204 134v-12M204 134l9 5" stroke="#120D44" stroke-width="3" stroke-linecap="round"/>
+      <g fill="#FAF9F6"><rect x="190" y="170" width="8" height="18" rx="4"/><rect x="210" y="170" width="8" height="18" rx="4"/><rect x="190" y="205" width="8" height="18" rx="4"/><rect x="210" y="205" width="8" height="18" rx="4"/>
+        <rect x="250" y="206" width="8" height="14" rx="4"/><rect x="272" y="206" width="8" height="14" rx="4"/><rect x="294" y="206" width="8" height="14" rx="4"/><rect x="316" y="206" width="8" height="14" rx="4"/><rect x="338" y="206" width="8" height="14" rx="4"/></g>
+    </symbol>
+
+    <!-- Paris: Torre Eiffel -->
+    <symbol id="lm-paris" viewBox="0 0 400 300">
+      <g fill="#120D44">
+        <rect x="199" y="6" width="4" height="26"/>
+        <polygon points="201,28 209,108 221,150 246,214 272,262 238,262 222,224 201,214 180,224 164,262 130,262 156,214 181,150 193,108"/>
+        <rect x="182" y="104" width="38" height="8" rx="2"/>
+        <rect x="166" y="146" width="70" height="9" rx="2"/>
+        <rect x="146" y="210" width="110" height="10" rx="2"/>
+      </g>
+      <path d="M166 262Q201 196 236 262Z" style="fill:var(--bg)"/>
+      <path d="M190 214Q201 198 212 214Z" style="fill:var(--bg)"/>
+      <path d="M186 150 201 112 216 150Z" style="fill:var(--bg)" opacity=".0"/>
+      <g stroke="#120D44" stroke-width="2.2" fill="none" opacity=".9">
+        <path d="M193 112 218 146M209 112 184 146M181 155 232 210M221 155 170 210"/>
+      </g>
+    </symbol>
+
+    <!-- Bruxelas: Atomium -->
+    <symbol id="lm-brussels" viewBox="0 0 400 300">
+      <g stroke="#120D44" stroke-width="9" stroke-linecap="round">
+        <path d="M200 140 120 92M200 140 280 92M200 140 120 188M200 140 280 188"/>
+        <path d="M200 42 120 92M200 42 280 92M200 238 120 188M200 238 280 188"/>
+        <path d="M120 92V188M280 92V188"/>
+        <path d="M120 188 102 262M280 188 298 262M200 238v24" stroke-width="7"/>
+      </g>
+      <g fill="#120D44">
+        <circle cx="200" cy="140" r="30"/><circle cx="120" cy="92" r="27"/><circle cx="280" cy="92" r="27"/>
+        <circle cx="120" cy="188" r="27"/><circle cx="280" cy="188" r="27"/>
+        <circle cx="200" cy="42" r="26"/><circle cx="200" cy="238" r="26"/>
+      </g>
+      <g fill="#FAF9F6" opacity=".55">
+        <circle cx="190" cy="128" r="8"/><circle cx="111" cy="82" r="7"/><circle cx="271" cy="82" r="7"/>
+        <circle cx="111" cy="178" r="7"/><circle cx="271" cy="178" r="7"/><circle cx="192" cy="33" r="7"/><circle cx="192" cy="229" r="7"/>
+      </g>
+    </symbol>
+
+    <!-- Amsterdam: casas de canal -->
+    <symbol id="lm-amsterdam" viewBox="0 0 400 300">
+      <g>
+        <path d="M46 262V138q0-10 12-14l16-18 16 18q12 4 12 14v124z" fill="#FDCE82"/>
+        <path d="M114 262V104h14v-12h14V80h14v12h14v12h14v158z" fill="#71E6CC"/>
+        <path d="M184 262V150l32-46 32 46v112z" fill="#FFC100"/>
+        <path d="M252 262V122q0-18 18-24l4-8 4 8q18 6 18 24v140z" fill="#FAF9F6"/>
+        <path d="M318 262V140l20-34 20 34v122z" fill="#051D7D"/>
+      </g>
+      <g fill="#120D44">
+        <rect x="62" y="150" width="14" height="22" rx="2"/><rect x="62" y="190" width="14" height="22" rx="2"/><rect x="88" y="150" width="14" height="22" rx="2"/><rect x="88" y="190" width="14" height="22" rx="2"/>
+        <rect x="126" y="116" width="14" height="22" rx="2"/><rect x="152" y="116" width="14" height="22" rx="2"/><rect x="126" y="158" width="14" height="22" rx="2"/><rect x="152" y="158" width="14" height="22" rx="2"/><rect x="126" y="200" width="14" height="22" rx="2"/><rect x="152" y="200" width="14" height="22" rx="2"/>
+        <rect x="200" y="164" width="14" height="22" rx="2"/><rect x="224" y="164" width="14" height="22" rx="2"/><rect x="200" y="206" width="14" height="22" rx="2"/><rect x="224" y="206" width="14" height="22" rx="2"/>
+        <rect x="266" y="130" width="14" height="22" rx="2"/><rect x="290" y="130" width="14" height="22" rx="2"/><rect x="266" y="172" width="14" height="22" rx="2"/><rect x="290" y="172" width="14" height="22" rx="2"/><rect x="266" y="214" width="14" height="22" rx="2"/><rect x="290" y="214" width="14" height="22" rx="2"/>
+      </g>
+      <g fill="#FAF9F6"><rect x="330" y="152" width="12" height="20" rx="2"/><rect x="330" y="192" width="12" height="20" rx="2"/></g>
+    </symbol>
+
+    <!-- Itália: Coliseu -->
+    <symbol id="lm-italy" viewBox="0 0 400 300">
+      <g fill="#120D44">
+        <path d="M60 262V150q0-28 30-34l60-9h100l60 9q30 6 30 34v112z"/>
+        <rect x="52" y="256" width="296" height="8" rx="3"/>
+        <ellipse cx="30" cy="224" rx="9" ry="36"/><ellipse cx="374" cy="230" rx="8" ry="30"/>
+        <rect x="28" y="250" width="4" height="12"/><rect x="372" y="250" width="4" height="12"/>
+      </g>
+      <g style="fill:var(--bg)">
+        <rect x="74" y="136" width="16" height="24" rx="8"/><rect x="102" y="132" width="16" height="24" rx="8"/><rect x="130" y="130" width="16" height="24" rx="8"/><rect x="158" y="129" width="16" height="24" rx="8"/><rect x="186" y="128" width="16" height="24" rx="8"/><rect x="214" y="129" width="16" height="24" rx="8"/><rect x="242" y="130" width="16" height="24" rx="8"/><rect x="270" y="132" width="16" height="24" rx="8"/><rect x="298" y="136" width="16" height="24" rx="8"/><rect x="326" y="142" width="14" height="22" rx="7"/>
+        <rect x="74" y="178" width="16" height="26" rx="8"/><rect x="102" y="176" width="16" height="26" rx="8"/><rect x="130" y="175" width="16" height="26" rx="8"/><rect x="158" y="174" width="16" height="26" rx="8"/><rect x="186" y="174" width="16" height="26" rx="8"/><rect x="214" y="174" width="16" height="26" rx="8"/><rect x="242" y="175" width="16" height="26" rx="8"/><rect x="270" y="176" width="16" height="26" rx="8"/><rect x="298" y="178" width="16" height="26" rx="8"/><rect x="326" y="180" width="14" height="24" rx="7"/>
+        <rect x="74" y="222" width="16" height="40" rx="8"/><rect x="102" y="222" width="16" height="40" rx="8"/><rect x="130" y="222" width="16" height="40" rx="8"/><rect x="158" y="222" width="16" height="40" rx="8"/><rect x="186" y="222" width="16" height="40" rx="8"/><rect x="214" y="222" width="16" height="40" rx="8"/><rect x="242" y="222" width="16" height="40" rx="8"/><rect x="270" y="222" width="16" height="40" rx="8"/><rect x="298" y="222" width="16" height="40" rx="8"/><rect x="326" y="224" width="14" height="38" rx="7"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+<div id="prog" aria-hidden="true"><i id="progBar"></i></div>
+<main id="stage">
+<section class="slide s-navy" aria-label="Slide 1"><div class="top"><img src="assets/logo-light.png" alt="GS Infinity Travel"><span class="tag">Apresentação</span></div>
+<div class="mid cover">
+  <div>
+    <div class="partners" data-a style="--i:0"><div class="pill-tgd"><img src="assets/logo-tgd.png" alt="The Great Deal Idiomas"></div><div class="x">×</div><div class="eyebrow" style="color:var(--mint)">GS Infinity Travel</div></div>
+    <h1 data-a style="--i:1">Europa<br>2027<span>.</span></h1>
+    <p class="lead" data-a style="--i:2">Londres, Paris, Bruxelas, Amsterdam e Itália. <b>Quinze dias</b> para conhecer cinco destinos, com a nossa comunidade.</p>
+  </div>
+  <div class="art" data-a style="--i:2"><svg class="hero-ill" viewBox="0 0 500 400" role="img" aria-label="Ilustração com Big Ben, Torre Eiffel, Atomium e Coliseu" style="--bg:#71E6CC">
+        <circle cx="395" cy="92" r="46" fill="#FFC100"/>
+        <path d="M-20 118C70 118 110 70 210 70S330 150 410 140 500 96 520 90" fill="none" stroke="#120D44" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="9 12" opacity=".5"/>
+        <use href="#lm-italy" x="310" y="196" width="220" height="165"/>
+        <use href="#lm-brussels" x="185" y="209" width="200" height="150"/>
+        <use href="#lm-london" x="-30" y="209" width="200" height="150"/>
+        <use href="#lm-paris" x="55" y="143" width="300" height="225"/>
+        <rect x="0" y="340" width="500" height="60" fill="#120D44"/>
+        <rect x="0" y="340" width="500" height="5" fill="#FFC100"/>
+      </svg></div>
+</div></section>
+<section class="slide s-cream" aria-label="Slide 2"><div class="top"><img src="assets/logo-navy.png" alt="GS Infinity Travel"><span class="tag">Europa 2027</span></div>
+<div class="mid two">
+  <div>
+    <p class="eyebrow" data-a style="--i:0">Duas marcas, uma viagem</p>
+    <h2 class="s-title" data-a style="--i:1">A parceria</h2>
+    <p class="lead" data-a style="--i:2"><br>A <b>The Great Deal</b> fechou parceria com a <b>GS Infinity Travel</b> para levar a nossa comunidade à Europa.</p>
+    <div class="plates" data-a style="--i:3">
+      <div class="plate plate--tgd"><img src="assets/logo-tgd.png" alt="The Great Deal Idiomas"></div>
+      <div class="x">×</div>
+      <div class="plate plate--gs"><img src="assets/logo-light.png" alt="GS Infinity Travel"></div>
+    </div>
+  </div>
+  <div class="pillars">
+    <div class="pillar" data-a style="--i:2"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4"/><path d="M16 3h5v5"/><path d="M21 3 10 14"/></svg></div><div><h3>Planejamento minucioso</h3><p>Roteiro, reservas e horários organizados pela GS.</p></div></div>
+    <div class="pillar" data-a style="--i:3"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><h3>Suporte humanizado</h3><p>Uma pessoa real acompanhando antes, durante e depois.</p></div></div>
+    <div class="pillar" data-a style="--i:4"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></svg></div><div><h3>Facilidade de pagamento</h3><p>Entrada acessível e o restante diluído até o embarque.</p></div></div>
+  </div>
+</div><div class="foot"><span>The Great Deal × GS Infinity Travel</span><span>02</span></div></section>
+<section class="slide s-navy" aria-label="Slide 3"><div class="top"><img src="assets/logo-light.png" alt="GS Infinity Travel"><span class="tag">Europa 2027</span></div>
+<div class="mid">
+  <div class="ov-row">
+    <div>
+      <p class="eyebrow" data-a style="--i:0">O roteiro</p>
+      <h2 class="s-title" data-a style="--i:1;color:var(--cream)">5 destinos,<br>15 dias</h2>
+    </div>
+    <div class="totals" data-a style="--i:2"><div class="tot"><b>16/07</b><span>Embarque</span></div><div class="tot"><b>31/07</b><span>Retorno</span></div></div>
+  </div>
+  <div class="bar" data-a style="--i:3"><div style="flex:4;background:#71E6CC"><b>4</b><span>dias</span></div><div style="flex:4;background:#FDCE82"><b>4</b><span>dias</span></div><div style="flex:1;background:#FFC100"><b>1</b><span>dia</span></div><div style="flex:2;background:#BFDCF2"><b>2</b><span>dias</span></div><div style="flex:4;background:#40A3B6"><b>4</b><span>dias</span></div></div>
+  <div class="bar-lbl" data-a style="--i:4"><div style="flex:4;">Londres</div><div style="flex:4;">Paris</div><div style="flex:1;font-size:22px">Bruxelas</div><div style="flex:2;">Amsterdam</div><div style="flex:4;">Itália</div></div>
+</div><div class="foot"><span>The Great Deal × GS Infinity Travel</span><span>03</span></div></section>
+<section class="slide s-navy" aria-label="Slide 4"><div class="top"><img src="assets/logo-light.png" alt="GS Infinity Travel"><span class="tag">Parada 1 · Londres</span></div>
+<div class="big-n" aria-hidden="true">1</div>
+<div class="mid city">
+  <div class="lm" style="--bg:#40A3B6" data-a><span class="t">Reino Unido</span><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração de Londres"><circle cx="335" cy="60" r="30" fill="#FDCE82"/><rect y="262" width="400" height="38" fill="#120D44"/><use href="#lm-london" width="400" height="300"/></svg></div>
+  <div>
+    <p class="eyebrow" data-a style="--i:1">Parada 1 de 5</p>
+    <h2 data-a style="--i:2">Londres</h2>
+    <span class="dias" data-a style="--i:3"><b>4</b><small>dias</small></span>
+    <p class="lead" data-a style="--i:4">A viagem começa na capital britânica, a cidade para ouvir e falar inglês de verdade. Big Ben, Tower Bridge, London Eye e o ritmo de uma das metrópoles mais vivas do mundo.</p>
+    <ul class="tags" data-a style="--i:5"><li>Big Ben</li><li>Tower Bridge</li><li>London Eye</li></ul>
+  </div>
+</div><div class="foot"><span>The Great Deal × GS Infinity Travel</span><span>04</span></div></section>
+<section class="slide s-navy" aria-label="Slide 5"><div class="top"><img src="assets/logo-light.png" alt="GS Infinity Travel"><span class="tag">Parada 2 · Paris</span></div>
+<div class="big-n" aria-hidden="true">2</div>
+<div class="mid city">
+  <div class="lm" style="--bg:#FDCE82" data-a><span class="t">França</span><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração de Paris"><circle cx="335" cy="60" r="30" fill="#FAF9F6"/><rect y="262" width="400" height="38" fill="#120D44"/><use href="#lm-paris" width="400" height="300"/></svg></div>
+  <div>
+    <p class="eyebrow" data-a style="--i:1">Parada 2 de 5</p>
+    <h2 data-a style="--i:2">Paris</h2>
+    <span class="dias" data-a style="--i:3"><b>4</b><small>dias</small></span>
+    <p class="lead" data-a style="--i:4">Quatro dias na cidade luz: a Torre Eiffel, o Sena, os museus e os cafés que fazem de Paris um lugar para caminhar sem pressa.</p>
+    <ul class="tags" data-a style="--i:5"><li>Torre Eiffel</li><li>Rio Sena</li><li>Museus</li></ul>
+  </div>
+</div><div class="foot"><span>The Great Deal × GS Infinity Travel</span><span>05</span></div></section>
+<section class="slide s-navy" aria-label="Slide 6"><div class="top"><img src="assets/logo-light.png" alt="GS Infinity Travel"><span class="tag">Parada 3 · Bruxelas</span></div>
+<div class="big-n" aria-hidden="true">3</div>
+<div class="mid city">
+  <div class="lm" style="--bg:#71E6CC" data-a><span class="t">Bélgica</span><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração de Bruxelas"><circle cx="335" cy="60" r="30" fill="#FFC100"/><rect y="262" width="400" height="38" fill="#120D44"/><use href="#lm-brussels" width="400" height="300"/></svg></div>
+  <div>
+    <p class="eyebrow" data-a style="--i:1">Parada 3 de 5</p>
+    <h2 data-a style="--i:2">Bruxelas</h2>
+    <span class="dias" data-a style="--i:3"><b>1</b><small>dia</small></span>
+    <p class="lead" data-a style="--i:4">Uma parada rápida e saborosa no coração da Europa: Grand Place, Atomium e, claro, chocolate e waffles belgas.</p>
+    <ul class="tags" data-a style="--i:5"><li>Grand Place</li><li>Atomium</li></ul>
+  </div>
+</div><div class="foot"><span>The Great Deal × GS Infinity Travel</span><span>06</span></div></section>
+<section class="slide s-navy" aria-label="Slide 7"><div class="top"><img src="assets/logo-light.png" alt="GS Infinity Travel"><span class="tag">Parada 4 · Amsterdam</span></div>
+<div class="big-n" aria-hidden="true">4</div>
+<div class="mid city">
+  <div class="lm" style="--bg:#BFDCF2" data-a><span class="t">Países Baixos</span><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração de Amsterdam"><circle cx="335" cy="60" r="30" fill="#FDCE82"/><rect y="262" width="400" height="38" fill="#120D44"/><rect y="262" width="400" height="5" fill="#40A3B6"/><use href="#lm-amsterdam" width="400" height="300"/></svg></div>
+  <div>
+    <p class="eyebrow" data-a style="--i:1">Parada 4 de 5</p>
+    <h2 data-a style="--i:2">Amsterdam</h2>
+    <span class="dias" data-a style="--i:3"><b>2</b><small>dias</small></span>
+    <p class="lead" data-a style="--i:4">Canais, casas inclinadas e bicicletas por todo lado. Dois dias entre as pontes de um dos centros históricos mais charmosos da Europa.</p>
+    <ul class="tags" data-a style="--i:5"><li>Canais</li><li>Museus</li><li>Centro histórico</li></ul>
+  </div>
+</div><div class="foot"><span>The Great Deal × GS Infinity Travel</span><span>07</span></div></section>
+<section class="slide s-navy" aria-label="Slide 8"><div class="top"><img src="assets/logo-light.png" alt="GS Infinity Travel"><span class="tag">Parada 5 · Itália</span></div>
+<div class="big-n" aria-hidden="true">5</div>
+<div class="mid city">
+  <div class="lm" style="--bg:#FFC100" data-a><span class="t">Itália</span><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração de Itália"><circle cx="335" cy="60" r="30" fill="#FAF9F6"/><rect y="262" width="400" height="38" fill="#120D44"/><use href="#lm-italy" width="400" height="300"/></svg></div>
+  <div>
+    <p class="eyebrow" data-a style="--i:1">Parada 5 de 5</p>
+    <h2 data-a style="--i:2">Itália</h2>
+    <span class="dias" data-a style="--i:3"><b>4</b><small>dias</small></span>
+    <p class="lead" data-a style="--i:4">O gran finale: quatro dias de história, arte e a melhor mesa da viagem. Ruínas, praças e massas de verdade para fechar a Europa.</p>
+    <ul class="tags" data-a style="--i:5"><li>História</li><li>Arte</li><li>Gastronomia</li></ul>
+  </div>
+</div><div class="foot"><span>The Great Deal × GS Infinity Travel</span><span>08</span></div></section>
+<section class="slide s-mint" aria-label="Slide 9"><div class="top"><img src="assets/logo-navy.png" alt="GS Infinity Travel"><span class="tag">Europa 2027</span></div>
+<div class="mid">
+  <p class="eyebrow" data-a style="--i:0">Quando</p>
+  <h2 class="s-title" data-a style="--i:1">As datas</h2>
+  <div class="dates">
+    <div class="dcard" data-a style="--i:2"><small>Embarque previsto</small><b>16</b><span>Julho · 2027</span></div>
+    <div class="arrow" data-a style="--i:3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    <div class="dcard" data-a style="--i:4"><small>Retorno previsto</small><b>31</b><span>Julho · 2027</span></div>
+  </div>
+  <div class="dnote" data-a style="--i:5"><span class="chip" id="faltam" hidden></span><span>Datas previstas, confirmadas junto com os voos.</span></div>
+</div><div class="foot"><span>The Great Deal × GS Infinity Travel</span><span>09</span></div></section>
+<section class="slide s-navy" aria-label="Slide 10"><div class="top"><img src="assets/logo-light.png" alt="GS Infinity Travel"><span class="tag">Europa 2027</span></div>
+<div class="mid invest">
+  <p class="eyebrow" data-a style="--i:0">O investimento</p>
+  <div class="price" data-a style="--i:1"><sup>R$</sup>15.000<span class="sparkle" aria-hidden="true"><i></i><i></i><i></i></span></div>
+  <p class="per" data-a style="--i:2">por pessoa</p>
+  <div><div class="entrada" data-a style="--i:3"><small>Entrada de</small><b>R$ 2.000</b></div></div>
+</div><div class="foot"><span>The Great Deal × GS Infinity Travel</span><span>10</span></div></section>
+<section class="slide s-cream" aria-label="Slide 11"><div class="top"><img src="assets/logo-navy.png" alt="GS Infinity Travel"><span class="tag">Europa 2027</span></div>
+<div class="mid">
+  <p class="eyebrow" data-a style="--i:0">Sem complicação</p>
+  <h2 class="s-title" data-a style="--i:1;font-size:100px">Como pagar</h2>
+  <div class="pay">
+    <div class="pcard" data-a style="--i:2"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div><h3>Mês a mês no <em>Pix ou boleto</em></h3><p>Entrada de R$ 2.000 e o restante pago todo mês, no seu ritmo.</p></div>
+    <div class="pcard" data-a style="--i:3"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></svg></div><h3>Até <em>12x</em> no cartão</h3><p>Prefere o cartão? O valor da viagem pode ser parcelado em até 12 vezes.</p></div>
+    <div class="pcard" data-a style="--i:4"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Pix até <em>1 mês antes</em></h3><p>Pagando no Pix, dá para ir quitando até 1 mês antes do embarque.</p></div>
+  </div>
+  <div class="est" id="est" data-a style="--i:5" hidden><b id="estV"></b><span id="estT"></span></div>
+</div><div class="foot"><span>The Great Deal × GS Infinity Travel</span><span>11</span></div></section>
+<section class="slide s-apricot" aria-label="Slide 12"><div class="top"><img src="assets/logo-navy.png" alt="GS Infinity Travel"><span class="tag">Europa 2027</span></div>
+<div class="mid kids">
+  <div>
+    <p class="eyebrow" data-a style="--i:0">Para a família toda</p>
+    <h2 data-a style="--i:1">E as<br>crianças?</h2>
+    <p class="lead" data-a style="--i:2">A viagem é pensada para quem quer ir em família. Vale uma condição especial na hospedagem.</p>
+  </div>
+  <div class="kids-card" data-a style="--i:3"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3.2"/><path d="M3 20v-1.5A4.5 4.5 0 0 1 7.5 14h3A4.5 4.5 0 0 1 15 18.5V20"/><circle cx="18" cy="10" r="2.2"/><path d="M17 14.4A3.4 3.4 0 0 1 21 17.8V19"/></svg></div><b>Não pagam hospedagem</b><span>Crianças até 10/12 anos dormindo no quarto com os pais.</span></div>
+</div><div class="foot"><span>The Great Deal × GS Infinity Travel</span><span>12</span></div></section>
+<section class="slide s-navy" aria-label="Slide 13"><div class="top"><img src="assets/logo-light.png" alt="GS Infinity Travel"><span class="tag">Europa 2027</span></div>
+<div class="fp" aria-hidden="true"><svg viewBox="0 0 1920 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path id="fpcend" class="fp-dash" d="M-90 110C240 110 430 36 820 36S1330 120 1620 106 1850 52 2010 46"/><g class="fp-plane"><animateMotion dur="16s" repeatCount="indefinite" rotate="auto"><mpath href="#fpcend" xlink:href="#fpcend"/></animateMotion><path transform="scale(2.2) translate(-12,-12) rotate(90 12 12)" d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></g></svg></div>
+<div class="mid" style="z-index:3;bottom:170px;top:180px">
+  <p class="eyebrow" data-a style="--i:0">Próximos passos</p>
+  <h2 class="end-h" data-a style="--i:1">Bora para a Europa<span style="color:var(--mint)">?</span></h2>
+  <div class="steps">
+    <div class="step" data-a style="--i:2"><i>1</i><h3>Fale com a GS</h3><p>Tire dúvidas e conte quantas pessoas vão.</p></div>
+    <div class="step" data-a style="--i:3"><i>2</i><h3>Garanta a vaga</h3><p>Entrada de R$ 2.000 para reservar o seu lugar.</p></div>
+    <div class="step" data-a style="--i:4"><i>3</i><h3>Pague no seu ritmo</h3><p>Mês a mês ou no cartão, até 1 mês antes.</p></div>
+  </div>
+  <div class="contact" data-a style="--i:5"><a href="https://wa.me/5511940856046" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1s-.5-.2-.7.1-.8 1-1 1.2-.4.2-.7 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.6.3-.5v-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.8.4A3.4 3.4 0 0 0 5.8 9c0 1.5 1.1 3 1.3 3.2s2.2 3.3 5.3 4.6a17 17 0 0 0 1.8.6 4.2 4.2 0 0 0 2-.1 3.2 3.2 0 0 0 2-1.5 2.6 2.6 0 0 0 .2-1.4zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>(11) 94085-6046</a><span class="c i">@gsinfinitytravel</span></div>
+</div></section>
+</main>
+<div id="ctl">
+  <button id="bPrev" aria-label="Slide anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg></button>
+  <span id="cnt" aria-live="polite">1 / 13</span>
+  <button id="bNext" aria-label="Próximo slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></button>
+  <button id="bFs" aria-label="Tela cheia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+</div>
+<script>
+const stage = document.getElementById('stage');
+const slides = [...document.querySelectorAll('.slide')];
+const bar = document.getElementById('progBar'), cnt = document.getElementById('cnt');
+let cur = 0;
+
+function fit() {
+  const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+  stage.style.transform = 'translate(' + (-960 * s) + 'px,' + (-540 * s) + 'px) scale(' + s + ')';
+}
+addEventListener('resize', fit); fit();
+
+function go(i, push) {
+  cur = Math.max(0, Math.min(slides.length - 1, i));
+  slides.forEach((s, k) => s.classList.toggle('on', k === cur));
+  bar.style.transform = 'scaleX(' + ((cur + 1) / slides.length) + ')';
+  cnt.textContent = (cur + 1) + ' / ' + slides.length;
+  if (push !== false) history.replaceState(null, '', '#' + (cur + 1));
+}
+const next = () => go(cur + 1), prev = () => go(cur - 1);
+
+addEventListener('keydown', e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key;
+  if (k === 'ArrowRight' || k === 'ArrowDown' || k === 'PageDown' || k === ' ' || k === 'Enter') { e.preventDefault(); next(); }
+  else if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp' || k === 'Backspace') { e.preventDefault(); prev(); }
+  else if (k === 'Home') go(0);
+  else if (k === 'End') go(slides.length - 1);
+  else if (k === 'f' || k === 'F') toggleFs();
+});
+document.getElementById('bNext').onclick = next;
+document.getElementById('bPrev').onclick = prev;
+function toggleFs() {
+  if (!document.fullscreenElement) document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+  else document.exitFullscreen();
+}
+document.getElementById('bFs').onclick = toggleFs;
+
+/* gesto de arrastar no celular */
+let x0 = null;
+addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+addEventListener('touchend', e => {
+  if (x0 === null) return;
+  const dx = e.changedTouches[0].clientX - x0; x0 = null;
+  if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+}, { passive: true });
+
+/* controles aparecem ao mexer o mouse e somem em seguida */
+let hide;
+addEventListener('mousemove', () => {
+  document.body.classList.add('moved'); clearTimeout(hide);
+  hide = setTimeout(() => document.body.classList.remove('moved'), 2500);
+});
+
+/* contagem regressiva e estimativa mensal */
+(function () {
+  const EMB = new Date(2027, 6, 16), hoje = new Date();
+  const dias = Math.ceil((EMB - hoje) / 86400000);
+  if (dias > 0) { const c = document.getElementById('faltam'); c.textContent = 'Faltam ' + dias + ' dias'; c.hidden = false; }
+  const lim = new Date(EMB.getFullYear(), EMB.getMonth() - 1, EMB.getDate());
+  let n = (lim.getFullYear() - hoje.getFullYear()) * 12 + (lim.getMonth() - hoje.getMonth());
+  if (lim.getDate() < hoje.getDate()) n--;
+  if (n >= 1) {
+    document.getElementById('estV').textContent = 'R$ ' + Math.ceil(13000 / n).toLocaleString('pt-BR') + '/mês';
+    document.getElementById('estT').textContent = 'Exemplo: entrada de R$ 2.000 + ' + n + ' parcelas mensais, começando hoje e quitando até 1 mês antes do embarque. Estimativa, o plano exato é montado com a GS.';
+    document.getElementById('est').hidden = false;
+  }
+})();
+
+if (matchMedia('(prefers-reduced-motion: reduce)').matches)
+  document.querySelectorAll('animateMotion').forEach(a => a.remove());
+
+go((parseInt(location.hash.slice(1), 10) || 1) - 1, false);
+</script>
+</body>
+</html>
