@@ -1,1796 +1,1036 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Europa 2027 | The Great Deal × GS Infinity Travel</title>
-<meta name="description" content="Londres, Paris, Bruxelas, Amsterdam e Itália com a The Great Deal e a GS Infinity Travel. Embarque em 16 de julho de 2027. R$ 15.000 por pessoa, entrada de R$ 2.000.">
-<meta name="theme-color" content="#120D44">
-<link rel="icon" type="image/png" href="assets/favicongs.png">
-<meta property="og:title" content="Europa 2027 | The Great Deal × GS Infinity Travel">
-<meta property="og:description" content="Londres · Paris · Bruxelas · Amsterdam · Itália. De 16 a 31 de julho de 2027.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-/* =========================================================
-   GS INFINITY TRAVEL / Design System (idêntico ao da LP Foz do Iguaçu)
-   ========================================================= */
-:root{
-  --navy:#120D44;        /* Marinho: cor base da marca      */
-  --navy-2:#1B1560;      /* Marinho elevado                  */
-  --royal:#051D7D;       /* Azul royal                       */
-  --mint:#71E6CC;        /* Menta: destaque principal       */
-  --mint-dark:#3FBFA3;
-  --teal:#40A3B6;        /* Petróleo                         */
-  --gold:#FFC100;        /* Dourado: rota de voo            */
-  --apricot:#FDCE82;     /* Damasco: cards e botões         */
-  --apricot-soft:#FDF0DA;
-  --cream:#FAF9F6;       /* Base clara                       */
-  --white:#FFFFFF;
-  --serenity:#BFDCF2;    /* Serenity: links do menu            */
-  --nav-pill:#08051D;    /* cápsula do menu, marinho profundo  */
-  --bordo:#6C2631;      /* Bordô: mensagens de erro         */
-
-  --bubble:"Work Sans",system-ui,sans-serif;   /* títulos: Work Sans extra-bold */
-  --display:"Work Sans",system-ui,sans-serif;
-  --font:"Roboto Mono",ui-monospace,Menlo,Consolas,monospace;   /* textos */
-
-  --max:1280px;
-  --r-card:22px;
-  --r-lg:30px;
-}
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border:0 solid transparent}
-html{scroll-behavior:smooth;scroll-padding-top:clamp(96px,9vw,112px);-webkit-text-size-adjust:100%}
-body{
-  font-family:var(--font);color:var(--navy);background:var(--cream);
-  line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;
-}
-img{display:block;max-width:100%;height:auto}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;cursor:pointer}
-ul{list-style:none}
-
-.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:22px}
-
-/* tipografia de marca */
-.display{font-family:var(--bubble);font-weight:400;line-height:.98;letter-spacing:0}
-.eyebrow{
-  font-family:var(--font);font-weight:500;text-transform:uppercase;
-  font-size:clamp(11px,1.5vw,15px);letter-spacing:.34em;line-height:1.6
-}
-h1,h2{font-family:var(--bubble);font-weight:400;line-height:1;letter-spacing:0}
-h3,h4{font-family:var(--display);font-weight:600;line-height:1;letter-spacing:-.01em}
-
-/* gotinhas de brilho (assinatura das peças GS) */
-.sparkle{display:inline-block;width:.42em;height:.62em;vertical-align:top;position:relative;margin-left:.12em}
-.sparkle i{position:absolute;background:var(--apricot);border-radius:60% 60% 60% 0;transform:rotate(-30deg)}
-.sparkle i:nth-child(1){width:38%;height:34%;left:22%;top:0}
-.sparkle i:nth-child(2){width:32%;height:28%;left:58%;top:24%}
-.sparkle i:nth-child(3){width:30%;height:26%;left:12%;top:44%}
-
-/* rota de voo tracejada / divisor de seções */
-.flightpath{width:100%;display:block;overflow:hidden;background:var(--cream)}
-.flightpath svg{display:block;width:100%;height:auto;min-height:64px}
-.fp-dash{fill:none;stroke:var(--gold);stroke-width:5;stroke-linecap:round;stroke-dasharray:14 16}
-.fp-plane{fill:var(--navy)}
-
-/* barra de progresso de leitura */
-.progress{
-  position:absolute;left:0;right:0;bottom:0;height:3px;
-  background:rgba(250,249,246,.1);pointer-events:none
-}
-.progress i{
-  display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:0 50%;
-  background:linear-gradient(90deg,var(--mint),var(--gold));
-  will-change:transform
-}
-
-/* reveal */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s cubic-bezier(.22,1,.36,1)}
-.rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-.hdr{position:sticky;top:0;z-index:70;background:var(--navy)}
-.hdr__in{position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;padding-block:12px}
-.hdr__logo img{height:78px;width:auto}
-.nav{
-  display:flex;align-items:center;gap:2px;
-  background:var(--nav-pill);border-radius:999px;padding:7px
-}
-@media (min-width:1024px){
-  .nav{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
-}
-.nav a{
-  padding:11px 17px;border-radius:999px;color:var(--serenity);
-  font-weight:700;font-size:clamp(15px,1.3vw,18px);line-height:1;letter-spacing:-.01em;
-  white-space:nowrap;transition:background .2s,color .2s
-}
-.nav a:hover,.nav a:focus-visible{background:var(--mint);color:var(--navy)}
-.burger{display:none;padding:9px;border-radius:14px;background:var(--mint);color:var(--navy)}
-.burger svg{width:24px;height:24px}
-.mnav{display:none;background:var(--navy);padding:6px 22px 20px}
-.mnav.open{display:block}
-.mnav a{
-  display:block;padding:13px 4px;color:var(--cream);font-weight:500;font-size:17px;
-  border-bottom:1px solid rgba(250,249,246,.14)
-}
-.mnav__cta{
-  display:block;width:100%;text-align:left;padding:15px 4px;border-bottom:0;
-  color:var(--mint);font-family:var(--display);font-weight:600;font-size:18px
-}
-@media (max-width:1023px){
-  .nav{display:none}
-  .burger{display:block}
-  .hdr__logo img{height:65px}
-}
-
-/* =========================================================
-   HERO
-   ========================================================= */
-.hero{position:relative;background:var(--navy);color:var(--cream);padding:46px 0 0;overflow:hidden}
-.hero::before{
-  content:"";position:absolute;width:760px;height:760px;right:-260px;top:-300px;border-radius:50%;
-  background:radial-gradient(circle,rgba(113,230,204,.16),transparent 65%);pointer-events:none
-}
-.hero__grid{display:grid;gap:34px;align-items:center;position:relative;z-index:2}
-@media (min-width:1024px){.hero__grid{grid-template-columns:1.05fr .95fr;gap:52px}}
-.hero .eyebrow{color:var(--mint);margin-bottom:16px}
-.hero h1{
-  font-size:clamp(46px,8.6vw,96px);color:var(--cream);
-  text-transform:uppercase;letter-spacing:0;line-height:.98
-}
-.hero h1 span{color:var(--mint)}
-.hero__lead{
-  margin-top:20px;max-width:540px;font-size:clamp(14.5px,1.7vw,16.5px);
-  font-weight:300;color:rgba(250,249,246,.88);line-height:1.65
-}
-.hero__lead b{font-weight:600;color:var(--apricot)}
-.hero__actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:30px}
-
-/* botão pill com "knob" damasco (assinatura GS) */
-.toggle{
-  display:inline-flex;align-items:center;gap:14px;
-  border:2px solid var(--navy);border-radius:999px;padding:7px 26px 7px 7px;
-  background:var(--cream);color:var(--navy);
-  font-family:var(--display);font-weight:600;font-size:16px;letter-spacing:.06em;text-transform:uppercase;
-  transition:transform .18s ease,box-shadow .18s ease
-}
-.toggle::before{content:"";width:34px;height:34px;border-radius:50%;background:var(--apricot);flex:none;transition:transform .25s ease}
-.toggle:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(18,13,68,.3)}
-.toggle:hover::before{transform:translateX(3px)}
-.toggle--onDark{border-color:var(--cream)}
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:9px;padding:14px 22px;border-radius:999px;
-  border:1.5px solid rgba(250,249,246,.4);color:var(--cream);font-weight:500;font-size:14.5px;
-  transition:border-color .2s,color .2s
-}
-.btn-ghost:hover{border-color:var(--mint);color:var(--mint)}
-.btn-ghost svg{width:18px;height:18px}
-
-.hero__art{position:relative;justify-self:center;width:100%;max-width:540px}
-.hero__art img{
-  width:100%;aspect-ratio:5/4;object-fit:cover;border-radius:var(--r-lg);
-  box-shadow:0 30px 60px rgba(0,0,0,.42);position:relative;z-index:2
-}
-.hero__art::after{
-  content:"";position:absolute;inset:16px -16px -16px 16px;border-radius:var(--r-lg);
-  border:2px solid var(--mint);z-index:1
-}
-.hero__price{
-  position:absolute;left:-14px;bottom:-26px;z-index:3;background:var(--apricot);color:var(--navy);
-  border-radius:20px;padding:14px 22px;box-shadow:0 16px 32px rgba(0,0,0,.3)
-}
-.hero__price small{display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
-.hero__price b{font-family:var(--bubble);font-weight:400;font-size:29px;line-height:1.15;display:block}
-.hero__price i{font-style:normal;font-size:11px;font-weight:500;opacity:.8}
-
-/* marquise menta */
-.strip{background:var(--mint);color:var(--navy);overflow:hidden;padding:13px 0;margin-top:62px;position:relative;z-index:3}
-.strip__track{display:flex;width:max-content;animation:slide 32s linear infinite}
-.strip__track span{
-  font-family:var(--bubble);font-weight:400;font-size:clamp(16px,2.2vw,24px);
-  letter-spacing:.02em;text-transform:uppercase;white-space:nowrap;padding-right:.5em
-}
-@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* =========================================================
-   TÍTULOS DE SEÇÃO
-   ========================================================= */
-.sec-head{text-align:center;max-width:760px;margin:0 auto 46px}
-.sec-head .eyebrow{color:var(--teal);margin-bottom:14px}
-.sec-head h2{font-size:clamp(38px,6.4vw,74px);text-transform:uppercase}
-.sec-head p{margin-top:16px;font-weight:300;font-size:15.5px;line-height:1.6}
-.on-navy .sec-head .eyebrow{color:var(--mint)}
-.on-navy .sec-head h2,.on-navy .sec-head p{color:var(--cream)}
-
-/* =========================================================
-   INCLUSO
-   ========================================================= */
-.incluso{background:var(--cream);padding:64px 0 70px}
-.incluso__card{
-  background:var(--apricot);border-radius:34px;padding:34px 24px 40px;
-  box-shadow:0 20px 44px rgba(18,13,68,.12)
-}
-@media (min-width:768px){.incluso__card{padding:46px 52px 52px}}
-.incluso__list{display:grid;gap:4px 44px;grid-template-columns:1fr}
-@media (min-width:768px){.incluso__list{grid-template-columns:1fr 1fr}}
-.incluso__item{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:2px solid var(--navy)}
-.incluso__item .ico{
-  width:46px;height:46px;flex:none;border-radius:50%;background:var(--navy);color:var(--apricot);
-  display:grid;place-items:center
-}
-.incluso__item .ico svg{width:23px;height:23px}
-.incluso__item span{font-size:15.5px;font-weight:500;line-height:1.3;color:var(--navy)}
-@media (min-width:768px){
-  .incluso__item--wide{grid-column:1 / -1;justify-content:center;border-bottom:0;padding-bottom:0}
-  .incluso__item--wide span{border-bottom:2px solid var(--navy);padding-bottom:12px}
-}
-
-.notincl{margin-top:44px;text-align:center}
-.notincl h3{font-size:clamp(22px,3vw,30px);text-transform:uppercase;color:var(--navy)}
-.notincl ul{display:flex;flex-wrap:wrap;gap:10px 14px;justify-content:center;margin-top:18px}
-.notincl li{
-  font-size:13px;font-weight:400;color:var(--navy);border:1.5px solid rgba(18,13,68,.25);
-  border-radius:999px;padding:8px 18px
-}
-.tagline{
-  margin-top:44px;text-align:center;font-family:var(--display);font-weight:600;
-  font-size:clamp(22px,3.6vw,38px);text-transform:uppercase;color:var(--navy);line-height:1.15
-}
-.tagline em{font-style:normal;font-family:var(--bubble);font-weight:400;color:var(--teal)}
-
-/* =========================================================
-   ROTEIRO
-   ========================================================= */
-.roteiro{background:var(--navy);padding:66px 0 74px}
-.days{display:flex;flex-direction:column;gap:40px}
-.day{display:grid;gap:0;grid-template-columns:1fr}
-@media (min-width:1024px){
-  .day{grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);align-items:center}
-  .day--rev .day__img{order:2}
-}
-.day__img{position:relative;z-index:2}
-.day__img img{
-  width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-lg);
-  box-shadow:0 24px 48px rgba(0,0,0,.45)
-}
-.day__body{position:relative;z-index:1}
-.day__n{
-  font-family:var(--display);font-weight:600;color:var(--gold);
-  font-size:clamp(30px,4.6vw,44px);line-height:1;letter-spacing:.02em;
-  margin:22px 0 -14px 6px;position:relative;z-index:3;text-transform:uppercase
-}
-.day__panel{background:var(--cream);border-radius:var(--r-card);padding:30px 24px 26px}
-.day__panel h3{font-size:clamp(25px,3.4vw,34px);color:var(--navy);text-transform:uppercase;margin-bottom:12px}
-.day__panel p{font-size:14.5px;font-weight:300;line-height:1.62;color:rgba(18,13,68,.86)}
-@media (min-width:1024px){
-  .day__n{margin:0 0 6px 78px}
-  .day--rev .day__n{margin:0 78px 6px 0;text-align:right}
-  .day__panel{padding:32px 34px 32px 96px;margin-left:-72px}
-  .day--rev .day__panel{padding:32px 96px 32px 34px;margin-left:0;margin-right:-72px}
-}
-.aviso{
-  display:flex;gap:16px;align-items:flex-start;max-width:820px;margin:44px auto 0;
-  background:var(--apricot);color:var(--navy);border-radius:20px;padding:20px 24px
-}
-.aviso__ico{
-  width:38px;height:38px;flex:none;border-radius:50%;background:var(--navy);color:var(--apricot);
-  display:grid;place-items:center
-}
-.aviso__ico svg{width:20px;height:20px}
-.aviso b{
-  display:block;font-family:var(--display);font-weight:600;font-size:17px;line-height:1.3;
-  margin-bottom:6px
-}
-.aviso p{font-size:13.5px;font-weight:400;line-height:1.5;color:rgba(18,13,68,.82)}
-.roteiro__note{
-  margin-top:24px;text-align:center;font-size:12.5px;font-weight:300;color:rgba(250,249,246,.6)
-}
-
-/* =========================================================
-   BANNER
-   ========================================================= */
-.banner{position:relative;width:100%;height:clamp(440px,66vh,700px);overflow:hidden}
-.banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,13,68,.62),rgba(18,13,68,.34) 45%,rgba(18,13,68,.82))}
-.banner__in{position:relative;z-index:3;height:100%;display:flex;align-items:center;justify-content:center;text-align:center}
-.banner h2{font-size:clamp(34px,6.6vw,80px);color:var(--cream);text-transform:uppercase;line-height:1.02}
-.banner h2 em{font-style:normal;color:var(--mint)}
-.banner p{margin:20px auto 0;max-width:620px;color:rgba(250,249,246,.9);font-weight:300;font-size:15.5px}
-
-/* =========================================================
-   HOSPEDAGEM + VALOR
-   ========================================================= */
-.valores{background:var(--cream);padding:64px 0 70px}
-.valores .valor{margin-top:0}
-
-.valor{
-  margin-top:52px;background:var(--navy);border-radius:34px;color:var(--cream);
-  padding:40px 22px 44px;text-align:center;position:relative;overflow:hidden
-}
-@media (min-width:768px){.valor{padding:52px 52px 56px}}
-.valor__in{position:relative}
-.valor .eyebrow{color:var(--mint)}
-.valor__price{
-  font-family:var(--bubble);font-weight:400;color:var(--cream);
-  font-size:clamp(54px,11vw,116px);line-height:1;margin:10px 0 2px;
-  display:flex;align-items:flex-start;justify-content:center;gap:.06em
-}
-.valor__price sup{font-size:.3em;font-weight:400;margin-top:.5em}
-.valor__per{font-size:13px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;color:var(--apricot)}
-.valor__note{margin:24px auto 0;max-width:620px;font-size:12.5px;font-weight:300;color:rgba(250,249,246,.66);line-height:1.7}
-.valor .toggle{margin-top:26px}
-
-/* =========================================================
-   FAQ
-   ========================================================= */
-.faq{background:var(--navy);padding:64px 0 74px}
-.acc{max-width:980px;margin-inline:auto;display:flex;flex-direction:column;gap:12px}
-.acc__item{border-radius:18px;overflow:hidden;background:var(--apricot)}
-.acc__btn{
-  position:relative;width:100%;min-height:66px;display:flex;align-items:center;
-  text-align:left;padding:16px 58px 16px 24px;transition:background .2s
-}
-.acc__btn:hover{background:rgba(255,255,255,.3)}
-.acc__btn span{font-family:var(--display);font-weight:600;font-size:clamp(16px,2.1vw,21px);color:var(--navy);line-height:1.25}
-.acc__btn svg{position:absolute;right:20px;top:50%;transform:translateY(-50%);width:24px;height:24px;color:var(--navy);transition:transform .25s ease}
-.acc__item.open .acc__btn svg{transform:translateY(-50%) rotate(180deg)}
-.acc__body{max-height:0;overflow:hidden;background:var(--apricot-soft);transition:max-height .35s ease}
-.acc__body p{padding:20px 24px;font-size:14.5px;font-weight:300;line-height:1.65;color:var(--navy)}
-
-/* =========================================================
-   SOBRE
-   ========================================================= */
-.sobre{background:var(--teal);padding:66px 0 74px}
-.sobre .sec-head .eyebrow{color:var(--navy)}
-.sobre .sec-head h2{color:var(--cream)}
-.sobre__panel{background:var(--cream);border-radius:34px;padding:36px 24px 42px}
-@media (min-width:768px){.sobre__panel{padding:52px 52px 56px}}
-.sobre__texto{display:grid;gap:16px}
-.sobre__texto p{font-weight:300;font-size:15.5px;line-height:1.7}
-@media (min-width:900px){.sobre__texto{grid-template-columns:1fr 1fr;gap:16px 48px}}
-.sobre__panel strong{font-weight:600}
-.fundadoras{margin-top:38px;padding-top:34px;border-top:2px dashed rgba(18,13,68,.14)}
-.fundadoras__titulo{
-  font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
-  color:var(--teal);margin-bottom:22px;text-align:center
-}
-.fundadoras__grid{display:flex;flex-wrap:wrap;justify-content:center;gap:30px 44px}
-.fundadora{display:flex;align-items:center;gap:18px;margin:0}
-.fundadora img{
-  width:112px;height:112px;flex:none;border-radius:50%;object-fit:cover;
-  background:var(--navy);box-shadow:0 0 0 3px var(--mint),0 10px 24px rgba(18,13,68,.18)
-}
-.fundadora figcaption b{
-  display:block;font-family:var(--bubble);font-weight:400;font-size:22px;
-  line-height:1.15;color:var(--navy)
-}
-.fundadora figcaption span{
-  display:block;margin-top:5px;font-size:11.5px;letter-spacing:.16em;
-  text-transform:uppercase;font-weight:600;color:var(--teal)
-}
-.pillars{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:42px}
-.pillar .ico{width:48px;height:48px;border-radius:50%;background:var(--navy);color:var(--mint);display:grid;place-items:center;margin-bottom:14px}
-.pillar .ico svg{width:24px;height:24px}
-.pillar h4{font-size:21px;text-transform:uppercase;color:var(--navy);margin-bottom:8px}
-.pillar p{font-size:14px;font-weight:300;line-height:1.6}
-
-/* =========================================================
-   GALERIA
-   ========================================================= */
-.galeria{background:var(--cream);padding:64px 0 70px}
-.grid-g{display:grid;gap:14px;grid-template-columns:repeat(5,1fr)}
-.grid-g figure{position:relative;aspect-ratio:1;border-radius:18px;overflow:hidden;box-shadow:0 10px 24px rgba(18,13,68,.14)}
-.grid-g img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}
-.grid-g figure:hover img{transform:scale(1.07)}
-.grid-g figcaption{
-  position:absolute;inset:auto 0 0 0;padding:28px 12px 11px;color:var(--cream);
-  font-size:11.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
-  background:linear-gradient(180deg,transparent,rgba(18,13,68,.88))
-}
-
-.insta{background:var(--cream);padding:64px 0 70px}
-.insta__grid{display:grid;gap:12px;grid-template-columns:repeat(6,1fr)}
-.insta__post{
-  position:relative;aspect-ratio:1;border-radius:16px;overflow:hidden;
-  box-shadow:0 8px 20px rgba(18,13,68,.12);background:var(--navy)
-}
-.insta__post img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,opacity .3s}
-.insta__post::after{
-  content:"";position:absolute;inset:0;background:rgba(18,13,68,.45);
-  opacity:0;transition:opacity .3s
-}
-.insta__post:hover img{transform:scale(1.07)}
-.insta__post:hover::after{opacity:1}
-.insta__cta{
-  display:flex;align-items:center;justify-content:center;gap:11px;width:max-content;
-  margin:30px auto 0;padding:13px 26px;border-radius:999px;
-  background:var(--navy);color:var(--mint);font-weight:600;font-size:15px;
-  transition:transform .18s ease,background .18s
-}
-.insta__cta:hover{transform:translateY(-2px);background:var(--teal);color:var(--cream)}
-.insta__cta svg{width:21px;height:21px;flex:none}
-
-/* =========================================================
-   DEPOIMENTOS
-   ========================================================= */
-.depo{background:var(--navy);padding:64px 0 72px}
-.depo__grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(275px,1fr))}
-.depo__card{background:var(--cream);border-radius:var(--r-card);padding:26px 24px;display:flex;flex-direction:column;gap:14px}
-.depo__who{display:flex;align-items:center;gap:13px}
-.depo__av{
-  width:46px;height:46px;flex:none;border-radius:50%;object-fit:cover;
-  background:var(--mint);box-shadow:0 0 0 2px var(--mint)
-}
-.depo__av--letra{
-  display:grid;place-items:center;color:var(--navy);
-  font-family:var(--display);font-weight:600;font-size:20px
-}
-.depo__who b{display:block;font-size:16px;font-weight:600;line-height:1.2;color:var(--navy)}
-.stars{color:var(--gold);font-size:13px;letter-spacing:2px}
-.depo__card p{font-size:14px;font-weight:300;line-height:1.6;color:rgba(18,13,68,.85);flex:1}
-
-/* =========================================================
-   CTA FINAL + RODAPÉ
-   ========================================================= */
-.cta{background:var(--mint);padding:64px 0 70px;text-align:center}
-.cta h2{font-size:clamp(34px,6.2vw,72px);color:var(--navy);text-transform:uppercase}
-.cta p{margin:18px auto 30px;max-width:580px;font-weight:300;font-size:15.5px;color:rgba(18,13,68,.82)}
-.cta .toggle{background:var(--navy);color:var(--cream);border-color:var(--navy)}
-
-.ftr{background:var(--navy);color:var(--cream);padding:52px 0 26px}
-.ftr__in{display:grid;gap:34px;grid-template-columns:1fr}
-@media (min-width:768px){.ftr__in{grid-template-columns:1.4fr 1fr}}
-.ftr__insta{
-  display:inline-flex;align-items:center;gap:10px;margin-top:16px;
-  padding:9px 16px 9px 12px;border-radius:999px;
-  border:1.5px solid rgba(113,230,204,.4);color:var(--mint);
-  font-size:13px;font-weight:500;line-height:1;
-  transition:background .2s,border-color .2s,color .2s
-}
-.ftr__insta:hover{background:var(--mint);border-color:var(--mint);color:var(--navy)}
-.ftr__insta svg{width:19px;height:19px;flex:none}
-.ftr__logo img{height:92px;width:auto;margin-bottom:16px}
-.ftr p,.ftr a{font-size:13.5px;font-weight:300;line-height:1.9;color:rgba(250,249,246,.8)}
-.ftr h4{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--mint);margin-bottom:10px;font-family:var(--font);font-weight:600}
-.ftr a:hover{color:var(--mint)}
-.ftr__bottom{
-  margin-top:38px;padding-top:20px;border-top:1px solid rgba(250,249,246,.16);
-  text-align:center;font-size:11.5px;font-weight:300;color:rgba(250,249,246,.5);line-height:1.8
-}
-
-/* flutuantes */
-.float-w,.float-top{
-  position:fixed;right:18px;z-index:80;width:56px;height:56px;border-radius:50%;
-  display:grid;place-items:center;box-shadow:0 12px 28px rgba(18,13,68,.38);
-  transition:transform .2s ease,opacity .25s ease
-}
-.float-w{bottom:max(20px,env(safe-area-inset-bottom));background:var(--mint);color:var(--navy)}
-.float-top{bottom:max(88px,calc(env(safe-area-inset-bottom) + 68px));background:var(--gold);color:var(--navy);opacity:0;pointer-events:none}
-.float-top.show{opacity:1;pointer-events:auto}
-.float-w:hover,.float-top:hover{transform:translateY(-3px)}
-.float-w svg,.float-top svg{width:29px;height:29px}
-
-:focus-visible{outline:3px solid var(--mint);outline-offset:3px;border-radius:8px}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-
-/* =========================================================
-   FORMULÁRIO EM ETAPAS (popup, uma pergunta por vez)
-   ========================================================= */
-.modal{
-  position:fixed;inset:0;z-index:100;display:none;
-  align-items:center;justify-content:center;padding:20px;
-  background:rgba(18,13,68,.84);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)
-}
-.modal.open{display:flex;animation:modalIn .22s ease}
-@keyframes modalIn{from{opacity:0}to{opacity:1}}
-.modal__card{
-  position:relative;width:100%;max-width:540px;background:var(--cream);
-  border-radius:30px;padding:26px 26px 30px;box-shadow:0 30px 70px rgba(0,0,0,.45);
-  display:flex;flex-direction:column;max-height:calc(100vh - 40px);max-height:calc(100dvh - 40px)
-}
-.modal__close{
-  position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;
-  display:grid;place-items:center;background:rgba(18,13,68,.08);color:var(--navy);
-  transition:background .2s
-}
-.modal__close:hover{background:var(--apricot)}
-.modal__close svg{width:19px;height:19px}
-
-.fw__count{
-  font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
-  color:var(--teal);padding-right:44px
-}
-.fw__bar{height:5px;border-radius:999px;background:rgba(18,13,68,.1);margin:10px 0 24px;overflow:hidden}
-.fw__bar i{
-  display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:0 50%;
-  background:linear-gradient(90deg,var(--mint),var(--gold));
-  transition:transform .35s cubic-bezier(.22,1,.36,1)
-}
-
-.fw__body{
-  flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;scrollbar-width:thin;
-  scrollbar-color:rgba(18,13,68,.28) transparent
-}
-.fw__body::-webkit-scrollbar{width:6px}
-.fw__body::-webkit-scrollbar-thumb{background:rgba(18,13,68,.25);border-radius:999px}
-.fw__step{display:none}
-.fw__step.on{display:block;animation:fwIn .32s cubic-bezier(.22,1,.36,1)}
-@keyframes fwIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){
-  .modal.open,.fw__step.on{animation:none}
-  .fw__bar i{transition:none}
-}
-
-.fw__q{font-family:var(--bubble);font-weight:400;font-size:clamp(23px,4.2vw,31px);line-height:1.1;color:var(--navy)}
-.fw__hint{margin-top:9px;font-size:13.5px;font-weight:300;line-height:1.5;color:rgba(18,13,68,.62)}
-
-.fw__field{margin-top:22px}
-.fw__field input{
-  width:100%;background:transparent;border-bottom:2px solid rgba(18,13,68,.25);
-  font-family:var(--font);font-size:19px;font-weight:500;color:var(--navy);
-  padding:10px 2px;border-radius:0;transition:border-color .2s
-}
-.fw__field input::placeholder{color:rgba(18,13,68,.3);font-weight:300}
-.fw__field input:focus{outline:none;border-bottom-color:var(--teal)}
-.fw__err{min-height:19px;margin-top:9px;font-size:12.5px;font-weight:500;color:var(--bordo)}
-
-.fw__stepper{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:22px}
-.fw__stepper button{
-  width:54px;height:54px;border-radius:50%;flex:none;background:var(--navy);color:var(--apricot);
-  font-family:var(--display);font-weight:600;font-size:27px;line-height:1;
-  display:grid;place-items:center;transition:transform .16s,opacity .2s
-}
-.fw__stepper button:hover:not(:disabled){transform:scale(1.07)}
-.fw__stepper button:disabled{opacity:.28;cursor:default}
-.fw__stepper output{
-  font-family:var(--bubble);font-weight:400;font-size:44px;color:var(--navy);
-  min-width:72px;text-align:center;line-height:1
-}
-
-.fw__idades{display:grid;gap:10px;margin-top:20px}
-.fw__idade{
-  display:flex;align-items:center;gap:14px;background:var(--white);
-  border-radius:14px;padding:8px 16px
-}
-.fw__idade label{flex:1;font-size:14px;font-weight:500;color:var(--navy)}
-.fw__idade input{
-  width:62px;flex:none;text-align:center;background:transparent;border-radius:0;
-  border-bottom:2px solid rgba(18,13,68,.25);
-  font-family:var(--font);font-size:18px;font-weight:600;color:var(--navy);padding:7px 2px
-}
-.fw__idade input::placeholder{color:rgba(18,13,68,.25);font-weight:400}
-.fw__idade input:focus{outline:none;border-bottom-color:var(--teal)}
-.fw__idade span{font-size:12.5px;font-weight:600;color:var(--teal);width:36px}
-.fw__choices{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
-.fw__choice{
-  flex:1 1 140px;padding:18px 16px;border-radius:16px;border:2px solid rgba(18,13,68,.18);
-  background:var(--white);font-family:var(--display);font-weight:600;font-size:17px;color:var(--navy);
-  transition:border-color .18s,background .18s,transform .18s
-}
-.fw__choice:hover{transform:translateY(-2px);border-color:var(--teal)}
-.fw__choice[aria-pressed="true"]{background:var(--apricot);border-color:var(--navy)}
-
-.fw__resumo{margin-top:20px;background:var(--white);border-radius:18px;padding:18px 20px}
-.fw__resumo dl{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:14px;margin:0}
-.fw__resumo dt{font-weight:600;color:var(--teal)}
-.fw__resumo dd{text-align:right;font-weight:500;color:var(--navy);word-break:break-word}
-
-.fw__nav{display:flex;align-items:center;gap:10px;margin-top:26px}
-.fw__back{padding:12px 16px;border-radius:999px;font-size:14px;font-weight:500;color:rgba(18,13,68,.6);transition:color .2s}
-.fw__back:hover{color:var(--navy)}
-.fw__back[hidden]{display:none}
-.fw__nav .toggle{margin-left:auto}
-
-.fw__done{text-align:center;padding:14px 0 6px}
-.fw__done .ok{
-  width:66px;height:66px;margin:0 auto 18px;border-radius:50%;background:var(--mint);
-  display:grid;place-items:center;color:var(--navy)
-}
-.fw__done .ok svg{width:32px;height:32px}
-.fw__done h3{font-family:var(--bubble);font-weight:400;font-size:27px;color:var(--navy)}
-.fw__done p{margin-top:12px;font-size:14.5px;font-weight:300;line-height:1.55;color:rgba(18,13,68,.7)}
-.fw__done a{display:inline-block;margin-top:20px;font-weight:600;font-size:14px;color:var(--teal)}
-.fw__contato{
-  margin-top:22px;display:inline-flex;flex-direction:column;align-items:center;gap:4px;
-  background:var(--white);border-radius:18px;padding:14px 24px 10px
-}
-.fw__contato span{
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--teal)
-}
-.fw__contato a{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  margin-top:0;padding:6px 8px;min-height:44px;font-size:inherit;
-  color:var(--navy);transition:color .2s
-}
-.fw__contato a:hover{color:var(--teal)}
-.fw__contato svg{width:21px;height:21px;color:var(--whats);flex:none}
-.fw__contato b{font-family:var(--bubble);font-weight:400;font-size:23px;line-height:1}
-
-/* =========================================================
-   RESPONSIVO
-   Desktop >= 1024px   |   Tablet 641-1023px   |   Celular <= 640px
-   ========================================================= */
-
-/* ---------------- Tablet e abaixo ---------------- */
-@media (max-width:1023px){
-  .hero{padding-top:34px}
-  .hero__grid{gap:30px}
-  .hero h1{font-size:clamp(46px,7.8vw,74px)}
-  .hero__lead{font-size:16px}
-  .hero__art{max-width:560px}
-  .strip{margin-top:52px}
-
-  .sec-head{margin-bottom:38px}
-  .sec-head h2{font-size:clamp(38px,6vw,62px)}
-
-  .insta__grid{grid-template-columns:repeat(3,1fr)}
-
-  /* 5 fotos em 3 + 2, com a segunda linha centralizada */
-  .grid-g{grid-template-columns:repeat(6,1fr)}
-  .grid-g figure{grid-column:span 2}
-  .grid-g figure:nth-child(4){grid-column:2 / span 2}
-
-  /* roteiro empilhado: foto mais baixa para encurtar a rolagem */
-  .day__img img{aspect-ratio:16/10}
-  .day__panel{padding:26px 24px 24px}
-  .day__n{margin:20px 0 -12px 4px}
-
-  .banner{height:clamp(400px,58vh,560px)}
-  .banner h2{font-size:clamp(34px,5.8vw,58px)}
-}
-
-/* no tablet a foto do hero alinha pela mesma margem do texto, como no celular */
-@media (min-width:641px) and (max-width:1023px){
-  .hero__art{justify-self:start}
-}
-
-/* rodapé em 2 colunas no tablet retrato */
-@media (min-width:641px) and (max-width:899px){
-}
-
-/* ---------------- Celular ---------------- */
-@media (max-width:640px){
-  .wrap{padding-inline:18px}
-
-  /* respiro vertical proporcional à tela */
-  .incluso,.valores,.galeria,.depo,.insta{padding:44px 0 48px}
-  .insta__grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .insta__post{border-radius:14px}
-  .roteiro,.faq,.sobre{padding:44px 0 50px}
-  .cta{padding:46px 0 50px}
-  .sec-head{margin-bottom:28px}
-  .sec-head p{font-size:14.5px}
-  .eyebrow{letter-spacing:.24em}
-
-  .hero{padding-top:26px}
-  .hero__actions{gap:12px;margin-top:26px}
-  .hero__price{left:0;bottom:-22px;padding:12px 18px}
-  .hero__price b{font-size:26px}
-  .strip{margin-top:44px;padding:11px 0}
-
-  /* galeria em 2 colunas: 8 fotos em 4 linhas, não em 8 */
-  .grid-g{grid-template-columns:1fr 1fr;gap:10px}
-  .grid-g figure,.grid-g figure:nth-child(4){grid-column:auto}
-  .grid-g figure:last-child{grid-column:1 / -1;aspect-ratio:16/9}
-  .grid-g figure{border-radius:14px}
-  .grid-g figcaption{font-size:9.5px;letter-spacing:.03em;padding:20px 8px 8px}
-
-  /* cartões e painéis mais justos */
-  .incluso__card{padding:26px 18px 30px;border-radius:26px}
-  .incluso__item{gap:13px;padding:12px 0}
-  .incluso__item .ico{width:40px;height:40px}
-  .incluso__item .ico svg{width:20px;height:20px}
-  .incluso__item span{font-size:14.5px}
-  .notincl{margin-top:34px}
-  .tagline{margin-top:34px;line-height:1.2}
-
-  .days{gap:28px}
-  .day__panel{padding:24px 20px 22px}
-  .day__panel p{font-size:14px}
-  .aviso{gap:13px;padding:18px 18px;margin-top:34px;border-radius:18px}
-  .aviso__ico{width:34px;height:34px}
-  .aviso b{font-size:16px}
-  .aviso p{font-size:13px}
-
-  .valor{padding:34px 18px 38px;border-radius:26px}
-  .valor__note{font-size:12px}
-  .sobre__panel{padding:30px 20px 34px;border-radius:26px}
-  .fundadoras{margin-top:30px;padding-top:28px}
-  .fundadoras__grid{gap:22px 30px}
-  .fundadora{gap:14px}
-  .fundadora img{width:92px;height:92px}
-  .fundadora figcaption b{font-size:20px}
-  .pillars{gap:26px;margin-top:32px}
-  .depo__card{padding:22px 20px}
-
-  .banner{height:clamp(360px,60vh,480px)}
-  .banner p{font-size:14.5px;margin-top:16px}
-
-  /* alvos de toque confortáveis */
-  .toggle{font-size:15px;padding:6px 22px 6px 6px}
-  .toggle::before{width:32px;height:32px}
-  .btn-ghost{padding:13px 20px}
-  .acc__btn{min-height:60px;padding:15px 50px 15px 18px}
-  .acc__btn svg{right:16px;width:22px;height:22px}
-  .acc__body p{padding:16px 18px}
-  .mnav a{padding:14px 4px}
-
-  /* popup vira folha que sobe de baixo */
-  .modal{padding:0;align-items:flex-end}
-  .modal__card{
-    max-width:none;border-radius:26px 26px 0 0;padding:22px 20px 24px;
-    max-height:92vh;max-height:92dvh
-  }
-  .fw__q{font-size:23px}
-  .fw__stepper button{width:48px;height:48px;font-size:24px}
-  .fw__stepper output{font-size:37px;min-width:62px}
-  .fw__choice{padding:16px 14px;font-size:16px}
-  .fw__nav{gap:6px;margin-top:22px}
-  .fw__back{padding:12px 10px;font-size:13.5px}
-
-  /* flutuantes menores, e rodapé com folga para não ficar embaixo deles */
-  .float-w,.float-top{width:50px;height:50px;right:14px}
-  .float-w svg,.float-top svg{width:26px;height:26px}
-  .float-top{bottom:max(78px,calc(env(safe-area-inset-bottom) + 60px))}
-  .ftr{padding-bottom:140px}
-  .ftr__logo img{height:78px}
-}
-
-/* ---------------- Celular pequeno ---------------- */
-@media (max-width:380px){
-  .hero h1{font-size:43px}
-  .sec-head h2{font-size:34px}
-  .valor__price{font-size:50px}
-  .incluso__item span{font-size:14px}
-}
-
-/* ---------------- Telefone deitado ---------------- */
-@media (max-width:900px) and (orientation:landscape){
-  .banner{height:min(78vh,420px)}
-  .mnav{max-height:70vh;overflow-y:auto}
-}
-
-/* =========================================================
-   EUROPA 2027 / componentes novos (mesmo design system)
-   ========================================================= */
-.hero__chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-.chip{
-  display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:999px;
-  border:1.5px solid rgba(113,230,204,.45);color:var(--cream);font-size:13px;font-weight:500;line-height:1.2
-}
-.chip b{font-family:var(--display);font-weight:600;color:var(--gold);font-size:15px}
-.chip--fill{background:var(--mint);border-color:var(--mint);color:var(--navy)}
-.chip--fill b{color:var(--navy)}
-
-.hero__art svg{
-  width:100%;aspect-ratio:5/4;border-radius:var(--r-lg);display:block;
-  box-shadow:0 30px 60px rgba(0,0,0,.42);position:relative;z-index:2;background:#71E6CC
-}
-
-/* cartões de cidade (ilustração vetorial no lugar da foto) */
-.lm{
-  position:relative;width:100%;aspect-ratio:4/3;border-radius:var(--r-lg);overflow:hidden;
-  box-shadow:0 24px 48px rgba(0,0,0,.45);background:var(--bg)
-}
-.lm svg,.lm img{position:absolute;inset:0;width:100%;height:100%;display:block}
-.lm img{object-fit:cover}
-.lm__tag{
-  position:absolute;left:16px;top:16px;z-index:2;background:var(--navy);color:var(--cream);
-  font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
-  padding:8px 14px;border-radius:999px
-}
-.day__dias{
-  display:inline-flex;align-items:baseline;gap:8px;margin-bottom:14px;padding:7px 16px;border-radius:999px;
-  background:var(--apricot);color:var(--navy);font-family:var(--bubble);font-size:22px;line-height:1
-}
-.day__dias small{font-family:var(--font);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
-.day__tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.day__tags li{
-  font-size:12px;font-weight:500;color:var(--navy);border:1.5px solid rgba(18,13,68,.22);
-  border-radius:999px;padding:6px 14px
-}
-
-/* parceria */
-.parceria{background:var(--cream);padding:64px 0 72px}
-.pt{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px 22px;margin-bottom:34px}
-.pt__logo{display:grid;place-items:center;min-width:240px;min-height:130px;padding:6px 18px}
-.pt__logo--gs{background:none}
-.pt__logo--gs img{height:140px;width:auto}
-.pt__logo--tgd{background:none}
-.pt__logo--tgd img{height:150px;width:auto}
-.pt__logo--tgd b{display:block;font-family:var(--bubble);font-weight:400;font-size:34px;line-height:1;color:var(--navy);text-transform:uppercase}
-.pt__logo--tgd span{display:block;margin-top:8px;font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--navy)}
-.pt__x{
-  width:52px;height:52px;border-radius:50%;background:var(--mint);color:var(--navy);
-  display:grid;place-items:center;font-family:var(--bubble);font-size:26px;line-height:1;flex:none
-}
-.parceria__txt{max-width:760px;margin:0 auto;text-align:center;font-size:15.5px;font-weight:300;line-height:1.7}
-.parceria__txt strong{font-weight:600}
-.facts{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin-top:44px}
-.fact{background:var(--navy);color:var(--cream);border-radius:var(--r-card);padding:24px 22px;text-align:center}
-.fact b{display:block;font-family:var(--bubble);font-weight:400;font-size:clamp(34px,4.4vw,46px);line-height:1;color:var(--mint)}
-.fact span{display:block;margin-top:8px;font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,249,246,.82)}
-
-/* pagamento */
-.valor__parc{font-family:var(--display);font-weight:600;font-size:clamp(17px,2.4vw,22px);color:var(--cream);margin-top:14px}
-.valor__parc em{font-style:normal;color:var(--gold)}
-.pay{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:40px;text-align:left}
-.pay__card{background:rgba(250,249,246,.07);border:1.5px solid rgba(113,230,204,.28);border-radius:var(--r-card);padding:24px 22px}
-.pay__card .ico{width:46px;height:46px;border-radius:50%;background:var(--mint);color:var(--navy);display:grid;place-items:center;margin-bottom:14px}
-.pay__card .ico svg{width:23px;height:23px}
-.pay__card h3{font-size:21px;color:var(--cream);text-transform:uppercase;margin-bottom:8px}
-.pay__card h3 em{font-style:normal;color:var(--gold)}
-.pay__card p{font-size:13.5px;font-weight:300;line-height:1.6;color:rgba(250,249,246,.82)}
-.sim{
-  margin:28px auto 0;max-width:640px;background:var(--apricot);color:var(--navy);
-  border-radius:20px;padding:18px 24px;text-align:left
-}
-.sim small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
-.sim b{font-family:var(--bubble);font-weight:400;font-size:clamp(26px,4vw,34px);line-height:1.15}
-.sim p{margin-top:4px;font-size:12px;font-weight:400;color:rgba(18,13,68,.78);line-height:1.5}
-.kids{margin:34px auto 0;max-width:820px}
-.kids.aviso{margin-top:34px}
-
-.dest-svg{display:block;width:100%;height:100%}
-
-@media (max-width:640px){
-  .parceria{padding:44px 0 50px}
-  .pt__logo{min-width:0;width:100%;min-height:0}
-  .pt__logo--tgd img{height:120px}
-  .pt__logo--gs img{height:110px}
-  .pt__x{width:44px;height:44px;font-size:22px}
-  .pay__card{padding:20px 18px}
-  .lm__tag{left:12px;top:12px;font-size:12px}
-  .hero__price{bottom:-44px;left:10px;padding:10px 16px}
-  .hero__price b{font-size:23px}
-  .strip{margin-top:62px}
-  .day__dias{font-size:20px}
-}
-
-/* =========================================================
-   TIPOGRAFIA: Work Sans extra-bold nos títulos + Roboto Mono nos textos
-   (paleta GS mantida)
-   ========================================================= */
-h1,h2,h3,h4,.display{font-family:var(--bubble);font-weight:800;letter-spacing:-.025em;text-transform:none;line-height:1.02}
-.hero h1{font-size:clamp(52px,9.4vw,118px);line-height:.94}
-.sec-head h2{font-size:clamp(38px,6vw,70px)}
-.valor__price,.hero__price b,.fact b,.sim b,.day__dias,.pt__x,.pt__logo--tgd b{font-weight:800;letter-spacing:-.03em}
-.valor__price{font-size:clamp(54px,11vw,128px)}
-.day__n{font-weight:800;letter-spacing:-.01em}
-.day__panel h3,.pay__card h3,.pillar h4,.acc__btn span,.fw__q{letter-spacing:-.02em}
-.day__panel h3{text-transform:none}
-.nav a,.toggle,.btn-ghost,.chip b{font-family:var(--display)}
-.nav a{font-weight:700;letter-spacing:-.01em}
-.eyebrow,.valor__per,.hero__price small,.sim small,.fact span,.lm__tag,.day__dias small,.footer h4{font-family:var(--font)}
-p,li,dd,.acc__body p{font-family:var(--font)}
-.hero__lead{font-size:clamp(13.5px,1.5vw,15.5px);line-height:1.75}
-.sec-head p,.parceria__txt,.pay__card p,.day__panel p,.acc__body p,.pillar p,.sobre__texto p,.aviso p,.valor__note{font-size:clamp(12.5px,1.35vw,14px);line-height:1.75}
-.parceria__txt{font-size:clamp(13.5px,1.5vw,15px)}
-.chip{font-family:var(--font);font-size:12.5px}
-.chip b{font-size:15px}
-.strip{padding:6px 0 8px}
-.strip__track span{font-family:var(--bubble);font-weight:800;letter-spacing:-.03em;font-size:clamp(22px,3vw,40px);line-height:1.2;text-transform:uppercase;padding-right:.5em}
-.strip__track{animation-duration:36s}
-.strip{padding:10px 0 12px}
-
-.hero h1,.sec-head h2,.day__panel h3,.pay__card h3,.pillar h4,.cta h2,.fw__q{text-transform:none}
-.hero h1 span{color:var(--mint)}
-
-
-/* carrossel de fotos (rolagem automática + setas) */
-.fotos{background:var(--cream);padding:64px 0 70px;overflow:hidden}
-.carrossel{position:relative}
-.carrossel__view{overflow-x:auto;overflow-y:hidden;padding:6px 0;scrollbar-width:none;-ms-overflow-style:none;
-  -webkit-overflow-scrolling:touch;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
-          mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
-.carrossel__view::-webkit-scrollbar{display:none}
-.carrossel__track{display:flex;gap:16px;width:max-content}
-.carrossel__track img{height:clamp(240px,32vw,430px);width:auto;flex:none;border-radius:22px;
-  object-fit:cover;background:var(--serenity);box-shadow:0 14px 30px rgba(18,13,68,.16);user-select:none;-webkit-user-drag:none}
-.carrossel__seta{position:absolute;top:50%;z-index:3;width:56px;height:56px;margin-top:-28px;border-radius:50%;
-  display:grid;place-items:center;background:var(--navy);color:var(--mint);box-shadow:0 12px 26px rgba(18,13,68,.3);
-  transition:transform .18s ease,background .18s,color .18s}
-.carrossel__seta svg{width:26px;height:26px}
-.carrossel__seta:hover{background:var(--mint);color:var(--navy);transform:scale(1.07)}
-.carrossel__seta--prev{left:max(14px,calc((100vw - var(--max))/2 + 10px))}
-.carrossel__seta--next{right:max(14px,calc((100vw - var(--max))/2 + 10px))}
-@media (max-width:640px){.fotos{padding:44px 0 48px}.carrossel__track{gap:12px}.carrossel__track img{border-radius:16px}
-  .carrossel__seta{width:44px;height:44px;margin-top:-22px}.carrossel__seta svg{width:22px;height:22px}
-  .carrossel__seta--prev{left:8px}.carrossel__seta--next{right:8px}}
-
-/* paradas no mobile/tablet: rótulo acima do painel, sem sobreposição */
-@media (max-width:1023px){
-  .day__n{margin:22px 0 12px 4px;font-size:clamp(24px,6vw,32px);line-height:1.1}
-  .day__panel{position:relative;z-index:1}
-  .day__body{z-index:auto}
-}
-
-/* ETA: autorização do Reino Unido */
-.eta{max-width:980px;margin:34px auto 0;background:#fff;border-radius:var(--r-lg);padding:34px 30px 30px;
-  box-shadow:0 18px 40px rgba(18,13,68,.12);border:2px solid rgba(18,13,68,.06)}
-.eta__head{margin-bottom:18px}
-.eta__head .eyebrow{color:var(--teal);font-size:11px;margin-bottom:6px}
-.eta__head h3{font-size:clamp(22px,3.2vw,32px);color:var(--navy);line-height:1.1}
-.eta__txt{font-size:clamp(13px,1.4vw,14.5px);line-height:1.75;color:var(--navy)}
-.eta__facts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin:24px 0 8px}
-.eta__facts li{background:var(--navy);color:var(--cream);border-radius:var(--r-card);padding:18px 18px 16px;text-align:center}
-.eta__facts b{display:block;font-family:var(--bubble);font-weight:800;font-size:clamp(28px,3.4vw,38px);letter-spacing:-.03em;line-height:1;color:var(--mint)}
-.eta__facts span{display:block;margin-top:8px;font-size:11.5px;line-height:1.5;color:rgba(250,249,246,.85)}
-.eta__sub{font-size:20px;color:var(--navy);margin:26px 0 14px}
-.eta__steps{display:grid;gap:12px}
-.eta__steps li{display:flex;gap:14px;align-items:flex-start}
-.eta__steps i{font-style:normal;flex:none;width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--navy);
-  display:grid;place-items:center;font-family:var(--bubble);font-weight:800;font-size:16px}
-.eta__steps p{font-size:clamp(12.5px,1.35vw,14px);line-height:1.7;color:var(--navy);padding-top:5px}
-.eta__note{margin-top:22px;padding:16px 18px;border-radius:16px;background:var(--apricot-soft);font-size:12.5px;line-height:1.7;color:rgba(18,13,68,.85)}
-.eta__link{display:inline-block;margin-top:14px;font-size:13px;font-weight:600;color:var(--teal);text-decoration:underline;text-underline-offset:3px}
-.eta__link:hover{color:var(--navy)}
-@media (max-width:640px){.eta{padding:26px 18px 24px;margin-top:26px}}
-
-/* =========================================================
-   MOBILE: tudo centralizado, textos mais curtos e com respiro
-   ========================================================= */
-h1,h2,h3,h4{text-wrap:balance}
-p{text-wrap:pretty}
-@media (max-width:640px){
-  .wrap{padding-inline:22px}
-
-  /* hero */
-  .hero__grid{text-align:center;gap:38px}
-  .hero h1{font-size:clamp(54px,17vw,76px);margin-top:4px}
-  .hero__lead{max-width:34ch;margin:22px auto 0;line-height:1.9;font-size:13.5px}
-  .hero__chips{justify-content:center;margin-top:28px}
-  .hero__art{justify-self:center;margin-inline:auto;width:min(100%,420px)}
-  .hero__price{left:50%;right:auto;transform:translateX(-50%);width:max-content;max-width:92%;text-align:center}
-  .strip{margin-top:70px}
-
-  /* títulos e introduções de seção */
-  .sec-head{margin-bottom:36px}
-  .sec-head h2{font-size:clamp(34px,10.5vw,44px);line-height:1.04}
-  .sec-head p{max-width:33ch;margin-inline:auto;line-height:1.9}
-  .parceria__txt{max-width:34ch;line-height:1.95}
-  .pt{margin-bottom:28px}
-
-  /* números da parceria */
-  .facts{gap:12px;margin-top:36px}
-
-  /* roteiro */
-  .days{gap:54px}
-  .day__n{text-align:center;margin:28px 0 14px}
-  .day__panel{text-align:center;padding:30px 22px 28px}
-  .day__panel h3{font-size:30px;margin-bottom:14px}
-  .day__panel p{max-width:34ch;margin-inline:auto;line-height:1.95}
-  .day__dias{margin-bottom:16px}
-  .day__tags{justify-content:center;margin-top:22px}
-  .roteiro__note{max-width:32ch;margin-inline:auto;line-height:1.85}
-
-  /* carrossel */
-  .fotos .sec-head{margin-bottom:28px}
-
-  /* valores */
-  .valor{text-align:center}
-  .pay{gap:14px;margin-top:34px}
-  .pay__card{text-align:center;padding:26px 22px}
-  .pay__card .ico{margin:0 auto 14px}
-  .pay__card h3{margin-bottom:10px}
-  .pay__card p{line-height:1.9;max-width:30ch;margin-inline:auto}
-  .sim{text-align:center;margin-top:24px;padding:20px 18px}
-  .sim p{line-height:1.8}
-  .valor__note{max-width:32ch;margin-top:26px;line-height:1.95}
-  .valor__parc{line-height:1.4}
-
-  /* aviso de crianças */
-  .aviso{flex-direction:column;align-items:center;text-align:center;gap:12px}
-  .aviso p{line-height:1.85}
-
-  /* ETA */
-  .eta{text-align:center;padding:30px 20px 26px}
-  .eta__head{text-align:center;margin-bottom:20px}
-  .eta__txt{line-height:1.95;max-width:34ch;margin-inline:auto}
-  .eta__facts{grid-template-columns:1fr;gap:12px;margin-top:26px}
-  .eta__facts li{padding:20px 18px}
-  .eta__sub{text-align:center;margin:32px 0 18px}
-  .eta__steps{gap:18px;text-align:left}
-  .eta__steps p{line-height:1.85}
-  .eta__note{text-align:center;line-height:1.95;padding:20px 18px}
-  .eta__link{display:block;text-align:center;margin-top:20px}
-
-  /* perguntas frequentes */
-  .acc{gap:14px}
-  .acc__body p{line-height:1.9}
-
-  /* sobre */
-  .sobre__texto{gap:20px;text-align:center}
-  .sobre__texto p{line-height:1.95}
-  .fundadoras__grid{flex-direction:column;align-items:center}
-  .fundadora{flex-direction:column;text-align:center;gap:12px}
-  .pillars{gap:34px;text-align:center}
-  .pillar .ico{margin:0 auto 14px}
-  .pillar p{max-width:30ch;margin-inline:auto;line-height:1.85}
-
-  /* rodapé */
-  .ftr__in{text-align:center;gap:40px}
-  .ftr__logo img{margin-inline:auto}
-  .ftr p,.ftr a{line-height:2}
-  .ftr__insta{margin-inline:auto}
-  .ftr__bottom{line-height:1.9}
-}
-
-/* hero em arco, como na referência */
-.hero__art img.hero__img{aspect-ratio:auto;border-radius:0;box-shadow:none;object-fit:contain;width:100%;height:auto;display:block;position:relative;z-index:2;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
-.hero__art::after{border-radius:999px 999px 34px 34px}
-.hero__art{max-width:500px}
-</style>
-</head>
-<body>
-
-<!-- ===================== MONUMENTOS (sprite) ===================== -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <!-- Londres: Big Ben + London Eye -->
-    <symbol id="lm-london" viewBox="0 0 400 300">
-      <g fill="none" stroke="#FAF9F6" stroke-width="5">
-        <circle cx="96" cy="168" r="70"/>
-        <circle cx="96" cy="168" r="4" fill="#FAF9F6"/>
-        <path d="M96 98v140M26 168h140M46.5 118.5l99 99M145.5 118.5l-99 99" stroke-width="2.5"/>
-        <path d="M70 262 96 168 122 262" stroke="#120D44" stroke-width="6" stroke-linejoin="round"/>
-      </g>
-      <g fill="#FAF9F6"><circle cx="96" cy="98" r="6"/><circle cx="166" cy="168" r="6"/><circle cx="96" cy="238" r="6"/><circle cx="26" cy="168" r="6"/><circle cx="145.5" cy="217.5" r="6"/><circle cx="46.5" cy="217.5" r="6"/><circle cx="145.5" cy="118.5" r="6"/><circle cx="46.5" cy="118.5" r="6"/></g>
-      <g fill="#120D44">
-        <rect x="236" y="190" width="132" height="72"/>
-        <rect x="246" y="168" width="14" height="24"/><rect x="292" y="162" width="14" height="30"/><rect x="338" y="170" width="14" height="22"/>
-        <rect x="236" y="182" width="132" height="10"/>
-        <rect x="176" y="106" width="56" height="156"/>
-        <rect x="170" y="92" width="68" height="16"/>
-        <polygon points="176,92 204,30 232,92"/>
-        <rect x="201" y="12" width="6" height="22"/>
-      </g>
-      <circle cx="204" cy="134" r="19" fill="#FAF9F6"/>
-      <path d="M204 134v-12M204 134l9 5" stroke="#120D44" stroke-width="3" stroke-linecap="round"/>
-      <g fill="#FAF9F6"><rect x="190" y="170" width="8" height="18" rx="4"/><rect x="210" y="170" width="8" height="18" rx="4"/><rect x="190" y="205" width="8" height="18" rx="4"/><rect x="210" y="205" width="8" height="18" rx="4"/>
-        <rect x="250" y="206" width="8" height="14" rx="4"/><rect x="272" y="206" width="8" height="14" rx="4"/><rect x="294" y="206" width="8" height="14" rx="4"/><rect x="316" y="206" width="8" height="14" rx="4"/><rect x="338" y="206" width="8" height="14" rx="4"/></g>
-    </symbol>
-
-    <!-- Paris: Torre Eiffel -->
-    <symbol id="lm-paris" viewBox="0 0 400 300">
-      <g fill="#120D44">
-        <rect x="199" y="6" width="4" height="26"/>
-        <polygon points="201,28 209,108 221,150 246,214 272,262 238,262 222,224 201,214 180,224 164,262 130,262 156,214 181,150 193,108"/>
-        <rect x="182" y="104" width="38" height="8" rx="2"/>
-        <rect x="166" y="146" width="70" height="9" rx="2"/>
-        <rect x="146" y="210" width="110" height="10" rx="2"/>
-      </g>
-      <path d="M166 262Q201 196 236 262Z" style="fill:var(--bg)"/>
-      <path d="M190 214Q201 198 212 214Z" style="fill:var(--bg)"/>
-      <path d="M186 150 201 112 216 150Z" style="fill:var(--bg)" opacity=".0"/>
-      <g stroke="#120D44" stroke-width="2.2" fill="none" opacity=".9">
-        <path d="M193 112 218 146M209 112 184 146M181 155 232 210M221 155 170 210"/>
-      </g>
-    </symbol>
-
-    <!-- Bruxelas: Atomium -->
-    <symbol id="lm-brussels" viewBox="0 0 400 300">
-      <g stroke="#120D44" stroke-width="9" stroke-linecap="round">
-        <path d="M200 140 120 92M200 140 280 92M200 140 120 188M200 140 280 188"/>
-        <path d="M200 42 120 92M200 42 280 92M200 238 120 188M200 238 280 188"/>
-        <path d="M120 92V188M280 92V188"/>
-        <path d="M120 188 102 262M280 188 298 262M200 238v24" stroke-width="7"/>
-      </g>
-      <g fill="#120D44">
-        <circle cx="200" cy="140" r="30"/><circle cx="120" cy="92" r="27"/><circle cx="280" cy="92" r="27"/>
-        <circle cx="120" cy="188" r="27"/><circle cx="280" cy="188" r="27"/>
-        <circle cx="200" cy="42" r="26"/><circle cx="200" cy="238" r="26"/>
-      </g>
-      <g fill="#FAF9F6" opacity=".55">
-        <circle cx="190" cy="128" r="8"/><circle cx="111" cy="82" r="7"/><circle cx="271" cy="82" r="7"/>
-        <circle cx="111" cy="178" r="7"/><circle cx="271" cy="178" r="7"/><circle cx="192" cy="33" r="7"/><circle cx="192" cy="229" r="7"/>
-      </g>
-    </symbol>
-
-    <!-- Amsterdam: casas de canal -->
-    <symbol id="lm-amsterdam" viewBox="0 0 400 300">
-      <g>
-        <path d="M46 262V138q0-10 12-14l16-18 16 18q12 4 12 14v124z" fill="#FDCE82"/>
-        <path d="M114 262V104h14v-12h14V80h14v12h14v12h14v158z" fill="#71E6CC"/>
-        <path d="M184 262V150l32-46 32 46v112z" fill="#FFC100"/>
-        <path d="M252 262V122q0-18 18-24l4-8 4 8q18 6 18 24v140z" fill="#FAF9F6"/>
-        <path d="M318 262V140l20-34 20 34v122z" fill="#051D7D"/>
-      </g>
-      <g fill="#120D44">
-        <rect x="62" y="150" width="14" height="22" rx="2"/><rect x="62" y="190" width="14" height="22" rx="2"/><rect x="88" y="150" width="14" height="22" rx="2"/><rect x="88" y="190" width="14" height="22" rx="2"/>
-        <rect x="126" y="116" width="14" height="22" rx="2"/><rect x="152" y="116" width="14" height="22" rx="2"/><rect x="126" y="158" width="14" height="22" rx="2"/><rect x="152" y="158" width="14" height="22" rx="2"/><rect x="126" y="200" width="14" height="22" rx="2"/><rect x="152" y="200" width="14" height="22" rx="2"/>
-        <rect x="200" y="164" width="14" height="22" rx="2"/><rect x="224" y="164" width="14" height="22" rx="2"/><rect x="200" y="206" width="14" height="22" rx="2"/><rect x="224" y="206" width="14" height="22" rx="2"/>
-        <rect x="266" y="130" width="14" height="22" rx="2"/><rect x="290" y="130" width="14" height="22" rx="2"/><rect x="266" y="172" width="14" height="22" rx="2"/><rect x="290" y="172" width="14" height="22" rx="2"/><rect x="266" y="214" width="14" height="22" rx="2"/><rect x="290" y="214" width="14" height="22" rx="2"/>
-      </g>
-      <g fill="#FAF9F6"><rect x="330" y="152" width="12" height="20" rx="2"/><rect x="330" y="192" width="12" height="20" rx="2"/></g>
-    </symbol>
-
-    <!-- Itália: Coliseu -->
-    <symbol id="lm-italy" viewBox="0 0 400 300">
-      <g fill="#120D44">
-        <path d="M60 262V150q0-28 30-34l60-9h100l60 9q30 6 30 34v112z"/>
-        <rect x="52" y="256" width="296" height="8" rx="3"/>
-        <ellipse cx="30" cy="224" rx="9" ry="36"/><ellipse cx="374" cy="230" rx="8" ry="30"/>
-        <rect x="28" y="250" width="4" height="12"/><rect x="372" y="250" width="4" height="12"/>
-      </g>
-      <g style="fill:var(--bg)">
-        <rect x="74" y="136" width="16" height="24" rx="8"/><rect x="102" y="132" width="16" height="24" rx="8"/><rect x="130" y="130" width="16" height="24" rx="8"/><rect x="158" y="129" width="16" height="24" rx="8"/><rect x="186" y="128" width="16" height="24" rx="8"/><rect x="214" y="129" width="16" height="24" rx="8"/><rect x="242" y="130" width="16" height="24" rx="8"/><rect x="270" y="132" width="16" height="24" rx="8"/><rect x="298" y="136" width="16" height="24" rx="8"/><rect x="326" y="142" width="14" height="22" rx="7"/>
-        <rect x="74" y="178" width="16" height="26" rx="8"/><rect x="102" y="176" width="16" height="26" rx="8"/><rect x="130" y="175" width="16" height="26" rx="8"/><rect x="158" y="174" width="16" height="26" rx="8"/><rect x="186" y="174" width="16" height="26" rx="8"/><rect x="214" y="174" width="16" height="26" rx="8"/><rect x="242" y="175" width="16" height="26" rx="8"/><rect x="270" y="176" width="16" height="26" rx="8"/><rect x="298" y="178" width="16" height="26" rx="8"/><rect x="326" y="180" width="14" height="24" rx="7"/>
-        <rect x="74" y="222" width="16" height="40" rx="8"/><rect x="102" y="222" width="16" height="40" rx="8"/><rect x="130" y="222" width="16" height="40" rx="8"/><rect x="158" y="222" width="16" height="40" rx="8"/><rect x="186" y="222" width="16" height="40" rx="8"/><rect x="214" y="222" width="16" height="40" rx="8"/><rect x="242" y="222" width="16" height="40" rx="8"/><rect x="270" y="222" width="16" height="40" rx="8"/><rect x="298" y="222" width="16" height="40" rx="8"/><rect x="326" y="224" width="14" height="38" rx="7"/>
-      </g>
-    </symbol>
-  </defs>
-</svg>
-
-<!-- ===================== HEADER ===================== -->
-<header class="hdr">
-  <div class="wrap hdr__in">
-    <a href="#inicio" class="hdr__logo" aria-label="GS Infinity Travel, início">
-      <img src="assets/logo-light.png" alt="GS Infinity Travel">
-    </a>
-    <nav class="nav" aria-label="Navegação principal">
-      <a href="#parceria">a parceria</a>
-      <a href="#roteiro">roteiro</a>
-      <a href="#valor">valores</a>
-      <a href="#duvidas">dúvidas</a>
-      <a href="#sobre">sobre nós</a>
-    </nav>
-    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mnav">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
-    </button>
-  </div>
-  <div class="progress" role="presentation"><i id="progressBar"></i></div>
-
-  <nav class="mnav" id="mnav" aria-label="Navegação mobile">
-    <a href="#parceria">a parceria</a>
-    <a href="#roteiro">roteiro</a>
-    <a href="#valor">valores e pagamento</a>
-    <a href="#duvidas">dúvidas frequentes</a>
-    <a href="#sobre">sobre nós</a>
-  </nav>
-</header>
-
-<main>
-
-<!-- ===================== HERO ===================== -->
-<section class="hero" id="inicio">
-  <div class="wrap hero__grid">
-    <div class="rv">
-      <h1 class="display">Europa<br>2027<span>.</span></h1>
-      <p class="hero__lead">
-        <b>Londres, Paris, Bruxelas, Amsterdam e Itália</b> em uma única viagem. Quinze dias
-        de roteiro para conhecer cinco destinos clássicos, com a comunidade da escola de
-        inglês <b>The Great Deal</b> e toda a organização da <b>GS Infinity Travel</b>.
-      </p>
-      <div class="hero__chips">
-        <span class="chip">Embarque <b>16 jul 2027</b></span>
-        <span class="chip">Retorno <b>31 jul</b></span>
-        <span class="chip chip--fill" id="chipFaltam" hidden><b id="faltamN">0</b> dias para embarcar</span>
-      </div>
-    </div>
-
-    <div class="hero__art rv">
-      <img class="hero__img" src="assets/hero.webp" srcset="assets/hero-sm.webp 560w, assets/hero.webp 1000w" sizes="(max-width:1023px) 90vw, 500px" width="1000" height="1225" alt="Big Ben, em Londres, a primeira parada da viagem" fetchpriority="high">
-      <div class="hero__price">
-        <small>Investimento</small>
-        <b>R$ 15.000<span class="sparkle" aria-hidden="true"><i></i><i></i><i></i></span></b>
-        <i>por pessoa · entrada de R$ 2.000</i>
-      </div>
-    </div>
-  </div>
-
-  <div class="strip" aria-hidden="true">
-    <div class="strip__track">
-      <span>Londres · Paris · Bruxelas · Amsterdam · Itália ·&nbsp;</span>
-      <span>Londres · Paris · Bruxelas · Amsterdam · Itália ·&nbsp;</span>
-      <span>Londres · Paris · Bruxelas · Amsterdam · Itália ·&nbsp;</span>
-      <span>Londres · Paris · Bruxelas · Amsterdam · Itália ·&nbsp;</span>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== PARCERIA ===================== -->
-<section class="parceria" id="parceria">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="display">A parceria</h2>
-    </div>
-
-    <div class="pt rv">
-      <div class="pt__logo pt__logo--tgd">
-        <img src="assets/logo-tgd.png" alt="The Great Deal Idiomas">
-      </div>
-      <div class="pt__x" aria-hidden="true">×</div>
-      <div class="pt__logo pt__logo--gs">
-        <img src="assets/logo-navy.png" alt="GS Infinity Travel">
-      </div>
-    </div>
-
-    <p class="parceria__txt rv">
-      A <strong>The Great Deal</strong> fechou parceria com a <strong>GS Infinity Travel</strong> para levar
-      a sua turma à Europa. A escola traz a comunidade; a GS cuida do que sabe fazer há anos:
-      planejamento minucioso, orçamento justo, facilidade de pagamento e suporte humanizado
-      do começo ao fim da viagem.
-    </p>
-
-    <div class="facts rv">
-      <div class="fact"><b>5</b><span>destinos</span></div>
-      <div class="fact"><b>15</b><span>dias de roteiro</span></div>
-      <div class="fact"><b>16/07</b><span>embarque previsto</span></div>
-      <div class="fact"><b>31/07</b><span>retorno previsto</span></div>
-    </div>
-  </div>
-</section>
-
-<div class="flightpath" aria-hidden="true">
-  <svg viewBox="0 0 1200 140" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <path id="fpCurve" class="fp-dash"
-          d="M-90 104 C 150 104, 270 30, 510 30 S 830 112, 1010 100 S 1200 48, 1290 42"/>
-    <g class="fp-plane" id="fpPlane">
-      <animateMotion dur="15s" repeatCount="indefinite" rotate="auto">
-        <mpath href="#fpCurve" xlink:href="#fpCurve"/>
-      </animateMotion>
-      <path transform="scale(1.7) translate(-12,-12) rotate(90 12 12)"
-            d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-    </g>
-  </svg>
-</div>
-
-<!-- ===================== ROTEIRO ===================== -->
-<section class="roteiro on-navy" id="roteiro">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Cinco destinos</p>
-      <h2 class="display">O roteiro</h2>
-      <p>Cinco paradas, na ordem em que a gente vai viajar. O dia a dia detalhado de cada cidade será enviado pela equipe da GS.</p>
-    </div>
-
-    <div class="days">
-      <article class="day rv">
-        <div class="day__img"><div class="lm" style="--bg:#40A3B6"><span class="lm__tag">Reino Unido</span><img src="assets/cidade-londres.webp" srcset="assets/cidade-londres-sm.webp 640w, assets/cidade-londres.webp 1200w" sizes="(max-width:1023px) 100vw, 560px" alt="Tower Bridge ao pôr do sol, em Londres" loading="lazy" width="1200" height="900"></div></div>
-        <div class="day__body">
-          <div class="day__n">1ª parada</div>
-          <div class="day__panel">
-            <span class="day__dias">4 <small>dias</small></span>
-            <h3>Londres</h3>
-            <p>A viagem começa na capital britânica, a cidade para ouvir e falar inglês de verdade. Big Ben, Tower Bridge, London Eye e o ritmo de uma das metrópoles mais vivas do mundo.</p>
-            <ul class="day__tags"><li>Big Ben</li><li>Tower Bridge</li><li>London Eye</li></ul>
-          </div>
-        </div>
-      </article>
-
-      <article class="day day--rev rv">
-        <div class="day__img"><div class="lm" style="--bg:#FDCE82"><span class="lm__tag">França</span><img src="assets/cidade-paris.webp" srcset="assets/cidade-paris-sm.webp 640w, assets/cidade-paris.webp 1200w" sizes="(max-width:1023px) 100vw, 560px" alt="Torre Eiffel e o rio Sena, em Paris" loading="lazy" width="1200" height="900"></div></div>
-        <div class="day__body">
-          <div class="day__n">2ª parada</div>
-          <div class="day__panel">
-            <span class="day__dias">4 <small>dias</small></span>
-            <h3>Paris</h3>
-            <p>Quatro dias na cidade luz: a Torre Eiffel, o Sena, os museus e os cafés que fazem de Paris um lugar para caminhar sem pressa e se perder de propósito.</p>
-            <ul class="day__tags"><li>Torre Eiffel</li><li>Rio Sena</li><li>Museus</li></ul>
-          </div>
-        </div>
-      </article>
-
-      <article class="day rv">
-        <div class="day__img"><div class="lm" style="--bg:#71E6CC"><span class="lm__tag">Bélgica</span><img src="assets/cidade-bruxelas.webp" srcset="assets/cidade-bruxelas-sm.webp 640w, assets/cidade-bruxelas.webp 1200w" sizes="(max-width:1023px) 100vw, 560px" alt="Grand Place iluminada ao entardecer, em Bruxelas" loading="lazy" width="1200" height="900"></div></div>
-        <div class="day__body">
-          <div class="day__n">3ª parada</div>
-          <div class="day__panel">
-            <span class="day__dias">1 <small>dia</small></span>
-            <h3>Bruxelas</h3>
-            <p>Uma parada rápida e saborosa no coração da Europa. Tempo para a Grand Place, o Atomium e, claro, para provar o chocolate e as waffles belgas.</p>
-            <ul class="day__tags"><li>Grand Place</li><li>Atomium</li></ul>
-          </div>
-        </div>
-      </article>
-
-      <article class="day day--rev rv">
-        <div class="day__img"><div class="lm" style="--bg:#BFDCF2"><span class="lm__tag">Países Baixos</span><img src="assets/cidade-amsterdam.webp" srcset="assets/cidade-amsterdam-sm.webp 640w, assets/cidade-amsterdam.webp 1200w" sizes="(max-width:1023px) 100vw, 560px" alt="Casas e canal de Amsterdam ao pôr do sol" loading="lazy" width="1200" height="900"></div></div>
-        <div class="day__body">
-          <div class="day__n">4ª parada</div>
-          <div class="day__panel">
-            <span class="day__dias">2 <small>dias</small></span>
-            <h3>Amsterdam</h3>
-            <p>Canais, casas inclinadas e bicicletas por todo lado. Dois dias para passear entre as pontes e conhecer um dos centros históricos mais charmosos da Europa.</p>
-            <ul class="day__tags"><li>Canais</li><li>Museus</li><li>Centro histórico</li></ul>
-          </div>
-        </div>
-      </article>
-
-      <article class="day rv">
-        <div class="day__img"><div class="lm" style="--bg:#FFC100"><span class="lm__tag">Itália</span><img src="assets/cidade-italia.webp" srcset="assets/cidade-italia-sm.webp 640w, assets/cidade-italia.webp 1200w" sizes="(max-width:1023px) 100vw, 560px" alt="Coliseu ao nascer do sol, na Itália" loading="lazy" width="1200" height="900"></div></div>
-        <div class="day__body">
-          <div class="day__n">5ª parada</div>
-          <div class="day__panel">
-            <span class="day__dias">4 <small>dias</small></span>
-            <h3>Itália</h3>
-            <p>O gran finale: quatro dias de história, arte e a melhor mesa da viagem. A saída é de Amsterdam com destino a Milão, depois uma passagem por Veneza e, por fim, pernoite em Roma, para fechar a Europa com chave de ouro.</p>
-            <ul class="day__tags"><li>Milão</li><li>Veneza</li><li>Roma</li></ul>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <p class="roteiro__note">*Datas e ordem dos passeios previstas, sujeitas a ajustes conforme voos, hospedagens e condições locais. Imagens meramente ilustrativas.</p>
-  </div>
-</section>
-
-<!-- ===================== CARROSSEL DE FOTOS ===================== -->
-<section class="fotos" id="fotos">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Pelas ruas da Europa</p>
-      <h2 class="display">Um pouco da Eurotrip da GS</h2>
-    </div>
-  </div>
-  <div class="carrossel" id="carrossel" aria-label="Carrossel de fotos de viagens pela Europa">
-    <button class="carrossel__seta carrossel__seta--prev" type="button" aria-label="Fotos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
-    <button class="carrossel__seta carrossel__seta--next" type="button" aria-label="Próximas fotos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
-    <div class="carrossel__view" id="carrosselView">
-    <div class="carrossel__track" id="carrosselTrack">
-        <img src="assets/galeria/g68.webp" width="675" height="900" alt="Foto da Eurotrip em Londres" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g69.webp" width="599" height="900" alt="Foto da Eurotrip em Londres" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g70.webp" width="702" height="900" alt="Foto da Eurotrip em Londres" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g71.webp" width="690" height="900" alt="Foto da Eurotrip em Londres" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g01.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g02.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g03.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g04.webp" width="900" height="506" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g05.webp" width="900" height="506" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g06.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g07.webp" width="900" height="506" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g08.webp" width="900" height="506" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g09.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g10.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g11.webp" width="900" height="506" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g12.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g13.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g14.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g15.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g16.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g17.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g18.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g19.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g20.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g21.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g22.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g23.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g24.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g25.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g26.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g27.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g28.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g29.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g30.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g31.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g32.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g33.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g34.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g35.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g36.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g37.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g38.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g39.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g40.webp" width="900" height="675" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g41.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g42.webp" width="900" height="675" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g43.webp" width="900" height="675" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g44.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g45.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g46.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g47.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g48.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g49.webp" width="900" height="506" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g50.webp" width="900" height="675" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g51.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g52.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g53.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g54.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g55.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g56.webp" width="900" height="506" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g57.webp" width="900" height="674" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g58.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g59.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g60.webp" width="900" height="506" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g61.webp" width="900" height="675" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g62.webp" width="900" height="506" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g63.webp" width="900" height="675" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g64.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g65.webp" width="900" height="675" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g66.webp" width="506" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-        <img src="assets/galeria/g67.webp" width="675" height="900" alt="Foto de viagem pela Europa" loading="lazy" decoding="async" draggable="false">
-    </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== VALORES ===================== -->
-<section class="valores" id="valor">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Sem surpresa</p>
-      <h2 class="display">Valores e pagamento</h2>
-      <p>Condição pensada para a comunidade The Great Deal: entrada pequena e o restante bem diluído até o embarque.</p>
-    </div>
-
-    <div class="valor rv">
-      <div class="valor__in">
-        <p class="eyebrow">Investimento</p>
-        <div class="valor__price">
-          <sup>R$</sup>15.000<span class="sparkle" aria-hidden="true"><i></i><i></i><i></i></span>
-        </div>
-        <p class="valor__per">por pessoa</p>
-        <p class="valor__parc">Entrada de <em>R$ 2.000</em> + saldo parcelado</p>
-
-        <div class="pay">
-          <div class="pay__card">
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
-            <h3>Mês a mês <em>Pix ou boleto</em></h3>
-            <p>Entrada de R$ 2.000 e o restante pago todo mês, no Pix ou no boleto, no seu ritmo.</p>
-          </div>
-          <div class="pay__card">
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></svg></div>
-            <h3>Até <em>12x</em> no cartão</h3>
-            <p>Prefere o cartão? Parcelamos o valor da viagem em até 12 vezes c/ juros da maquininha.</p>
-          </div>
-          <div class="pay__card">
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-            <h3>Pix até <em>1 mês antes</em></h3>
-            <p>Pagando no Pix, você pode ir quitando até 1 mês antes da data do embarque.</p>
-          </div>
-        </div>
-
-        <div class="sim" id="sim" hidden>
-          <small>Estimativa pagando mês a mês (Pix ou Boleto)</small>
-          <b id="simValor">R$ 0</b>
-          <p id="simTxt"></p>
-        </div>
-        <p class="valor__note">
-          Valor por pessoa, sujeito a disponibilidade e alteração sem aviso prévio. A estimativa mensal é apenas
-          uma referência: o plano exato é definido com a equipe da GS.
-        </p>
-      </div>
-    </div>
-
-    <div class="aviso kids rv" role="note">
-      <div class="aviso__ico" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3.2"/><path d="M3 20v-1.5A4.5 4.5 0 0 1 7.5 14h3A4.5 4.5 0 0 1 15 18.5V20"/><circle cx="18" cy="10" r="2.2"/><path d="M17 14.4A3.4 3.4 0 0 1 21 17.8V19"/></svg>
-      </div>
-      <div>
-        <b>Criança de até 12 anos no quarto dos pais não pagam hospedagem.</b>
-        <p>Viaja com a família toda: as crianças de até 10/12 anos que dormem com os pais não pagam a hospedagem. A equipe da GS confirma as condições de cada família.</p>
-      </div>
-    </div>
-
-    <div class="eta rv" id="eta">
-      <div class="eta__head">
-        <div>
-          <p class="eyebrow">Antes de embarcar</p>
-          <h3>ETA: a autorização para entrar no Reino Unido</h3>
-        </div>
-      </div>
-
-      <p class="eta__txt">
-        A viagem começa em Londres, e para entrar no Reino Unido é preciso o <b>ETA (Electronic Travel Authorisation)</b>,
-        uma autorização digital ligada ao seu passaporte. <b>Cada pessoa precisa do seu</b>, inclusive crianças e bebês.
-      </p>
-
-      <ul class="eta__facts">
-        <li><b>£ 20</b><span>por pessoa, valor oficial do governo britânico</span></li>
-        <li><b>2 anos</b><span>de validade, ou até o passaporte vencer</span></li>
-        <li><b>100% online</b><span>pelo app ou pelo site oficial</span></li>
-      </ul>
-
-      <h4 class="eta__sub">Como funciona</h4>
-      <ol class="eta__steps">
-        <li><i>1</i><p>Solicite pelo app <b>UK ETA</b> ou pelo site oficial do governo britânico, sem consulado e sem sair de casa.</p></li>
-        <li><i>2</i><p>Tenha em mãos o passaporte com que vai viajar, um e-mail e cartão de crédito ou débito (ou Apple Pay e Google Pay).</p></li>
-        <li><i>3</i><p>Escaneie o passaporte e o rosto, e pague a taxa online.</p></li>
-        <li><i>4</i><p>A resposta chega por e-mail. Pelo app costuma sair em minutos, e pode levar até 3 dias úteis.</p></li>
-      </ol>
-
-      <p class="eta__note">
-        Depois de aprovado, o ETA permite entrar quantas vezes quiser durante a validade, em estadias de até 6 meses.
-        Peça apenas pelos canais oficiais: outros sites cobram taxas a mais. O valor e as regras são definidos pelo governo
-        do Reino Unido e podem mudar. A equipe da GS orienta cada família antes do embarque.
-      </p>
-      <a class="eta__link" href="https://www.gov.uk/eta" target="_blank" rel="noreferrer noopener">Site oficial: gov.uk/eta</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ===================== FAQ ===================== -->
-<section class="faq on-navy" id="duvidas">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Sem letra miúda</p>
-      <h2 class="display">Dúvidas frequentes</h2>
-    </div>
-
-    <div class="acc">
-      <div class="acc__item">
-        <button class="acc__btn" aria-expanded="false"><span>Quando é o embarque e o retorno?</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="acc__body"><p>O embarque está previsto para 16 de julho de 2027 e o retorno para 31 de julho. As datas são previstas e confirmadas junto com os voos; qualquer ajuste é avisado com antecedência.</p></div>
-      </div>
-      <div class="acc__item">
-        <button class="acc__btn" aria-expanded="false"><span>Como funciona o pagamento?</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="acc__body"><p>A viagem custa R$ 15.000 por pessoa. Você dá uma entrada de R$ 2.000 e vai pagando o restante mês a mês, no Pix ou no boleto. Se preferir, também dá para parcelar em até 12x no cartão.</p></div>
-      </div>
-      <div class="acc__item">
-        <button class="acc__btn" aria-expanded="false"><span>Até quando posso pagar no Pix?</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="acc__body"><p>No Pix você pode ir pagando até 1 mês antes da data do embarque. Ou seja, o saldo precisa estar quitado até meados de junho de 2027.</p></div>
-      </div>
-      <div class="acc__item">
-        <button class="acc__btn" aria-expanded="false"><span>Criança paga hospedagem?</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="acc__body"><p>Crianças de até 10/12 anos que dormem no quarto com os pais não pagam hospedagem. A equipe da GS confirma as condições de cada família.</p></div>
-      </div>
-      <div class="acc__item">
-        <button class="acc__btn" aria-expanded="false"><span>Quais documentos preciso?</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="acc__body"><p>Para a Europa o passaporte válido é obrigatório, e alguns países pedem autorização de entrada: para o Reino Unido, por exemplo, é preciso o ETA, solicitado online (veja o bloco do ETA na seção de valores). Menores de 18 anos têm regras específicas de autorização de viagem. Enviamos a orientação completa e conferimos tudo com você bem antes do embarque.</p></div>
-      </div>
-      <div class="acc__item">
-        <button class="acc__btn" aria-expanded="false"><span>Como funciona o suporte durante a viagem?</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="acc__body"><p>Você tem um canal direto no WhatsApp com a equipe da GS antes e durante toda a viagem. Surgiu uma dúvida, atrasou um voo, mudou o plano? É só chamar. Aqui não tem "boa viagem e tchau".</p></div>
-      </div>
-      <div class="acc__item">
-        <button class="acc__btn" aria-expanded="false"><span>Moro longe. Como faço o pagamento?</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="acc__body"><p>Sem problema: o atendimento é 100% online e seguro. Contrato digital, link de pagamento oficial e todos os comprovantes enviados para você.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== SOBRE ===================== -->
-<section class="sobre" id="sobre">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Quem organiza</p>
-      <h2 class="display">Sobre nós</h2>
-    </div>
-
-    <div class="sobre__panel rv">
-      <div class="sobre__texto">
-        <p>A <strong>GS Infinity Travel</strong> nasceu da paixão das amigas Solange Costa e Gelsiane Julião por desbravar novos destinos. O que era um sonho tornou-se um compromisso profissional dedicado a planejar experiências inesquecíveis, oferecendo roteiros nacionais e internacionais sob medida para todas as idades.</p>
-        <p>Nosso propósito é transformar o seu sonho em realidade de forma acessível e descomplicada. Unimos um planejamento minucioso, orçamentos justos e facilidades de pagamento para garantir que a sua melhor viagem sempre comece com a nossa organização.</p>
-      </div>
-
-      <div class="fundadoras">
-        <p class="fundadoras__titulo">Quem está por trás</p>
-        <div class="fundadoras__grid">
-          <figure class="fundadora">
-            <img src="assets/gel.png" srcset="assets/gel-sm.png 240w, assets/gel.png 420w"
-                 sizes="(max-width:640px) 92px, 112px"
-                 alt="Gelsiane Julião, fundadora da GS Infinity Travel" loading="lazy" width="420" height="420">
-            <figcaption><b>Gelsiane Julião</b><span>Fundadora</span></figcaption>
-          </figure>
-          <figure class="fundadora">
-            <img src="assets/sol.png" srcset="assets/sol-sm.png 240w, assets/sol.png 420w"
-                 sizes="(max-width:640px) 92px, 112px"
-                 alt="Solange Costa, fundadora da GS Infinity Travel" loading="lazy" width="420" height="420">
-            <figcaption><b>Solange Costa</b><span>Fundadora</span></figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <div class="pillars">
-        <div class="pillar">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-          <h4>Suporte humanizado</h4>
-          <p>Uma pessoa real acompanhando você em cada etapa: antes, durante e depois da viagem.</p>
-        </div>
-        <div class="pillar">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4"/><path d="M16 3h5v5"/><path d="M21 3 10 14"/></svg></div>
-          <h4>Roteiro sob medida</h4>
-          <p>Cada dia pensado para o seu ritmo, com dicas de onde comer, o que evitar e o que vale acordar cedo.</p>
-        </div>
-        <div class="pillar">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.7 8.9a1.9 1.9 0 0 1-1.3 0C6.8 20.5 3.3 18 3.3 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.9 1.9 0 0 1 2.6 0C14.8 3.8 17.3 5 19.3 5a1 1 0 0 1 1 1z"/><path d="m9.5 12 2 2 3.5-4"/></svg></div>
-          <h4>Tudo conferido</h4>
-          <p>Documentação, horários e reservas revisados antes de você sair de casa.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- ===================== RODAPÉ ===================== -->
-<footer class="ftr">
-  <div class="wrap ftr__in">
-    <div>
-      <div class="ftr__logo"><img src="assets/logo-light.png" alt="GS Infinity Travel"></div>
-      <p>Mais do que vender passagens, a gente realiza sonhos.<br>Sonhos, realização e entretenimento.</p>
-      <p style="margin-top:10px">Contato: (11) 94085-6046</p>
-    </div>
-    <div>
-      <h4>Navegue</h4>
-      <p>
-        <a href="#parceria">A parceria</a><br>
-        <a href="#roteiro">Roteiro</a><br>
-        <a href="#valor">Valores e pagamento</a><br>
-        <a href="#duvidas">Dúvidas frequentes</a>
-      </p>
-      <a class="ftr__insta" href="https://www.instagram.com/gsinfinitytravel/"
-         target="_blank" rel="noreferrer noopener" aria-label="Instagram da GS Infinity Travel">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.4.37 1 .42 2.2.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.4.17-1 .37-2.2.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.4-.37-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.4-.17 1-.37 2.2-.42C8.4 2.2 8.8 2.2 12 2.2m0 1.98c-3.14 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.6-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.6-.07-4.74-.07m0 3.36a5.46 5.46 0 1 1 0 10.92 5.46 5.46 0 0 1 0-10.92m0 9a3.54 3.54 0 1 0 0-7.08 3.54 3.54 0 0 0 0 7.08m6.95-9.22a1.28 1.28 0 1 1-2.55 0 1.28 1.28 0 0 1 2.55 0"/></svg>
-        <span>@gsinfinitytravel</span>
-      </a>
-    </div>
-  </div>
-  <div class="wrap ftr__bottom">
-    © <span id="yr"></span> GS Infinity Travel em parceria com The Great Deal. Todos os direitos reservados.<br>
-    Imagens ilustrativas. Valores, datas e roteiro sujeitos a alteração e disponibilidade.
-  </div>
-</footer>
-
-<button class="float-top" id="floatTop" aria-label="Voltar ao topo">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-</button>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Great Deal Idiomas · Escola de inglês em Diadema · Aula teste grátis</title>
+<meta name="description" content="A The Great Deal Idiomas tem sala nova em Diadema, no Grande ABC. Agende sua aula teste de inglês gratuita de 30 minutos e conheça o Método DR, criado pelo Ed Carlos.">
+<link rel="icon" href="assets/logos/LOGO%20VETOR.png">
+<script src="https://cdn.tailwindcss.com"></script>
 <script>
-/* Datas e valores da viagem */
-const EMBARQUE = new Date(2027, 6, 16);      /* 16/jul/2027 */
-const VALOR_TOTAL = 15000, ENTRADA = 2000;
-
-/* ---------- contagem regressiva + estimativa mensal ---------- */
-(function () {
-  const hoje = new Date();
-  const dias = Math.ceil((EMBARQUE - hoje) / 86400000);
-  if (dias > 0) {
-    document.getElementById('faltamN').textContent = dias;
-    document.getElementById('chipFaltam').hidden = false;
-  }
-  /* parcelas mensais: do mês que vem até 1 mês antes do embarque */
-  const limite = new Date(EMBARQUE.getFullYear(), EMBARQUE.getMonth() - 1, EMBARQUE.getDate());
-  let n = (limite.getFullYear() - hoje.getFullYear()) * 12 + (limite.getMonth() - hoje.getMonth());
-  if (limite.getDate() < hoje.getDate()) n--;
-  if (n >= 1) {
-    const mensal = (VALOR_TOTAL - ENTRADA) / n;
-    const fmt = v => 'R$ ' + Math.ceil(v).toLocaleString('pt-BR');
-    document.getElementById('simValor').textContent = fmt(mensal) + ' por mês';
-    document.getElementById('simTxt').textContent =
-      'Entrada de R$ 2.000 + ' + n + (n === 1 ? ' parcela' : ' parcelas') +
-      ' mensais, se você começar hoje e quitar até 1 mês antes do embarque.';
-    document.getElementById('sim').hidden = false;
-  }
-})();
-
-/* ---------- menu mobile ---------- */
-const burger = document.getElementById('burger');
-const mnav = document.getElementById('mnav');
-burger.addEventListener('click', () => {
-  const open = mnav.classList.toggle('open');
-  burger.setAttribute('aria-expanded', String(open));
-  burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
-});
-mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  mnav.classList.remove('open');
-  burger.setAttribute('aria-expanded', 'false');
-}));
-
-/* ---------- accordion ---------- */
-document.querySelectorAll('.acc__item').forEach(item => {
-  const btn = item.querySelector('.acc__btn');
-  const body = item.querySelector('.acc__body');
-  btn.addEventListener('click', () => {
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.acc__item.open').forEach(o => {
-      o.classList.remove('open');
-      o.querySelector('.acc__body').style.maxHeight = null;
-      o.querySelector('.acc__btn').setAttribute('aria-expanded', 'false');
-    });
-    if (!isOpen) {
-      item.classList.add('open');
-      body.style.maxHeight = body.scrollHeight + 'px';
-      btn.setAttribute('aria-expanded', 'true');
-    }
-  });
-});
-
-/* ---------- reveal ---------- */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.rv').forEach(el => io.observe(el));
-
-/* ---------- barra de progresso + voltar ao topo ---------- */
-const bar = document.getElementById('progressBar');
-const btnTop = document.getElementById('floatTop');
-let ticking = false;
-
-function onScroll() {
-  const max = document.documentElement.scrollHeight - innerHeight;
-  const pct = max > 0 ? Math.min(scrollY / max, 1) : 0;
-  bar.style.transform = 'scaleX(' + pct + ')';
-  btnTop.classList.toggle('show', scrollY > 600);
-  ticking = false;
-}
-addEventListener('scroll', () => {
-  if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
-}, { passive: true });
-addEventListener('resize', onScroll, { passive: true });
-onScroll();
-
-btnTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
-
-
-/* ---------- carrossel de fotos: rolagem automática, loop sem emenda e setas ---------- */
-(function () {
-  const view = document.getElementById('carrosselView');
-  const track = document.getElementById('carrosselTrack');
-  if (!view || !track) return;
-  [...track.children].forEach(img => {
-    const c = img.cloneNode(true);
-    c.setAttribute('aria-hidden', 'true'); c.alt = '';
-    track.appendChild(c);
-  });
-  const VEL = 45;                       /* px por segundo */
-  let meio = 0, pausaAte = 0, hover = false, ultimo = 0, pos = 0;
-  const medir = () => {
-    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    meio = track.scrollWidth / 2 + gap / 2;
-  };
-  const normalizar = () => {
-    if (!meio) return;
-    if (pos >= meio) pos -= meio;
-    if (pos < 0) pos += meio;
-  };
-  const pausar = ms => { pausaAte = performance.now() + ms; };
-  let ressincronizar = true;
-  function passo(t) {
-    const dt = Math.min(0.05, (t - (ultimo || t)) / 1000); ultimo = t;
-    if (!hover && t > pausaAte && meio) {
-      if (ressincronizar) { pos = view.scrollLeft; ressincronizar = false; }
-      pos += VEL * dt;               /* acumula em decimal: scrollLeft arredonda e travaria */
-      normalizar();
-      view.scrollLeft = pos;
-    } else { ressincronizar = true; }
-    requestAnimationFrame(passo);
-  }
-  function mover(dir) {
-    pausar(2500);
-    const alvo = view.scrollLeft + dir * Math.max(240, view.clientWidth * 0.7);
-    view.scrollTo({ left: alvo, behavior: 'smooth' });
-  }
-  /* o loop só "dobra" a posição quando o usuário passou do meio */
-  view.addEventListener('scroll', () => {
-    if (!meio) return;
-    if (view.scrollLeft >= meio) view.scrollLeft -= meio;
-    else if (view.scrollLeft <= 0 && pos > 0 && performance.now() < pausaAte) view.scrollLeft += meio;
-  }, { passive: true });
-  document.querySelector('.carrossel__seta--next').addEventListener('click', () => mover(1));
-  document.querySelector('.carrossel__seta--prev').addEventListener('click', () => {
-    if (view.scrollLeft < 300) view.scrollLeft += meio;   /* volta pelo fim sem trancar no início */
-    mover(-1);
-  });
-  view.addEventListener('mouseenter', () => { hover = true; });
-  view.addEventListener('mouseleave', () => { hover = false; });
-  view.addEventListener('touchstart', () => pausar(4000), { passive: true });
-  view.addEventListener('wheel', () => pausar(2500), { passive: true });
-  track.querySelectorAll('img').forEach(i => i.addEventListener('load', medir, { once: true }));
-  addEventListener('resize', medir); addEventListener('load', medir);
-  medir(); requestAnimationFrame(passo);
-})();
-
-document.getElementById('yr').textContent = new Date().getFullYear();
+// Cores da marca: azul e vermelho do logo
+tailwind.config = { theme: { extend: { colors: { navy: { DEFAULT: "#1B1464", 900: "#120D4A", 700: "#2A2380" }, tgdred: "#ED1F24" } } } };
 </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+body {
+font-family: 'Inter', sans-serif;
+}
+.waveform-bg {
+background-image: repeating-linear-gradient(to right,
+#e4e4e7 0%,
+#e4e4e7 1px,
+transparent 1px,
+transparent 4px);
+}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.animate-spin-slow { animation: spin-slow 24s linear infinite; }/* Formulário no mesmo vocabulário do design system */
+.lvl input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.lvl input:checked + label { background: #1B1464; color: #fff; border-color: #1B1464; }
+.lvl input:focus-visible + label { outline: 1px solid #1B1464; outline-offset: 2px; }
+.invalid input, .invalid .lvl label { border-color: #ED1F24; }
+#aula-teste.done form, #aula-teste.done .form-head { display: none; }
+#aula-teste.done .form-success { display: block; }
+.nav-link.is-active { color: #1B1464; }
+.nav-link.is-active .nav-bar { transform: scaleX(1); }
+.nav-link.is-active .nav-dot { opacity: 1; }
+#sala, #ed, #aula-teste, #contatos { scroll-margin-top: 110px; }
+.sala-track { scrollbar-width: none; }
+.sala-track::-webkit-scrollbar { display: none; }
+.sala-track.dragging { scroll-snap-type: none; cursor: grabbing; }
+.sala-track.dragging a { pointer-events: none; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+</head>
+
+<body class="bg-[#f2f2f2] text-zinc-950 antialiased overflow-x-hidden selection:bg-navy selection:text-white">
+  <!-- Navigation -->
+  <nav class="fixed w-full top-0 z-50 bg-[#f2f2f2]/90 backdrop-blur-md border-b border-zinc-200/50">
+    <div class="max-w-[95%] xl:max-w-[1800px] mx-auto px-6 h-24 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <a href="#inicio" class="flex items-center">
+          <img src="assets/logos/LOGO%20VETOR.png" alt="The Great Deal Idiomas" class="h-16 sm:h-20 w-auto object-contain mix-blend-multiply">
+        </a>
+      </div>
+
+      <!-- Links: o item da seção visível fica marcado (sublinhado + ponto) -->
+      <div class="hidden lg:flex items-start gap-10 text-sm font-medium tracking-wide">
+        <a href="#inicio" data-nav class="nav-link flex flex-col items-center cursor-pointer text-zinc-500 hover:text-navy transition-colors">
+          <span>INÍCIO</span>
+          <span class="nav-bar h-0.5 w-full bg-tgdred mt-1 scale-x-0 transition-transform duration-300"></span>
+          <span class="nav-dot w-1 h-1 bg-tgdred rounded-full mt-1 opacity-0 transition-opacity duration-300"></span>
+        </a>
+        <a href="#sala" data-nav class="nav-link flex flex-col items-center cursor-pointer text-zinc-500 hover:text-navy transition-colors">
+          <span>SALA NOVA</span>
+          <span class="nav-bar h-0.5 w-full bg-tgdred mt-1 scale-x-0 transition-transform duration-300"></span>
+          <span class="nav-dot w-1 h-1 bg-tgdred rounded-full mt-1 opacity-0 transition-opacity duration-300"></span>
+        </a>
+        <a href="#ed" data-nav class="nav-link flex flex-col items-center cursor-pointer text-zinc-500 hover:text-navy transition-colors">
+          <span>MÉTODO DR</span>
+          <span class="nav-bar h-0.5 w-full bg-tgdred mt-1 scale-x-0 transition-transform duration-300"></span>
+          <span class="nav-dot w-1 h-1 bg-tgdred rounded-full mt-1 opacity-0 transition-opacity duration-300"></span>
+        </a>
+        <a href="#contatos" data-nav class="nav-link flex flex-col items-center cursor-pointer text-zinc-500 hover:text-navy transition-colors">
+          <span>CONTATOS</span>
+          <span class="nav-bar h-0.5 w-full bg-tgdred mt-1 scale-x-0 transition-transform duration-300"></span>
+          <span class="nav-dot w-1 h-1 bg-tgdred rounded-full mt-1 opacity-0 transition-opacity duration-300"></span>
+        </a>
+      </div>
+
+      <!-- Right Actions -->
+      <div class="flex items-center gap-6">
+        <div class="hidden md:flex items-center gap-4 text-zinc-600">
+          <!-- EDITAR: link do WhatsApp -->
+          <a href="https://www.instagram.com/tgd_idiomas/" target="_blank" rel="noopener" class="hover:text-navy transition-colors" aria-label="Instagram @tgd_idiomas">
+            <i data-lucide="instagram" stroke-width="1.5" class="w-4 h-4"></i>
+          </a>
+          <a href="#" class="hover:text-navy transition-colors" aria-label="WhatsApp">
+            <i data-lucide="message-circle" stroke-width="1.5" class="w-4 h-4"></i>
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&query=R.%20Manoel%20da%20N%C3%B3brega%2C%201016%20-%20Centro%2C%20Diadema%20-%20SP" target="_blank" rel="noopener" class="hover:text-navy transition-colors" aria-label="Ver endereço no mapa">
+            <i data-lucide="map-pin" stroke-width="1.5" class="w-4 h-4"></i>
+          </a>
+        </div>
+        <a href="#aula-teste" class="border border-navy text-navy px-4 sm:px-6 py-2.5 text-xs sm:text-sm font-semibold tracking-wide hover:bg-navy hover:text-white transition-colors">
+          AGENDAR AULA
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <main class="relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center" id="inicio">
+
+    <div class="max-w-[95%] xl:max-w-[1800px] mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+      <!-- Left Content -->
+      <div class="lg:col-span-5 flex flex-col justify-center">
+        <span class="text-xs font-semibold tracking-widest uppercase text-zinc-600 mb-6 flex items-center gap-2 whitespace-nowrap">
+          NOVA SALA
+          <span class="w-1 h-1 bg-tgdred rounded-full"></span>
+          DIADEMA
+          <span class="w-1 h-1 bg-tgdred rounded-full"></span>
+          GRANDE ABC
+        </span>
+
+        <h1 class="text-5xl min-[400px]:text-6xl sm:text-7xl lg:text-7xl min-[1360px]:text-8xl font-semibold tracking-tight uppercase leading-[0.9] mb-8 text-navy">
+          ESTAMOS
+          <br>
+          DE
+          <br>
+          CASA <span class="text-tgdred">NOVA.</span>
+        </h1>
+
+        <p class="text-lg text-zinc-600 max-w-md mb-10 leading-relaxed font-medium">
+          <span class="text-navy">The Great Deal está de cara nova!</span>
+          Um espaço mais amplo e confortável em Diadema, feito para aulas
+          práticas em turmas dinâmicas, com o Método DR, criado pelo Ed Carlos.
+          <br>
+          Venha conhecer em uma aula teste gratuita de 30 minutos.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-6">
+          <a href="#aula-teste" class="bg-tgdred text-white px-8 py-4 text-sm font-semibold tracking-wide flex items-center gap-3 hover:bg-navy transition-colors">
+            AGENDAR AULA TESTE
+            <i data-lucide="arrow-up-right" stroke-width="2" class="w-4 h-4"></i>
+          </a>
+          <a href="#sala" class="text-sm font-semibold tracking-wide flex items-center gap-2 group">
+            CONHECER A SALA
+            <i data-lucide="arrow-right" stroke-width="1.5" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Center Graphic: no celular é uma pílula; no desktop ocupa as 7 colunas da direita -->
+      <div class="lg:col-span-7 relative h-[520px] sm:h-[640px] lg:h-auto lg:self-stretch lg:min-h-[680px] flex justify-center lg:pr-6">
+        <div class="relative h-full w-full max-w-[320px] sm:max-w-[420px] lg:max-w-none">
+          <!-- Contornos -->
+          <div class="absolute inset-0 rounded-full lg:rounded-[13rem] border border-dashed border-navy/30 pulse-circle"></div>
+          <div class="absolute inset-[14px] rounded-full lg:rounded-[12rem] border-2 border-navy pulse-circle"></div>
+          <div class="absolute inset-[24px] rounded-full lg:rounded-[11.5rem] bg-tgdred pulse-circle"></div>
+
+          <!-- Foto da nova sala -->
+          <div class="absolute inset-[34px] z-10 rounded-full lg:rounded-[11rem] overflow-hidden shadow-2xl ring-1 ring-black/5">
+            <img src="assets/Fotos/sala.webp" alt="A nova sala da The Great Deal Idiomas" class="w-full h-full object-cover object-[50%_55%]">
+          </div>
+
+          <!-- Selo girando -->
+          <div class="absolute top-[7%] -right-3 sm:-right-6 w-24 h-24 rounded-full bg-navy text-white flex items-center justify-center z-20 animate-spin-slow">
+            <div class="absolute inset-2 border border-white/20 rounded-full"></div>
+            <i data-lucide="messages-square" stroke-width="1.5" class="w-8 h-8"></i>
+            <svg viewBox="0 0 100 100" class="absolute inset-0" style="width: 96px; height: 96px;">
+              <path id="curve" fill="transparent" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"></path>
+              <text class="text-[9px] font-semibold tracking-widest uppercase fill-white">
+                <textPath href="#curve" startOffset="0%" textLength="216" lengthAdjust="spacingAndGlyphs">
+                  THE GREAT DEAL • LET'S TALK IN ENGLISH •
+                </textPath>
+              </text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="absolute bottom-10 right-0 flex flex-col items-center gap-1">
+          <div class="w-px h-24 waveform-bg"></div>
+        </div>
+
+        <div class="absolute top-0 right-0 flex gap-2">
+          <div class="w-1.5 h-1.5 bg-navy"></div>
+          <div class="w-1.5 h-1.5 bg-tgdred"></div>
+          <div class="w-1.5 h-1.5 border border-navy"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Services Banner -->
+  <section class="bg-navy text-white py-14" id="aula">
+    <div class="max-w-[95%] xl:max-w-[1800px] mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 divide-y lg:divide-y-0 lg:divide-x divide-white/15">
+        <!-- Item 1 -->
+        <div class="flex items-start gap-5 pt-8 lg:pt-0 lg:pr-8">
+          <div class="relative w-12 h-12 flex-shrink-0">
+            <div class="absolute inset-0 rounded-full border border-white/20 bg-navy-900 flex items-center justify-center">
+              <div class="w-4 h-4 bg-tgdred rounded-full"></div>
+            </div>
+            <div class="absolute inset-1 rounded-full border border-white/10"></div>
+          </div>
+          <div class="">
+            <h4 class="text-sm font-semibold tracking-widest uppercase mb-2">
+              MÉTODO DR
+            </h4>
+            <p class="text-base text-white/70 font-medium leading-relaxed">
+              Criado pelo Ed Carlos, com foco em praticar e falar inglês desde a primeira aula.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="flex items-start gap-5 pt-8 lg:pt-0 lg:px-8">
+          <i data-lucide="users" stroke-width="1.5" class="w-10 h-10 flex-shrink-0 text-tgdred"></i>
+          <div>
+            <h4 class="text-sm font-semibold tracking-widest uppercase mb-2">
+              TURMAS DINÂMICAS
+            </h4>
+            <p class="text-base text-white/70 font-medium leading-relaxed">
+              Aulas práticas em grupo, do zero ao avançado, no seu ritmo.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="flex items-start gap-5 pt-8 lg:pt-0 lg:px-8">
+          <i data-lucide="baby" stroke-width="1.5" class="w-10 h-10 flex-shrink-0 text-tgdred"></i>
+          <div class="">
+            <h4 class="text-sm font-semibold tracking-widest uppercase mb-2">
+              ADULTOS E KIDS
+            </h4>
+            <p class="text-base text-white/70 font-medium leading-relaxed">
+              Turmas para você e aulas kids para seus filhos aprenderem desde cedo.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="flex items-start gap-5 pt-8 lg:pt-0 lg:px-8">
+          <i data-lucide="coffee" stroke-width="1.5" class="w-10 h-10 flex-shrink-0 text-tgdred"></i>
+          <div>
+            <h4 class="text-sm font-semibold tracking-widest uppercase mb-2">
+              ESPAÇO NOVO
+            </h4>
+            <p class="text-base text-white/70 font-medium leading-relaxed">
+              Mais amplo e confortável, com área de espera e aquele cafezinho com a turma.
+            </p>
+          </div>
+        </div>
+
+        <!-- Endereço -->
+        <div class="flex flex-col justify-center pt-8 lg:pt-0 lg:pl-8">
+          <h4 class="text-[10px] font-semibold tracking-widest uppercase text-white/50 mb-4">
+            NOVO ENDEREÇO
+          </h4>
+          <a href="https://www.google.com/maps/search/?api=1&query=R.%20Manoel%20da%20N%C3%B3brega%2C%201016%20-%20Centro%2C%20Diadema%20-%20SP" target="_blank" rel="noopener" class="flex items-center gap-3 text-white hover:text-tgdred transition-colors mb-3">
+            <i data-lucide="map-pin" stroke-width="1.5" class="w-5 h-5 flex-shrink-0"></i>
+            <span class="text-sm font-semibold tracking-wide">R. MANOEL DA NÓBREGA, 1016</span>
+          </a>
+          <span class="text-[10px] font-semibold tracking-widest uppercase text-white/50">
+            CENTRO · DIADEMA · SP
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vídeo -->
+  <section class="pt-20 pb-6 lg:py-28 relative overflow-hidden" id="video">
+    <div class="max-w-[95%] xl:max-w-[1800px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-8 items-center">
+      <div class="lg:col-span-5 lg:col-start-2 order-2 lg:order-1">
+        <span class="text-xs font-semibold tracking-widest uppercase text-zinc-600 mb-6 flex items-center gap-2">
+          ASSISTA
+          <span class="w-1 h-1 bg-tgdred rounded-full"></span>
+          40 SEGUNDOS
+        </span>
+        <h2 class="text-4xl sm:text-5xl xl:text-6xl font-semibold tracking-tight uppercase leading-[0.95] mb-8 text-navy">
+          QUANTAS
+          <br>
+          OPORTUNIDADES
+          <br>
+          VOCÊ ESTÁ
+          <br>
+          <span class="text-tgdred">DEIXANDO PASSAR?</span>
+        </h2>
+        <p class="text-lg text-zinc-600 max-w-md mb-10 leading-relaxed font-medium">
+          Uma vaga, uma viagem, uma conversa que você não conseguiu ter.
+          Chegou a hora de destravar o inglês. O primeiro passo é uma aula
+          teste gratuita de 30 minutos, na nova sala em Diadema.
+        </p>
+        <a href="#aula-teste" class="inline-flex bg-tgdred text-white px-8 py-4 text-sm font-semibold tracking-wide items-center gap-3 hover:bg-navy transition-colors">
+          QUERO MINHA AULA TESTE
+          <i data-lucide="arrow-up-right" stroke-width="2" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <div class="lg:col-span-4 lg:col-start-8 order-1 lg:order-2 flex justify-center">
+        <div class="relative w-full max-w-[300px] sm:max-w-[340px]">
+          <!-- Moldura deslocada em azul, como um cartão por trás -->
+          <div class="absolute inset-0 translate-x-4 translate-y-4 rounded-[2rem] border-2 border-navy"></div>
+          <div class="relative aspect-[9/16] rounded-[2rem] overflow-hidden bg-navy shadow-2xl ring-4 ring-tgdred">
+            <video id="video-tgd" class="w-full h-full object-cover cursor-pointer" src="assets/video/video-aula-teste.mp4" poster="assets/video/video-aula-teste-capa.jpg" muted loop playsinline preload="metadata" aria-label="Vídeo sobre a aula teste da The Great Deal"></video>
+
+            <!-- Play com som -->
+            <button type="button" id="video-play" class="absolute inset-0 flex items-center justify-center bg-navy/20 hover:bg-navy/30 transition-colors" aria-label="Assistir com som">
+              <span class="w-20 h-20 rounded-full bg-tgdred text-white flex items-center justify-center shadow-xl">
+                <i data-lucide="play" stroke-width="2" class="w-8 h-8 fill-white ml-1"></i>
+              </span>
+            </button>
+
+            <!-- Liga/desliga o som -->
+            <button type="button" id="video-sound" class="hidden absolute bottom-4 right-4 items-center gap-2 bg-white/95 text-navy px-3 py-2 text-[10px] font-semibold tracking-widest uppercase" aria-label="Ativar som">
+              <i data-lucide="volume-x" stroke-width="2" class="w-4 h-4" data-icon="off"></i>
+              <i data-lucide="volume-2" stroke-width="2" class="w-4 h-4 hidden" data-icon="on"></i>
+              <span>ATIVAR SOM</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sala Nova: carrossel de fotos -->
+  <section class="bg-[#f5f5f5] py-20 lg:py-24 relative overflow-hidden" id="sala">
+    <!-- Abstract wave background -->
+    <div class="absolute right-0 bottom-0 w-[500px] h-[500px] border border-zinc-200 rounded-full translate-x-1/3 translate-y-1/3 pointer-events-none">
+    </div>
+    <div class="absolute right-0 bottom-0 w-[600px] h-[600px] border border-zinc-200 rounded-full translate-x-1/3 translate-y-1/3 pointer-events-none">
+    </div>
+
+    <div class="max-w-[95%] xl:max-w-[1800px] mx-auto px-6 relative z-10">
+      <!-- Cabeçalho + setas -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-8 mb-10">
+        <div>
+          <span class="text-xs font-semibold tracking-widest uppercase text-zinc-600 mb-6 flex items-center gap-2">
+            SALA NOVA
+            <span class="w-1 h-1 bg-tgdred rounded-full"></span>
+            R. MANOEL DA NÓBREGA, 1016
+          </span>
+          <h2 class="text-4xl sm:text-5xl xl:text-6xl font-semibold tracking-tight uppercase leading-[0.95] text-navy">
+            CONHEÇA O
+            <br>
+            <span class="text-tgdred">ESPAÇO.</span>
+          </h2>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="#aula-teste" class="text-xs font-semibold tracking-widest uppercase flex items-center gap-1 text-tgdred hover:text-navy transition-colors">
+            AGENDAR VISITA
+            <i data-lucide="arrow-right" stroke-width="1.5" class="w-3 h-3"></i>
+          </a>
+          <div class="flex gap-2">
+            <button type="button" id="sala-prev" class="w-12 h-12 border border-navy text-navy flex items-center justify-center hover:bg-navy hover:text-white transition-colors disabled:opacity-30 disabled:pointer-events-none" aria-label="Foto anterior">
+              <i data-lucide="arrow-left" stroke-width="1.5" class="w-5 h-5"></i>
+            </button>
+            <button type="button" id="sala-next" class="w-12 h-12 bg-navy text-white flex items-center justify-center hover:bg-tgdred transition-colors disabled:opacity-30 disabled:pointer-events-none" aria-label="Próxima foto">
+              <i data-lucide="arrow-right" stroke-width="1.5" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carrossel: arraste para o lado, use as setas ou role com o trackpad -->
+      <div id="sala-track" class="sala-track flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 cursor-grab select-none" aria-label="Fotos da nova sala">
+        <figure class="sala-card snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[30%] xl:w-[27%] aspect-[2/3] rounded-[1.75rem] overflow-hidden bg-navy">
+          <img src="assets/Fotos/sala3.jpeg" alt="A nova sala com os quadros de Londres" draggable="false" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+        </figure>
+        <figure class="sala-card snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[30%] xl:w-[27%] aspect-[2/3] rounded-[1.75rem] overflow-hidden bg-navy">
+          <img src="assets/Fotos/turma3.jpeg" alt="Ed Carlos com uma turma de adultos na nova sala" draggable="false" class="w-full h-full object-cover object-[50%_40%] hover:scale-105 transition-transform duration-700">
+        </figure>
+        <figure class="sala-card snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[30%] xl:w-[27%] aspect-[2/3] rounded-[1.75rem] overflow-hidden bg-navy">
+          <img src="assets/Fotos/ed-sala.jpeg" alt="Ed Carlos na nova sala da The Great Deal" draggable="false" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+        </figure>
+        <figure class="sala-card snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[30%] xl:w-[27%] aspect-[2/3] rounded-[1.75rem] overflow-hidden bg-navy">
+          <img src="assets/Fotos/turma5.jpeg" alt="Ed Carlos com a turma teen na nova sala" draggable="false" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+        </figure>
+        <figure class="sala-card snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[30%] xl:w-[27%] aspect-[2/3] rounded-[1.75rem] overflow-hidden bg-navy">
+          <img src="assets/Fotos/sala.webp" alt="Sala de aula da nova sala da The Great Deal" draggable="false" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+        </figure>
+        <figure class="sala-card snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[30%] xl:w-[27%] aspect-[2/3] rounded-[1.75rem] overflow-hidden bg-navy">
+          <img src="assets/Fotos/turma6.jpeg" alt="Ed Carlos com uma turma de adultos" draggable="false" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+        </figure>
+        <figure class="sala-card snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[30%] xl:w-[27%] aspect-[2/3] rounded-[1.75rem] overflow-hidden bg-navy">
+          <img src="assets/Fotos/cafe.jpg" alt="Cafezinho da The Great Deal com os cartões do Ed Carlos" draggable="false" loading="lazy" class="w-full h-full object-cover object-[50%_60%] hover:scale-105 transition-transform duration-700">
+        </figure>
+        <figure class="sala-card snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[30%] xl:w-[27%] aspect-[2/3] rounded-[1.75rem] overflow-hidden bg-navy">
+          <img src="assets/Fotos/turma2.jpeg" alt="Ed Carlos com a turma kids na nova sala" draggable="false" loading="lazy" class="w-full h-full object-cover object-[50%_45%] hover:scale-105 transition-transform duration-700">
+        </figure>
+        <figure class="sala-card snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[30%] xl:w-[27%] aspect-[2/3] rounded-[1.75rem] overflow-hidden bg-navy">
+          <img src="assets/Fotos/turma4.jpeg" alt="Ed Carlos com alunos na nova sala" draggable="false" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+        </figure>
+        <figure class="sala-card snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[30%] xl:w-[27%] aspect-[2/3] rounded-[1.75rem] overflow-hidden bg-navy">
+          <img src="assets/Fotos/sala2.webp" alt="Carteiras azuis na nova sala da The Great Deal" draggable="false" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+        </figure>
+        <figure class="sala-card snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[30%] xl:w-[27%] aspect-[2/3] rounded-[1.75rem] overflow-hidden bg-navy">
+          <img src="assets/Fotos/turma7.jpeg" alt="Ed Carlos com a turma da noite" draggable="false" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+        </figure>
+        <figure class="sala-card snap-start shrink-0 w-[78%] sm:w-[46%] lg:w-[30%] xl:w-[27%] aspect-[2/3] rounded-[1.75rem] overflow-hidden bg-navy">
+          <img src="assets/Fotos/turma1.jpeg" alt="Ed Carlos com alunos kids na sala de aula" draggable="false" loading="lazy" class="w-full h-full object-cover object-[45%_50%] hover:scale-105 transition-transform duration-700">
+        </figure>
+      </div>
+
+      <!-- Números da aula teste + citação -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mt-16 lg:mt-20">
+        <div class="lg:col-span-6">
+          <h4 class="text-xs font-semibold tracking-widest uppercase mb-8 text-navy">
+            A AULA TESTE
+          </h4>
+          <div class="flex flex-col gap-6">
+            <div class="flex items-center gap-6">
+              <i data-lucide="clock" stroke-width="1.5" class="w-5 h-5 text-tgdred"></i>
+              <span class="text-2xl font-semibold tracking-tight w-16 text-navy">30'</span>
+              <span class="text-xs font-semibold tracking-widest uppercase text-zinc-500">
+                DE AULA PRÁTICA
+              </span>
+            </div>
+            <div class="flex items-center gap-6">
+              <i data-lucide="gift" stroke-width="1.5" class="w-5 h-5 text-tgdred"></i>
+              <span class="text-2xl font-semibold tracking-tight w-16 text-navy">R$0</span>
+              <span class="text-xs font-semibold tracking-widest uppercase text-zinc-500">
+                GRATUITA E SEM COMPROMISSO
+              </span>
+            </div>
+            <div class="flex items-center gap-6">
+              <i data-lucide="calendar" stroke-width="1.5" class="w-5 h-5 text-tgdred"></i>
+              <span class="text-2xl font-semibold tracking-tight w-16 text-navy">JAN</span>
+              <span class="text-xs font-semibold tracking-widest uppercase text-zinc-500">
+                NOVAS TURMAS
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quote -->
+        <div class="lg:col-span-5 lg:col-start-8 relative flex flex-col justify-center pl-8 border-l border-zinc-200">
+          <i data-lucide="quote" stroke-width="1" class="w-12 h-12 text-tgdred mb-4 rotate-180"></i>
+          <p class="text-2xl font-medium tracking-tight leading-snug mb-8 relative z-10 text-navy">
+            Inglês não é dom,
+            <br>
+            é prática, constância e conversa.
+          </p>
+          <div class="flex items-center justify-between relative z-10">
+            <span class="text-[10px] font-semibold tracking-widest uppercase text-zinc-500">
+              — THE GREAT DEAL IDIOMAS
+            </span>
+            <i data-lucide="quote" stroke-width="1" class="w-6 h-6 text-tgdred/50"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Avaliações do Google Meu Negócio (textos como os alunos escreveram) -->
+  <section class="py-20 lg:py-24 relative overflow-hidden border-t border-zinc-200" id="avaliacoes">
+    <div class="max-w-[95%] xl:max-w-[1800px] mx-auto px-6">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-10">
+        <div>
+          <span class="text-xs font-semibold tracking-widest uppercase text-zinc-600 mb-6 flex items-center gap-2">
+            AVALIAÇÕES
+            <span class="w-1 h-1 bg-tgdred rounded-full"></span>
+            GOOGLE MEU NEGÓCIO
+          </span>
+          <h2 class="text-4xl sm:text-5xl xl:text-6xl font-semibold tracking-tight uppercase leading-[0.95] text-navy">
+            QUEM JÁ ESTUDA
+            <br>
+            <span class="text-tgdred">FALA POR NÓS.</span>
+          </h2>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-8 gap-y-5">
+          <div class="flex items-center gap-4">
+            <span class="text-6xl font-semibold tracking-tight text-navy leading-none">5,0</span>
+            <div>
+              <div class="flex gap-0.5 mb-1.5" aria-label="5 estrelas"><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i></div>
+              <span class="text-[10px] font-semibold tracking-widest uppercase text-zinc-500">49 AVALIAÇÕES NO GOOGLE</span>
+            </div>
+          </div>
+          <a href="https://www.google.com/maps?cid=2128443191346307554" target="_blank" rel="noopener" class="text-xs font-semibold tracking-widest uppercase flex items-center gap-1 text-tgdred hover:text-navy transition-colors">
+            VER TODAS NO GOOGLE
+            <i data-lucide="arrow-up-right" stroke-width="1.5" class="w-3 h-3"></i>
+          </a>
+          <div class="flex gap-2">
+            <button type="button" id="reviews-prev" class="w-12 h-12 border border-navy text-navy flex items-center justify-center hover:bg-navy hover:text-white transition-colors disabled:opacity-30 disabled:pointer-events-none" aria-label="Avaliação anterior">
+              <i data-lucide="arrow-left" stroke-width="1.5" class="w-5 h-5"></i>
+            </button>
+            <button type="button" id="reviews-next" class="w-12 h-12 bg-navy text-white flex items-center justify-center hover:bg-tgdred transition-colors disabled:opacity-30 disabled:pointer-events-none" aria-label="Próxima avaliação">
+              <i data-lucide="arrow-right" stroke-width="1.5" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="reviews-track" class="sala-track flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 cursor-grab select-none" aria-label="Avaliações dos alunos no Google">
+        <div class="review-slide snap-start shrink-0 w-[86%] sm:w-[46%] lg:w-[31%] xl:w-[28%] flex flex-col gap-4">
+<figure class="review-card bg-white border border-zinc-200 rounded-[1.75rem] p-7 flex flex-col">
+          <div class="flex gap-0.5 mb-5" aria-label="5 estrelas"><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i></div>
+          <blockquote class="flex-1 space-y-3 text-[15px] text-zinc-600 font-medium leading-relaxed">
+            <p>Profissional excelente!! Ótimo método de ensino, foco em realmente falar o inglês. Estou amando minhas aulas, Super indico!!!</p>
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-7 pt-5 border-t border-zinc-200">
+            <span class="w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" aria-hidden="true">N</span>
+            <span class="min-w-0">
+              <span class="block text-xs font-semibold tracking-widest uppercase text-navy">Nathalia Carvalho</span>
+              <span class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mt-0.5">AVALIAÇÃO NO GOOGLE</span>
+            </span>
+          </figcaption>
+        </figure>
+<figure class="review-card bg-white border border-zinc-200 rounded-[1.75rem] p-7 flex flex-col">
+          <div class="flex gap-0.5 mb-5" aria-label="5 estrelas"><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i></div>
+          <blockquote class="flex-1 space-y-3 text-[15px] text-zinc-600 font-medium leading-relaxed">
+            <p>O melhor !</p>
+            <p>Sempre uma experiência incrível, todas as aulas são bem leves, e usa o melhor método possível de nos fazer entender. Parabéns pelo trabalho, eu e minha esposa estamos muito felizes.</p>
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-7 pt-5 border-t border-zinc-200">
+            <span class="w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" aria-hidden="true">M</span>
+            <span class="min-w-0">
+              <span class="block text-xs font-semibold tracking-widest uppercase text-navy">Matheus Sousa de Paula</span>
+              <span class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mt-0.5">AVALIAÇÃO NO GOOGLE</span>
+            </span>
+          </figcaption>
+        </figure>
+        </div>
+        <div class="review-slide snap-start shrink-0 w-[86%] sm:w-[46%] lg:w-[31%] xl:w-[28%] flex flex-col gap-4">
+<figure class="review-card bg-white border border-zinc-200 rounded-[1.75rem] p-7 flex flex-col">
+          <div class="flex gap-0.5 mb-5" aria-label="5 estrelas"><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i></div>
+          <blockquote class="flex-1 space-y-3 text-[15px] text-zinc-600 font-medium leading-relaxed">
+            <p>Estou gostando muito das aulas de inglês. O professor Ed consegue explicar de uma forma clara e fácil de entender, utilizando um dos melhores métodos.</p>
+            <p>Desde que comecei as aulas, tive uma evolução muito grande e, principalmente, excelentes resultados no meu trabalho. Hoje me sinto muito mais confiante para me comunicar em inglês no ambiente profissional, algo que antes era uma dificuldade para mim.</p>
+            <p>Sou muito grato pelo aprendizado e pela evolução que estou tendo. Recomendo muito a escola para quem realmente quer aprender inglês e usar o idioma no dia a dia e com excelente metodologia.</p>
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-7 pt-5 border-t border-zinc-200">
+            <span class="w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" aria-hidden="true">R</span>
+            <span class="min-w-0">
+              <span class="block text-xs font-semibold tracking-widest uppercase text-navy">Renato Costa</span>
+              <span class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mt-0.5">AVALIAÇÃO NO GOOGLE</span>
+            </span>
+          </figcaption>
+        </figure>
+        </div>
+        <div class="review-slide snap-start shrink-0 w-[86%] sm:w-[46%] lg:w-[31%] xl:w-[28%] flex flex-col gap-4">
+<figure class="review-card bg-white border border-zinc-200 rounded-[1.75rem] p-7 flex flex-col">
+          <div class="flex gap-0.5 mb-5" aria-label="5 estrelas"><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i></div>
+          <blockquote class="flex-1 space-y-3 text-[15px] text-zinc-600 font-medium leading-relaxed">
+            <p>Simpleste uma escola de nivel internacional, super indico e tenho certeza que em qualquer outro lugar nao vão encontrar o valor, atendimento, a flexibilidade, rapidez no aprendizado e um comprometimento alto nivel. Ed Parabéns!!! Você é referencia no idioma na forma de ensinar, sucesso é o que te espera. Sensacional!!!</p>
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-7 pt-5 border-t border-zinc-200">
+            <span class="w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" aria-hidden="true">T</span>
+            <span class="min-w-0">
+              <span class="block text-xs font-semibold tracking-widest uppercase text-navy">Thiago Araujo</span>
+              <span class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mt-0.5">AVALIAÇÃO NO GOOGLE</span>
+            </span>
+          </figcaption>
+        </figure>
+<figure class="review-card bg-white border border-zinc-200 rounded-[1.75rem] p-7 flex flex-col">
+          <div class="flex gap-0.5 mb-5" aria-label="5 estrelas"><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i></div>
+          <blockquote class="flex-1 space-y-3 text-[15px] text-zinc-600 font-medium leading-relaxed">
+            <p>Estou fazendo aula com o Teacher Ed tem 3 meses, comecei do zero e hoje já conseguimos conversar em inglês tranquilamente, excelente método de ensino.</p>
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-7 pt-5 border-t border-zinc-200">
+            <span class="w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" aria-hidden="true">R</span>
+            <span class="min-w-0">
+              <span class="block text-xs font-semibold tracking-widest uppercase text-navy">Renato Souza De Oliveira</span>
+              <span class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mt-0.5">AVALIAÇÃO NO GOOGLE</span>
+            </span>
+          </figcaption>
+        </figure>
+        </div>
+        <div class="review-slide snap-start shrink-0 w-[86%] sm:w-[46%] lg:w-[31%] xl:w-[28%] flex flex-col gap-4">
+<figure class="review-card bg-white border border-zinc-200 rounded-[1.75rem] p-7 flex flex-col">
+          <div class="flex gap-0.5 mb-5" aria-label="5 estrelas"><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i></div>
+          <blockquote class="flex-1 space-y-3 text-[15px] text-zinc-600 font-medium leading-relaxed">
+            <p>Teacher Ed é um excelente professor sempre disposto a tirar nossas duvidas e nos ajudar com as nossas dificuldades. Sua metodologia é ótima, em pouco tempo já evolui bastante. O ambiente escolar é muito bom leve e interativo, aprendemos muito a cada aula.</p>
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-7 pt-5 border-t border-zinc-200">
+            <span class="w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" aria-hidden="true">K</span>
+            <span class="min-w-0">
+              <span class="block text-xs font-semibold tracking-widest uppercase text-navy">Kevillin Damascena</span>
+              <span class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mt-0.5">AVALIAÇÃO NO GOOGLE</span>
+            </span>
+          </figcaption>
+        </figure>
+<figure class="review-card bg-white border border-zinc-200 rounded-[1.75rem] p-7 flex flex-col">
+          <div class="flex gap-0.5 mb-5" aria-label="5 estrelas"><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i></div>
+          <blockquote class="flex-1 space-y-3 text-[15px] text-zinc-600 font-medium leading-relaxed">
+            <p>Sensacional , experiência única - Prof Ed Carlos um excelente ser humano e um excelente professor , ambiente familiar , aulas dinâmicas , conteúdos exclusivos , aqui se apreende inglês de verdade .</p>
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-7 pt-5 border-t border-zinc-200">
+            <span class="w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" aria-hidden="true">J</span>
+            <span class="min-w-0">
+              <span class="block text-xs font-semibold tracking-widest uppercase text-navy">Jb Running Running</span>
+              <span class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mt-0.5">AVALIAÇÃO NO GOOGLE</span>
+            </span>
+          </figcaption>
+        </figure>
+        </div>
+        <div class="review-slide snap-start shrink-0 w-[86%] sm:w-[46%] lg:w-[31%] xl:w-[28%] flex flex-col gap-4">
+<figure class="review-card bg-white border border-zinc-200 rounded-[1.75rem] p-7 flex flex-col">
+          <div class="flex gap-0.5 mb-5" aria-label="5 estrelas"><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i></div>
+          <blockquote class="flex-1 space-y-3 text-[15px] text-zinc-600 font-medium leading-relaxed">
+            <p>Eu recomendo fortemente a The Great Deal Idiomas para qualquer pessoa que deseje melhorar seu inglês de forma eficaz e com um ambiente acolhedor e inclusivo. A escola oferece uma experiência de aprendizado única e enriquecedora que certamente ajudará a alcançar seus objetivos linguísticos com uma abordagem personalizada e uma adaptação as necessidades de cada aluno.</p>
+            <p>Eu estou muito satisfeito com o progresso que fiz desde que comecei a frequentar a escola e estou ansioso para continuar aprendendo com o excelente professor Ed Carlos e todos os recursos que a escola oferece.</p>
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-7 pt-5 border-t border-zinc-200">
+            <span class="w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" aria-hidden="true">B</span>
+            <span class="min-w-0">
+              <span class="block text-xs font-semibold tracking-widest uppercase text-navy">Bruno Guimaraes Oliveira Rocha Guimaraes</span>
+              <span class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mt-0.5">AVALIAÇÃO NO GOOGLE</span>
+            </span>
+          </figcaption>
+        </figure>
+        </div>
+        <div class="review-slide snap-start shrink-0 w-[86%] sm:w-[46%] lg:w-[31%] xl:w-[28%] flex flex-col gap-4">
+<figure class="review-card bg-white border border-zinc-200 rounded-[1.75rem] p-7 flex flex-col">
+          <div class="flex gap-0.5 mb-5" aria-label="5 estrelas"><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i></div>
+          <blockquote class="flex-1 space-y-3 text-[15px] text-zinc-600 font-medium leading-relaxed">
+            <p>Eu serei sempre grato ao teacher Ed pela paciência que ele sempre teve e continua tendo comigo o seu profissionalismo e dedicação no que faz é impressionante parabéns teacher</p>
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-7 pt-5 border-t border-zinc-200">
+            <span class="w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" aria-hidden="true">T</span>
+            <span class="min-w-0">
+              <span class="block text-xs font-semibold tracking-widest uppercase text-navy">Tempo de Revolução</span>
+              <span class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mt-0.5">AVALIAÇÃO NO GOOGLE</span>
+            </span>
+          </figcaption>
+        </figure>
+<figure class="review-card bg-white border border-zinc-200 rounded-[1.75rem] p-7 flex flex-col">
+          <div class="flex gap-0.5 mb-5" aria-label="5 estrelas"><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i><i data-lucide="star" stroke-width="1.5" class="w-4 h-4 fill-tgdred text-tgdred"></i></div>
+          <blockquote class="flex-1 space-y-3 text-[15px] text-zinc-600 font-medium leading-relaxed">
+            <p>Ótimas aulas, Professor atencioso e bem preparado!.</p>
+            <p>Diversos recursos disponíveis para os alunos, equipe atenciosa e bem preparada.</p>
+          </blockquote>
+          <figcaption class="flex items-center gap-3 mt-7 pt-5 border-t border-zinc-200">
+            <span class="w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center text-sm font-semibold" aria-hidden="true">K</span>
+            <span class="min-w-0">
+              <span class="block text-xs font-semibold tracking-widest uppercase text-navy">Kesley Damascena</span>
+              <span class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mt-0.5">AVALIAÇÃO NO GOOGLE</span>
+            </span>
+          </figcaption>
+        </figure>
+        </div>
+<a href="https://www.google.com/maps?cid=2128443191346307554" target="_blank" rel="noopener" draggable="false" class="review-card snap-start shrink-0 max-sm:w-full w-[86%] sm:w-[46%] lg:w-[31%] xl:w-[28%] bg-navy text-white rounded-[1.75rem] p-7 flex flex-col justify-between group">
+          <div>
+            <i data-lucide="star" stroke-width="1.5" class="w-8 h-8 fill-tgdred text-tgdred mb-6"></i>
+            <h3 class="text-3xl font-semibold tracking-tight uppercase leading-[1] mb-4">VEJA TODAS AS 49 AVALIAÇÕES</h3>
+            <p class="text-base text-white/70 font-medium leading-relaxed">Todas com 5 estrelas, direto no perfil da The Great Deal no Google.</p>
+          </div>
+          <span class="mt-8 inline-flex self-start bg-tgdred text-white px-8 py-4 text-sm font-semibold tracking-wide items-center gap-3 group-hover:bg-white group-hover:text-navy transition-colors">
+            ABRIR NO GOOGLE
+            <i data-lucide="arrow-up-right" stroke-width="2" class="w-4 h-4"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ed Carlos -->
+  <section class="pt-8 pb-8 md:pb-20 relative" id="ed">
+    <div class="max-w-[95%] xl:max-w-[1800px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 border-t border-zinc-200 pt-10 lg:pt-20">
+      <div class="lg:col-span-5">
+        <span class="text-xs font-semibold tracking-widest uppercase text-zinc-600 mb-6 flex items-center gap-2">
+          QUEM ESTÁ POR TRÁS
+          <span class="w-1 h-1 bg-tgdred rounded-full"></span>
+          THE GREAT DEAL
+        </span>
+        <h2 class="text-5xl sm:text-6xl font-semibold tracking-tight uppercase leading-[0.9] mb-8 text-navy">
+          PRAZER,
+          <br>
+          <span class="text-tgdred">ED CARLOS.</span>
+        </h2>
+        <p class="text-lg text-zinc-600 max-w-md mb-10 leading-relaxed font-medium">
+          À frente da The Great Deal, o Ed é o criador do Método DR, o jeito de
+          ensinar que guia todas as aulas da escola. Ele acredita que inglês se
+          aprende praticando, com gente por perto e sem pressa. A nova sala em
+          Diadema é a próxima fase dessa história: mais espaço para receber bem
+          cada aluno.
+        </p>
+        <a href="#aula-teste" class="inline-flex bg-tgdred text-white px-8 py-4 text-sm font-semibold tracking-wide items-center gap-3 hover:bg-navy transition-colors">
+          APLICAR O MÉTODO
+          <i data-lucide="arrow-up-right" stroke-width="2" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <div class="lg:col-span-6 lg:col-start-7 flex flex-col justify-center">
+        <h4 class="text-xs font-semibold tracking-widest uppercase mb-8 text-navy">
+          O JEITO TGD DE RECEBER
+        </h4>
+        <div class="flex flex-col divide-y divide-zinc-200 border-y border-zinc-200">
+          <div class="flex items-start gap-6 py-6">
+            <span class="text-2xl font-semibold tracking-tight w-12 flex-shrink-0 text-tgdred">01</span>
+            <div>
+              <h5 class="text-sm font-semibold tracking-widest uppercase mb-2 text-navy">O CAFEZINHO</h5>
+              <p class="text-base text-zinc-600 font-medium leading-relaxed">Antes da aula tem sempre um cafezinho com a turma: um jeito leve de chegar, conversar e se soltar.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-6 py-6">
+            <span class="text-2xl font-semibold tracking-tight w-12 flex-shrink-0 text-tgdred">02</span>
+            <div>
+              <h5 class="text-sm font-semibold tracking-widest uppercase mb-2 text-navy">A ESPERA</h5>
+              <p class="text-base text-zinc-600 font-medium leading-relaxed">Uma área de espera confortável para você chegar com calma antes da aula.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-6 py-6">
+            <span class="text-2xl font-semibold tracking-tight w-12 flex-shrink-0 text-tgdred">03</span>
+            <div>
+              <h5 class="text-sm font-semibold tracking-widest uppercase mb-2 text-navy">A AULA</h5>
+              <p class="text-base text-zinc-600 font-medium leading-relaxed">Prática do começo ao fim, em turmas dinâmicas, para você sair falando.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulário: aula teste, com o Ed em pé sobre a onda do rodapé -->
+  <section class="relative z-20 pt-4 lg:pt-20" id="aula-teste">
+    <div class="max-w-[95%] xl:max-w-[1800px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-end border-t border-zinc-200 pt-8 lg:pt-20">
+      <!-- Ed: as pernas ficam atrás da onda azul do rodapé -->
+      <!-- No desktop a foto acompanha a altura da coluna do formulário (do título até a onda) -->
+      <div class="lg:col-span-5 order-2 lg:order-1 relative flex justify-center lg:self-stretch -mb-[56px] lg:mb-0 pointer-events-none drop-shadow-[0_10px_30px_rgba(0,0,0,0.45)]">
+        <img src="assets/Fotos/edcarlos.png" alt="Ed Carlos, criador do Método DR" class="h-[360px] md:h-[480px] w-auto max-w-none object-contain lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:-bottom-[88px] lg:h-[calc(100%+88px)]">
+      </div>
+
+      <div class="lg:col-span-6 lg:col-start-7 order-1 lg:order-2 relative lg:pb-28">
+        <!-- Corner decorations -->
+        <div class="absolute -top-4 -right-4 w-2 h-2 border-t border-r border-tgdred"></div>
+        <div class="absolute -bottom-4 right-[-1rem] lg:bottom-24 w-2 h-2 border-b border-r border-tgdred"></div>
+
+        <div class="form-head">
+          <span class="text-xs font-semibold tracking-widest uppercase text-zinc-600 mb-6 flex items-center gap-2">
+            AULA TESTE
+            <span class="w-1 h-1 bg-tgdred rounded-full"></span>
+            30 MINUTOS
+            <span class="w-1 h-1 bg-tgdred rounded-full"></span>
+            GRATUITA
+          </span>
+          <h2 class="text-4xl sm:text-5xl xl:text-6xl font-semibold tracking-tight uppercase leading-[0.95] mb-6 text-navy">
+            AGENDE SUA
+            <br>
+            <span class="text-tgdred">AULA TESTE.</span>
+          </h2>
+          <p class="text-lg text-zinc-600 max-w-lg mb-10 leading-relaxed font-medium">
+            Venha sentir o Método DR na prática, na nova sala em Diadema. São 30 minutos, gratuitos, e ainda tem um cafezinho com a turma. Deixe seu contato e a gente te chama no WhatsApp para combinar o melhor horário.
+          </p>
+        </div>
+
+        <form id="lead-form" novalidate class="flex flex-col gap-6">
+          <div class="field">
+            <label for="nome" class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mb-2">NOME</label>
+            <input id="nome" name="nome" autocomplete="name" placeholder="Seu nome completo" required class="w-full bg-transparent border-0 border-b border-zinc-300 focus:border-navy focus:ring-0 outline-none px-0 py-2 text-base font-medium placeholder:text-zinc-400 transition-colors">
+          </div>
+          <div class="field">
+            <label for="telefone" class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mb-2">TELEFONE / WHATSAPP</label>
+            <input id="telefone" name="telefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" required class="w-full bg-transparent border-0 border-b border-zinc-300 focus:border-navy outline-none px-0 py-2 text-base font-medium placeholder:text-zinc-400 transition-colors">
+          </div>
+          <div class="field">
+            <label for="email" class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mb-2">E-MAIL</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="voce@email.com" required class="w-full bg-transparent border-0 border-b border-zinc-300 focus:border-navy outline-none px-0 py-2 text-base font-medium placeholder:text-zinc-400 transition-colors">
+          </div>
+          <fieldset class="field" id="nivel-field">
+            <legend class="block text-[10px] font-semibold tracking-widest uppercase text-zinc-500 mb-3">NÍVEL DE INGLÊS</legend>
+            <div class="lvl relative flex flex-wrap gap-2">
+              <input type="radio" name="nivel" id="n0" value="Nunca estudei"><label for="n0" class="border border-zinc-300 px-3 py-2 text-[11px] font-semibold tracking-widest uppercase cursor-pointer hover:border-navy transition-colors">NUNCA ESTUDEI</label>
+              <input type="radio" name="nivel" id="n1" value="Básico"><label for="n1" class="border border-zinc-300 px-3 py-2 text-[11px] font-semibold tracking-widest uppercase cursor-pointer hover:border-navy transition-colors">BÁSICO</label>
+              <input type="radio" name="nivel" id="n2" value="Intermediário"><label for="n2" class="border border-zinc-300 px-3 py-2 text-[11px] font-semibold tracking-widest uppercase cursor-pointer hover:border-navy transition-colors">INTERMEDIÁRIO</label>
+              <input type="radio" name="nivel" id="n3" value="Avançado"><label for="n3" class="border border-zinc-300 px-3 py-2 text-[11px] font-semibold tracking-widest uppercase cursor-pointer hover:border-navy transition-colors">AVANÇADO</label>
+              <input type="radio" name="nivel" id="n4" value="Não sei"><label for="n4" class="border border-zinc-300 px-3 py-2 text-[11px] font-semibold tracking-widest uppercase cursor-pointer hover:border-navy transition-colors">NÃO SEI</label>
+            </div>
+          </fieldset>
+          <p class="text-xs font-semibold tracking-widest uppercase text-tgdred min-h-[1rem] -my-2" id="form-error" role="alert"></p>
+          <button type="submit" class="bg-tgdred text-white px-8 py-4 text-sm font-semibold tracking-wide flex items-center justify-between gap-3 hover:bg-navy transition-colors">
+            QUERO MINHA AULA TESTE
+            <i data-lucide="arrow-right" stroke-width="2" class="w-4 h-4"></i>
+          </button>
+          <span class="text-[10px] font-semibold tracking-widest uppercase text-zinc-500 -mt-2">
+            GRATUITA · SEM COMPROMISSO · TURMAS DE JANEIRO
+          </span>
+        </form>
+
+        <div class="form-success hidden">
+          <h3 class="text-sm font-semibold tracking-widest uppercase mb-4 leading-relaxed text-navy">
+            PRONTO, <span id="first-name">RECEBEMOS</span>.
+          </h3>
+          <p class="text-base text-zinc-600 font-medium leading-relaxed">
+            Nossa equipe vai te chamar no WhatsApp para combinar o dia e o horário da sua aula teste.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <!-- Rodapé: faixa reta na cor azul, com a foto do Ed por cima -->
+  <footer class="text-white pt-8 md:pt-28 lg:pt-36 pb-10 relative z-30">
+    <div class="absolute inset-0 bg-navy-900"></div>
+    <div class="max-w-[95%] xl:max-w-[1800px] mx-auto px-6">
+      <div id="contatos" class="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 border-t border-white/10 pt-14">
+        <!-- Marca -->
+        <div class="sm:col-span-2 lg:col-span-4">
+          <img src="assets/logos/LOGO%20VETOR.png" alt="The Great Deal Idiomas" class="h-20 w-20 rounded-full bg-white object-contain p-1 mb-6">
+          <p class="text-base text-white/70 font-medium leading-relaxed max-w-sm mb-8">
+            Escola de inglês em Diadema. Aulas práticas em turmas dinâmicas,
+            com o Método DR, criado pelo Ed Carlos. Aprenda o inglês falando!
+          </p>
+          <a href="#aula-teste" class="inline-flex bg-tgdred text-white px-8 py-4 text-sm font-semibold tracking-wide items-center gap-3 hover:bg-white hover:text-navy transition-colors">
+            AGENDAR AULA TESTE
+            <i data-lucide="arrow-up-right" stroke-width="2" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Navegação -->
+        <div class="lg:col-span-2 lg:col-start-6">
+          <h4 class="text-[10px] font-semibold tracking-widest uppercase text-white/50 mb-6">NAVEGAÇÃO</h4>
+          <ul class="flex flex-col gap-3 text-sm font-semibold tracking-wide text-white/85">
+            <li><a href="#inicio" class="hover:text-white transition-colors">INÍCIO</a></li>
+            <li><a href="#sala" class="hover:text-white transition-colors">SALA NOVA</a></li>
+            <li><a href="#ed" class="hover:text-white transition-colors">MÉTODO DR</a></li>
+            <li><a href="#contatos" class="hover:text-white transition-colors">CONTATOS</a></li>
+          </ul>
+        </div>
+
+        <!-- Endereço -->
+        <div class="lg:col-span-3">
+          <h4 class="text-[10px] font-semibold tracking-widest uppercase text-white/50 mb-6">ONDE ESTAMOS</h4>
+          <p class="text-base text-white/85 font-medium leading-relaxed mb-4">
+            R. Manoel da Nóbrega, 1016
+            <br>
+            Centro · Diadema · SP
+          </p>
+          <a href="https://www.google.com/maps/search/?api=1&query=R.%20Manoel%20da%20N%C3%B3brega%2C%201016%20-%20Centro%2C%20Diadema%20-%20SP" target="_blank" rel="noopener" class="text-xs font-semibold tracking-widest uppercase text-tgdred flex items-center gap-1 hover:text-white transition-colors">
+            VER NO MAPA
+            <i data-lucide="arrow-up-right" stroke-width="1.5" class="w-3 h-3"></i>
+          </a>
+        </div>
+
+        <!-- Contato -->
+        <div class="lg:col-span-2">
+          <h4 class="text-[10px] font-semibold tracking-widest uppercase text-white/50 mb-6">CONTATO</h4>
+          <ul class="flex flex-col gap-3 text-sm font-semibold tracking-wide text-white/85">
+            <li>
+              <a href="https://www.instagram.com/tgd_idiomas/" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-white transition-colors">
+                <i data-lucide="instagram" stroke-width="1.5" class="w-4 h-4"></i> @TGD_IDIOMAS
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Barra final -->
+      <div class="relative z-10 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-white/10 mt-14 pt-8 text-xs font-semibold tracking-widest uppercase text-white/50">
+        <p class="text-center sm:text-left">© 2026 THE GREAT DEAL IDIOMAS · TODOS OS DIREITOS RESERVADOS</p>
+        <a href="#inicio" class="flex items-center gap-2 hover:text-white transition-colors">
+          VOLTAR AO TOPO
+          <i data-lucide="arrow-up" stroke-width="1.5" class="w-3 h-3"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <script>
+    // Formulário
+    const form = document.getElementById("lead-form");
+    const errorBox = document.getElementById("form-error");
+    const phone = form.telefone;
+
+    // Máscara de telefone (00) 00000-0000
+    phone.addEventListener("input", () => {
+      const d = phone.value.replace(/\D/g, "").slice(0, 11);
+      let out = d;
+      if (d.length > 2) out = `(${d.slice(0, 2)}) ${d.slice(2)}`;
+      if (d.length > 6) out = `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}`;
+      phone.value = out;
+    });
+
+    form.addEventListener("input", (e) => {
+      e.target.closest(".field")?.classList.remove("invalid");
+      errorBox.textContent = "";
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      form.querySelectorAll(".invalid").forEach((el) => el.classList.remove("invalid"));
+
+      let msg = "", bad = null;
+      if (!data.nome?.trim() || data.nome.trim().length < 2) { msg = "Conte pra gente o seu nome."; bad = form.nome; }
+      else if (phone.value.replace(/\D/g, "").length < 10) { msg = "Confira o telefone com DDD."; bad = phone; }
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email || "")) { msg = "Confira o seu e-mail."; bad = form.email; }
+      else if (!data.nivel) { msg = "Escolha o seu nível de inglês."; bad = document.getElementById("nivel-field"); }
+
+      if (msg) {
+        errorBox.textContent = msg;
+        (bad.closest(".field") || bad).classList.add("invalid");
+        bad.focus?.();
+        return;
+      }
+
+      const lead = {
+        nome: data.nome.trim(),
+        telefone: phone.value,
+        email: data.email.trim(),
+        nivel: data.nivel,
+        origem: "LP Nova Sala",
+        utm: Object.fromEntries(new URLSearchParams(location.search)),
+      };
+
+      // Envia os dados para o WhatsApp do Ed com a mensagem já preenchida
+      const WHATSAPP_ED = "5511981678672";
+      const text = [
+        "Olá! Quero agendar uma aula teste na The Great Deal.",
+        "",
+        `*Nome:* ${lead.nome}`,
+        `*Telefone:* ${lead.telefone}`,
+        `*E-mail:* ${lead.email}`,
+        `*Nível de inglês:* ${lead.nivel}`,
+      ].join("\n");
+      // web.whatsapp.com em vez de wa.me: o wa.me redireciona para api.whatsapp.com, que alguns navegadores bloqueiam
+      const url = `https://web.whatsapp.com/send?phone=${WHATSAPP_ED}&text=${encodeURIComponent(text)}`;
+
+      document.getElementById("first-name").textContent = lead.nome.split(" ")[0].toUpperCase();
+      document.getElementById("aula-teste").classList.add("done");
+      const win = window.open(url, "_blank");
+      if (win) win.opener = null; else location.href = url;
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof anime === 'undefined') return;
+      anime({
+        targets: '.pulse-circle',
+        scale: [1, 1.012],
+        opacity: [0.75, 1],
+        easing: 'easeInOutSine',
+        duration: 2600,
+        loop: true,
+        direction: 'alternate',
+        delay: anime.stagger(150)
+      });
+    });
+  </script>
+
+  <script>
+    // Vídeo: toca sem som quando aparece na tela (as legendas estão no vídeo); o play grande liga o som
+    const video = document.getElementById("video-tgd");
+    const playBtn = document.getElementById("video-play");
+    const soundBtn = document.getElementById("video-sound");
+
+    const setSound = (on) => {
+      video.muted = !on;
+      soundBtn.querySelector('[data-icon="off"]').classList.toggle("hidden", on);
+      soundBtn.querySelector('[data-icon="on"]').classList.toggle("hidden", !on);
+      soundBtn.querySelector("span").textContent = on ? "SOM LIGADO" : "ATIVAR SOM";
+      soundBtn.setAttribute("aria-label", on ? "Desligar som" : "Ativar som");
+    };
+    const syncUi = () => {
+      playBtn.classList.toggle("hidden", !video.paused);
+      soundBtn.classList.toggle("hidden", video.paused);
+      soundBtn.classList.toggle("flex", !video.paused);
+    };
+    video.addEventListener("play", syncUi);
+    video.addEventListener("pause", syncUi);
+
+    playBtn.addEventListener("click", () => {
+      if (video.muted) video.currentTime = 0;
+      setSound(true);
+      video.play();
+    });
+    soundBtn.addEventListener("click", () => setSound(video.muted));
+    video.addEventListener("click", () => video.pause());
+
+    // Autoplay sem som só enquanto estiver visível (e se a pessoa não pediu menos movimento)
+    const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return video.pause();
+      if (!calm && video.muted) video.play().catch(() => {});
+    }, { threshold: 0.5 }).observe(video);
+  </script>
+  <script>
+    // Menu: marca a aba da seção que está na tela (e a clicada, na hora)
+    const navLinks = [...document.querySelectorAll("[data-nav]")];
+    const navTargets = navLinks.map((a) => document.querySelector(a.getAttribute("href")));
+    const setActive = (link) => navLinks.forEach((a) => a.classList.toggle("is-active", a === link));
+
+    // Durante a rolagem suave após o clique, segura a marcação no item clicado
+    let lockUntil = 0;
+    navLinks.forEach((a) => a.addEventListener("click", () => { setActive(a); lockUntil = Date.now() + 1200; }));
+
+    let ticking = false;
+    const spy = () => {
+      ticking = false;
+      if (Date.now() < lockUntil) return;
+      const line = innerHeight * 0.4;
+      let current = null;
+      navTargets.forEach((el, i) => { if (el && el.getBoundingClientRect().top <= line) current = navLinks[i]; });
+      // No fim da página o rodapé pode não chegar à linha: marca Contatos
+      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) current = navLinks[navLinks.length - 1];
+      setActive(current);
+    };
+    addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(spy); } }, { passive: true });
+    spy();
+  </script>
+  <script>
+    // Carrosséis (fotos da sala e avaliações): setas, arrastar com o mouse (no celular é o deslizar nativo)
+    function initCarousel(trackId, prevId, nextId, cardSel) {
+      const track = document.getElementById(trackId);
+      const prevBtn = document.getElementById(prevId);
+      const nextBtn = document.getElementById(nextId);
+      const step = () => track.querySelector(cardSel).offsetWidth + 16;
+      const updateArrows = () => {
+        prevBtn.disabled = track.scrollLeft <= 4;
+        nextBtn.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      };
+      prevBtn.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: "smooth" }));
+      nextBtn.addEventListener("click", () => track.scrollBy({ left: step(), behavior: "smooth" }));
+      track.addEventListener("scroll", updateArrows, { passive: true });
+      addEventListener("resize", updateArrows);
+      updateArrows();
+
+      let dragX = null, dragStart = 0;
+      track.addEventListener("pointerdown", (e) => {
+        if (e.pointerType !== "mouse") return;
+        dragX = e.clientX; dragStart = track.scrollLeft;
+        track.classList.add("dragging");
+      });
+      addEventListener("pointermove", (e) => { if (dragX !== null) track.scrollLeft = dragStart - (e.clientX - dragX); });
+      addEventListener("pointerup", () => {
+        if (dragX === null) return;
+        dragX = null;
+        track.classList.remove("dragging");
+        // Ao soltar, encaixa no cartão mais próximo
+        track.scrollTo({ left: Math.round(track.scrollLeft / step()) * step(), behavior: "smooth" });
+      });
+    }
+    initCarousel("sala-track", "sala-prev", "sala-next", ".sala-card");
+    initCarousel("reviews-track", "reviews-prev", "reviews-next", ".review-slide");
+  </script>
 </body>
 </html>
